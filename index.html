@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LotoMatic Pro</title>
+<script>if(location.hash==='#salle')document.documentElement.classList.add('salle')</script>
+<style>
+:root{--ink:#14201f;--pine:#0e5a52;--pine-d:#0a423c;--brass:#c99a35;--mist:#eceff0;--line:#d5dcda;--muted:#5d6b69;--red:#a3261e;--card:#fff;--cell:#f3f5f4;--cell-h:#e3e9e7;--cell-ink:#41504e;--top:#0e2a28;--top-h:#163a37;--field:#bcc7c4;--hair:#edf0ef;--label:#34423f;--tag-bg:#dcebe8;--pine-l:#17796e;--pine-t:#0e5a52;--danger-line:#e3bdb9;--danger-bg:#fbeeed;--amber-ink:#7a5a14;--amber-bg:#fbf7ec}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;background:var(--mist);color:var(--ink);min-height:100vh;font-size:15px;line-height:1.45;overflow-x:hidden}
+button,input,select{font-family:inherit;font-size:inherit}
+:focus-visible{outline:2px solid var(--pine-t);outline-offset:2px}
+.ic{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-3px}
+
+.topbar{background:var(--top);color:#fff;display:flex;align-items:center;flex-wrap:wrap;gap:8px 24px;padding:0 24px;min-height:60px}
+.wordmark{display:flex;align-items:center;gap:10px;font-family:Georgia,"Times New Roman",serif;font-size:1.3rem;font-weight:700;letter-spacing:.01em}
+.wordmark .logo{width:30px;height:30px}
+.tabs{display:flex;gap:2px;margin-left:auto;align-self:stretch}
+.tab-btn{background:none;border:0;border-bottom:3px solid transparent;color:#aebfbc;padding:0 14px;min-height:56px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px}
+.tab-btn:hover{color:#fff}
+.tab-btn.active{color:#fff;border-bottom-color:var(--brass)}
+.user-badge{font-size:13px;color:#aebfbc;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:4px 12px}
+
+.main-container{max-width:1360px;margin:0 auto;padding:24px}
+.tab-content{display:none}.tab-content.active{display:block}
+.dashboard-grid{display:grid;grid-template-columns:1fr 380px;gap:20px;align-items:start}
+@media(max-width:960px){.dashboard-grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px;margin-bottom:20px}
+.card-title{font-size:1.05rem;font-weight:700;margin-bottom:14px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.card-title .count{font-size:.95rem;color:var(--pine-t);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+
+.lotto-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+.num-ball{aspect-ratio:1;background:var(--cell);border:1px solid var(--line);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:1.05rem;font-variant-numeric:tabular-nums;color:var(--cell-ink);cursor:pointer;user-select:none;transition:background .15s}
+.num-ball:hover{background:var(--cell-h)}
+.num-ball.drawn{background:var(--pine);border-color:var(--pine);color:#fff}
+.num-ball.last-drawn{outline:3px solid var(--brass);outline-offset:2px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 16px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:600;cursor:pointer;width:100%}
+.btn:hover{background:var(--cell)}
+.btn.primary{background:var(--pine);border-color:var(--pine);color:#fff}
+.btn.primary:hover{background:var(--pine-d)}
+.btn.big{height:54px;font-size:1.05rem}
+.btn.dark{background:var(--top);border-color:var(--top);color:#fff}
+.btn.dark:hover{background:var(--top-h)}
+.btn.danger{color:var(--red);border-color:var(--danger-line)}
+.btn.danger:hover{background:var(--danger-bg)}
+.btn.ghost{border-color:transparent;background:none}
+.btn.ghost:hover{background:var(--cell)}
+.btn.icon{width:36px;height:36px;padding:0}
+.btn.auto{width:auto}
+.btn.amber{background:var(--card);border-color:var(--brass);color:var(--amber-ink)}
+.btn.amber:hover{background:var(--amber-bg)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+
+.last-drawn-box{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.last-ball{width:92px;height:92px;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--pine-l),var(--pine-d));border:4px solid var(--brass);display:flex;align-items:center;justify-content:center;flex:none}
+.last-drawn-val{font-family:Georgia,"Times New Roman",serif;font-size:2.6rem;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+.last-label{font-weight:600}
+.step-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:.85rem;font-weight:600;margin-bottom:5px;color:var(--label)}
+.form-control{width:100%;height:42px;padding:0 12px;background:var(--card);border:1px solid var(--field);color:var(--ink);border-radius:6px}
+.form-control:focus{outline:2px solid var(--pine-t);outline-offset:0;border-color:var(--pine-t)}
+.hint{font-size:.82rem;color:var(--muted);margin-top:4px}
+.info-line{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--hair)}
+.info-line:last-child{border-bottom:0}
+.info-line span:first-child{color:var(--muted)}
+.info-line strong{text-align:right}
+
+.game-item{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);padding:12px 12px 12px 8px;border-radius:6px;margin-bottom:8px;display:flex;align-items:center;gap:8px;cursor:grab}
+.game-item.pause-item{background:var(--amber-bg);border-left-color:var(--brass)}
+.game-item.current{border-left-color:var(--pine)}
+.game-item.drag-over{outline:2px dashed var(--pine)}
+.drag-handle{color:var(--muted);display:flex;padding:4px}
+.item-body{flex:1;display:flex;flex-direction:column;min-width:0}
+.item-body .meta{color:var(--muted);font-size:.88rem}
+.tag{display:inline-block;align-self:flex-start;margin-top:4px;font-size:.78rem;font-weight:600;color:var(--pine-t);background:var(--tag-bg);border-radius:999px;padding:1px 9px}
+.msg{font-size:.88rem;margin-top:12px;color:var(--amber-ink);min-height:1.2em}
+.narrow{max-width:460px;margin:0 auto}
+
+/* THEMES DE LA REGIE */
+html[data-ui=gris]{--mist:#c9cfd3;--card:#e3e7ea;--cell:#d5dbdf;--cell-h:#c8d0d5;--cell-ink:#38464a;--line:#b3bec3;--hair:#cdd4d8;--field:#a3b0b6;--amber-bg:#ece6d4}
+html[data-ui=nuit],html[data-ui=ardoise],html[data-ui=bordeaux],html[data-ui=ocean],html[data-ui=ambre]{color-scheme:dark;--ink:#e9efee;--muted:#9aa9a7;--cell-ink:#b8c5c3;--label:#c3cfcd;--red:#ff8a80;--brass:#dcad42;--amber-ink:#e8c66f;--danger-line:#6e3430;--danger-bg:#2d1715;--amber-bg:color-mix(in srgb,var(--card),#d9a93f 14%);--cell:color-mix(in srgb,var(--card),#fff 6%);--cell-h:color-mix(in srgb,var(--card),#fff 13%);--line:color-mix(in srgb,var(--card),#fff 15%);--hair:color-mix(in srgb,var(--card),#fff 9%);--field:color-mix(in srgb,var(--card),#fff 28%);--top:color-mix(in srgb,var(--mist),#000 45%);--top-h:color-mix(in srgb,var(--mist),#fff 8%);--pine-d:color-mix(in srgb,var(--pine),#000 28%);--pine-l:color-mix(in srgb,var(--pine),#fff 18%);--pine-t:color-mix(in srgb,var(--pine),#fff 50%);--tag-bg:color-mix(in srgb,var(--pine),var(--card) 72%)}
+html[data-ui=nuit]{--mist:#0b1413;--card:#13221f;--pine:#1f8a7c}
+html[data-ui=ardoise]{--mist:#0e131f;--card:#172033;--pine:#3d6fe6}
+html[data-ui=bordeaux]{--mist:#180d11;--card:#25141a;--pine:#b8374f}
+html[data-ui=ocean]{--mist:#08171f;--card:#102632;--pine:#1a8fb8}
+html[data-ui=ambre]{--mist:#14110e;--card:#201b16;--pine:#cf7a22}
+
+html.salle,html.salle body{background:#000;overflow:hidden}
+html.salle .topbar,html.salle .main-container{display:none}
+
+/* ECRAN DE SALLE */
+.projection-view{height:100vh;width:100vw;padding:28px 40px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative;color:#eef3f2;--pa:#d6a843}
+.theme-classic{background:radial-gradient(ellipse at 30% 40%,#14403b 0%,#0a1c1b 75%)}
+.theme-pink{--pa:#f6a8cb;background:radial-gradient(ellipse at 30% 40%,#6a1b45 0%,#2b0a1c 75%)}
+.theme-halloween{--pa:#ff9a3c;background:radial-gradient(ellipse at 30% 40%,#4a2008 0%,#150a03 75%)}
+.theme-ocean{--pa:#7fd4ff;background:radial-gradient(ellipse at 30% 40%,#0f4560 0%,#06141d 75%)}
+.theme-foret{--pa:#b6e07a;background:radial-gradient(ellipse at 30% 40%,#17482b 0%,#08170e 75%)}
+.theme-bordeaux{--pa:#f0b7a4;background:radial-gradient(ellipse at 30% 40%,#5b1426 0%,#1f070d 75%)}
+.theme-violet{--pa:#c3a6ff;background:radial-gradient(ellipse at 30% 40%,#33205e 0%,#0e0a1c 75%)}
+.theme-ardoise{--pa:#9db8ff;background:radial-gradient(ellipse at 30% 40%,#22315c 0%,#0a0e1a 75%)}
+.theme-noir{--pa:#e3b341;background:#000}
+.theme-clair{--pa:#0e5a52;color:#14201f;background:radial-gradient(ellipse at 30% 40%,#f1f4f3 0%,#cdd7d5 100%)}
+.theme-clair .proj-header,.theme-clair .proj-lot-card{border-color:rgba(0,0,0,.18)}
+.theme-clair .proj-lot-card .lab,.theme-clair .proj-lot-card p,.theme-clair .proj-foot,.theme-clair .balls-header-title{color:#46565a}
+.theme-clair .btn-top-proj{color:#14201f;border-color:rgba(0,0,0,.35)}
+.theme-clair .drawn-ball-item{border-color:rgba(0,0,0,.3);background:#fff}
+.theme-clair .drawn-ball-item.last-drawn-highlight{background:var(--pa);border-color:var(--pa);color:#fff}
+.proj-header{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.14)}
+.proj-logo{font-family:Georgia,serif;font-size:1.4rem;font-weight:700;color:var(--pa);min-width:200px}
+.proj-step{font-size:2.3rem;font-weight:700;color:var(--pa);text-transform:none;background:none;padding:0}
+.proj-controls-top{display:flex;gap:8px;min-width:200px;justify-content:flex-end;opacity:.55}
+.proj-controls-top:hover{opacity:1}
+.btn-top-proj{background:none;border:1px solid rgba(255,255,255,.3);color:#fff;padding:5px 10px;border-radius:5px;cursor:pointer;font-size:.8rem}
+.proj-body{display:grid;grid-template-columns:520px 1fr;gap:40px;align-items:center;flex:1;margin:18px 0;min-height:0}
+.animation-stage{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px}
+.anim-card{position:relative;width:380px;height:250px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 12px 22px rgba(0,0,0,.55))}
+.anim-card.animate-pop{animation:themePop 1.1s cubic-bezier(.175,.885,.32,1.275) forwards}
+@keyframes themePop{0%{transform:scale(.2) rotate(-15deg);opacity:0}60%{transform:scale(1.15) rotate(5deg);opacity:1}100%{transform:scale(1.3) rotate(0)}}
+.anim-number-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:Georgia,"Times New Roman",serif;font-size:5.4rem;font-weight:700;font-variant-numeric:tabular-nums;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+.proj-lot-card{width:100%;text-align:center;border-top:1px solid rgba(255,255,255,.14);padding-top:18px}
+.proj-lot-card .lab{font-size:.9rem;color:rgba(238,243,242,.65)}
+.proj-lot-card h3{font-family:Georgia,serif;color:var(--pa);font-size:2rem;margin-top:4px;line-height:1.2}
+.proj-lot-card p{color:rgba(238,243,242,.75);margin-top:4px}
+.balls-display-container{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:10px}
+.balls-header-title{font-size:1.05rem;color:rgba(238,243,242,.7)}
+.balls-flex-wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:920px}
+.drawn-ball-item{width:56px;height:56px;border-radius:50%;border:2px solid rgba(255,255,255,.32);font-size:1.45rem;font-weight:600;font-variant-numeric:tabular-nums;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.04)}
+.drawn-ball-item.last-drawn-highlight{background:var(--pa);border-color:var(--pa);color:#1a1205;font-weight:700;transform:scale(1.15)}
+.proj-foot{text-align:center;color:rgba(238,243,242,.6);font-size:.95rem}
+.pause-screen{display:none;position:absolute;inset:0;background:inherit;z-index:99;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px}
+.pause-screen.active{display:flex}
+.pause-title{font-family:Georgia,serif;font-size:3.6rem;font-weight:700;color:var(--pa)}
+.pause-sub{font-size:2rem;max-width:900px}
+.pause-timer{font-size:8rem;font-weight:600;color:var(--pa);margin:24px 0;font-variant-numeric:tabular-nums}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-board" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+<symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h10M20 18h0"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></symbol>
+<symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 010 12h-3"/></symbol>
+<symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 12a9 9 0 109-9 9 9 0 00-7 3.3L3 8"/><path d="M3 3v5h5"/></symbol>
+<symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 21h8M12 16v5"/></symbol>
+<symbol id="i-prev" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+<symbol id="i-next" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+<symbol id="i-cup" viewBox="0 0 24 24"><path d="M5 8h12v6a5 5 0 01-5 5h-2a5 5 0 01-5-5V8z"/><path d="M17 10h2a2 2 0 010 4h-2"/></symbol>
+<symbol id="i-grip" viewBox="0 0 24 24"><path d="M9 6h.01M15 6h.01M9 12h.01M15 12h.01M9 18h.01M15 18h.01" stroke-width="3"/></symbol>
+<symbol id="i-up" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-dice" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 8h.01M16 8h.01M12 12h.01M8 16h.01M16 16h.01" stroke-width="3"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+</defs></svg>
+
+<header class="topbar">
+  <div class="wordmark"><svg class="logo" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#c99a35"/><circle cx="16" cy="16" r="10" fill="#0e2a28"/><text x="16" y="20.5" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="11" fill="#f1dfae">90</text></svg><span>LotoMatic</span></div>
+  <nav class="tabs">
+    <button class="tab-btn active" onclick="switchTab('control',this)"><svg class="ic"><use href="#i-board"/></svg>Tirage</button>
+    <button class="tab-btn" onclick="switchTab('lots',this)"><svg class="ic"><use href="#i-list"/></svg>Programme</button>
+    <button class="tab-btn" onclick="switchTab('params',this)"><svg class="ic"><use href="#i-sliders"/></svg>Réglages</button>
+    <button class="tab-btn" onclick="switchTab('auth',this)"><svg class="ic"><use href="#i-user"/></svg>Compte</button>
+  </nav>
+  <span id="user-display" class="user-badge">Mode hors-ligne</span>
+</header>
+
+<div class="main-container">
+<!-- TIRAGE -->
+<div id="tab-control" class="tab-content active"><div class="dashboard-grid">
+  <div class="card">
+    <div class="card-title"><span>Tableau de tirage</span><span class="count" id="drawn-count">0 / 90 sortis</span></div>
+    <div class="lotto-grid" id="admin-main-grid"></div>
+  </div>
+  <div>
+    <div class="card">
+      <div class="last-drawn-box"><div class="last-ball"><span class="last-drawn-val" id="last-drawn-num">--</span></div><div><div class="last-label">Dernier numéro tiré</div><div class="muted" style="font-size:.88rem">Cliquez un numéro du tableau pour le corriger.</div></div></div>
+      <div id="draw-mode-random-box"><button class="btn primary big" onclick="drawRandom()"><svg class="ic"><use href="#i-dice"/></svg>Tirer un numéro</button><div class="hint">Raccourci : barre Espace</div></div>
+      <div id="draw-mode-manual-box" style="display:none">
+        <div class="form-group"><label for="manual-num-input">Numéro tiré au boulier</label>
+          <div style="display:flex;gap:8px">
+            <input type="text" inputmode="numeric" maxlength="2" id="manual-num-input" class="form-control" placeholder="Ex : 7 ou 42" autocomplete="off" oninput="handleManualInput(this)" onkeydown="handleManualKeydown(event)">
+            <button class="btn primary auto" onclick="drawManual()">OK</button>
+          </div><div class="hint">Deux chiffres : validé automatiquement. Un chiffre : appuyez sur Entrée.</div></div>
+      </div>
+      <div class="row">
+        <button class="btn" onclick="undoLastDraw()"><svg class="ic"><use href="#i-undo"/></svg>Annuler</button>
+        <button class="btn danger" onclick="resetGame()"><svg class="ic"><use href="#i-reset"/></svg>Tout effacer</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Partie en cours</div>
+      <div class="info-line"><span>Partie</span><strong id="info-game-name">--</strong></div>
+      <div class="info-line"><span>Étape</span><strong id="info-step-name">--</strong></div>
+      <div class="info-line"><span>Lot</span><strong id="info-lot-name">--</strong></div>
+      <div class="info-line"><span>Donateur</span><strong id="info-sponsor-name">--</strong></div>
+      <div class="step-nav" style="margin:14px 0 0">
+        <button class="btn" onclick="prevStep()"><svg class="ic"><use href="#i-prev"/></svg>Précédente</button>
+        <button class="btn" onclick="nextStep()">Suivante<svg class="ic"><use href="#i-next"/></svg></button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Salle et entracte</div>
+      <button class="btn dark" onclick="openProjectionWindow()"><svg class="ic"><use href="#i-monitor"/></svg>Ouvrir l'écran de salle</button>
+      <button class="btn ghost" style="margin-top:6px" onclick="toggleInlineSalle()">Afficher la salle dans cet onglet</button>
+      <button class="btn amber" id="btn-toggle-pause" style="margin-top:10px" onclick="togglePause()"><svg class="ic"><use href="#i-cup"/></svg> Lancer l'entracte</button>
+    </div>
+  </div>
+</div></div>
+
+<!-- PROGRAMME -->
+<div id="tab-lots" class="tab-content">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;align-items:start">
+  <div class="card">
+    <div class="card-title">Ajouter une partie</div>
+    <div class="form-group"><label for="new-game-name">Nom de la partie</label><input type="text" id="new-game-name" class="form-control" placeholder="Ex : Partie 3"></div>
+    <div class="form-group"><label for="new-game-type">Format</label>
+      <select id="new-game-type" class="form-control">
+        <option value="Landaise">Partie landaise (1 ligne, 2 lignes, carton plein)</option>
+        <option value="Direct">Carton plein direct</option>
+      </select></div>
+    <div class="form-group"><label for="new-game-sponsor">Donateur</label><input type="text" id="new-game-sponsor" class="form-control"><div class="hint">Laissez vide si le lot vient de l'association.</div></div>
+    <button class="btn primary" onclick="createNewGame()"><svg class="ic"><use href="#i-plus"/></svg>Ajouter la partie</button>
+  </div>
+  <div class="card">
+    <div class="card-title">Ajouter un entracte</div>
+    <div class="form-group"><label for="pause-duration-input">Durée en minutes</label><input type="number" id="pause-duration-input" class="form-control" value="15" min="1"></div>
+    <div class="form-group"><label for="pause-msg-input">Message affiché dans la salle</label><input type="text" id="pause-msg-input" class="form-control" value="Profitez de notre buvette et nos crêpes !"></div>
+    <button class="btn" onclick="addPauseToProgram()"><svg class="ic"><use href="#i-plus"/></svg>Ajouter l'entracte</button>
+  </div></div>
+  <div class="card">
+    <div class="card-title"><span>Déroulé de la soirée</span><span class="muted" style="font-size:.85rem;font-weight:400">Glissez par la poignée, ou utilisez les flèches</span></div>
+    <div id="program-drag-list"></div>
+  </div>
+</div>
+
+<!-- RÉGLAGES -->
+<div id="tab-params" class="tab-content"><div class="narrow">
+  <div class="card"><div class="card-title">Association</div>
+    <div class="form-group" style="margin:0"><label for="assoc-name-input">Nom affiché en bas de l'écran de salle</label><input type="text" id="assoc-name-input" class="form-control" onchange="saveAssocName()"></div></div>
+  <div class="card"><div class="card-title">Apparence de la régie</div>
+    <div class="form-group" style="margin:0"><select id="ui-theme-select" class="form-control" onchange="changeUITheme()">
+      <optgroup label="Sombres">
+        <option value="nuit">Nuit sapin</option>
+        <option value="ardoise">Ardoise bleue</option>
+        <option value="ocean">Océan</option>
+        <option value="bordeaux">Bordeaux</option>
+        <option value="ambre">Ambre</option>
+      </optgroup>
+      <optgroup label="Clairs">
+        <option value="clair">Sapin clair</option>
+        <option value="gris">Gris doux, moins éblouissant</option>
+      </optgroup></select></div></div>
+  <div class="card"><div class="card-title">Mode de tirage</div>
+    <div class="form-group" style="margin:0"><select id="draw-mode-select" class="form-control" onchange="changeDrawMode()">
+      <option value="random">Tirage aléatoire (bouton ou barre Espace)</option>
+      <option value="manual">Saisie des numéros du boulier</option></select></div></div>
+  <div class="card"><div class="card-title">Thème de l'écran de salle</div>
+    <div class="form-group" style="margin:0"><select id="theme-select" class="form-control" onchange="changeTheme()">
+      <optgroup label="Sombres">
+        <option value="classic">Classique, boule dorée</option>
+        <option value="ocean">Océan</option>
+        <option value="foret">Forêt</option>
+        <option value="bordeaux">Bordeaux</option>
+        <option value="violet">Violet nuit</option>
+        <option value="ardoise">Ardoise bleue</option>
+        <option value="noir">Noir et or, contraste maximal</option>
+      </optgroup>
+      <optgroup label="Thèmes de fête">
+        <option value="pink">Octobre rose, ruban</option>
+        <option value="halloween">Halloween, citrouille</option>
+      </optgroup>
+      <optgroup label="Clair">
+        <option value="clair">Jour, fond clair</option>
+      </optgroup></select></div></div>
+</div></div>
+
+<!-- COMPTE -->
+<div id="tab-auth" class="tab-content"><div class="narrow">
+  <div class="card">
+    <div class="card-title">Compte et sauvegarde</div>
+    <div class="form-group"><label for="auth-email">Adresse e-mail</label><input type="email" id="auth-email" class="form-control" placeholder="association@lanton.fr"></div>
+    <div class="form-group"><label for="auth-password">Mot de passe</label><input type="password" id="auth-password" class="form-control"><div class="hint">6 caractères minimum. Les données restent sur cet ordinateur.</div></div>
+    <div class="row" style="margin-top:16px">
+      <button class="btn primary" onclick="loginUser()">Se connecter</button>
+      <button class="btn" onclick="registerUser()">Créer le compte</button>
+    </div>
+    <button class="btn ghost danger" style="margin-top:10px" onclick="logoutUser()">Se déconnecter</button>
+    <div class="msg" id="auth-msg"></div>
+  </div>
+</div></div>
+</div>
+
+<script>
+const DEFAULT_ASSOC = "Amicale des Pêcheurs Lantonnais";
+let drawnNumbers = [], currentTheme = 'classic', drawMode = 'random', projWindow = null;
+let isPaused = false, pauseTimerInterval = null, pauseEnd = 0, pauseSecondsLeft = 0, pauseEndedWaiting = false, pauseMessage = '';
+let assocName = DEFAULT_ASSOC, currentProgIdx = 0, currentStepKeyIdx = 0, currentUser = null;
+let programList = [
+  {isPause:false,id:1,name:"Partie 1",type:"Landaise",sponsor:DEFAULT_ASSOC,lots:{"1 Ligne":"Bouteille de Vin","2 Lignes":"Panier Gourmand","Carton Plein":"Jambon Entier"}},
+  {isPause:true,id:2,durationMins:15,message:"Profitez de notre buvette et nos pâtisseries !"},
+  {isPause:false,id:3,name:"Partie 2",type:"Direct",sponsor:"Commerçants de Lanton",lots:{"Carton Plein":"TV LED 43 Pouces 4K"}}
+];
+
+const _mem = {};
+const store = {
+  get(k){ try { return localStorage.getItem(k); } catch(e){ return k in _mem ? _mem[k] : null; } },
+  set(k,v){ try { localStorage.setItem(k,v); } catch(e){ _mem[k]=v; } },
+  remove(k){ try { localStorage.removeItem(k); } catch(e){ delete _mem[k]; } }
+};
+window.addEventListener('error', e => {
+  let b = document.getElementById('err-banner');
+  if (!b) { b = document.createElement('div'); b.id = 'err-banner';
+    b.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#b91c1c;color:#fff;padding:8px 12px;font:13px monospace;z-index:9999';
+    document.body.appendChild(b); }
+  b.textContent = 'Erreur : ' + e.message + ' (ligne ' + e.lineno + ')';
+});
+const $ = id => document.getElementById(id);
+const ic = n => `<svg class="ic"><use href="#i-${n}"/></svg>`;
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function applyUI(v) {
+  v = v || 'clair'; document.documentElement.setAttribute('data-ui', v);
+  const s = $('ui-theme-select'); if (s) s.value = v;
+}
+function changeUITheme() { const v = $('ui-theme-select').value; store.set('lm_ui', v); applyUI(v); }
+
+function init() {
+  if (IS_SALLE) { initSalle(); return; }
+  try { applyUI(store.get('lm_ui')); } catch (e) { console.error(e); }
+  try { renderAdminMainGrid(); } catch (e) { console.error(e); }
+  try { currentUser = store.get('lm_user'); loadData(); } catch (e) { console.error(e); }
+  try { applyDrawModeUI(); } catch (e) { console.error(e); }
+  try { renderProgramDragList(); } catch (e) { console.error(e); }
+  try { updateCurrentStepInfo(); } catch (e) { console.error(e); }
+  try { updateState(); updateUserBadge(); } catch (e) { console.error(e); }
+  document.addEventListener('keydown', e => {
+    const t = document.activeElement.tagName;
+    if (e.code === 'Space' && !inlineOn && drawMode === 'random' && t !== 'INPUT' && t !== 'SELECT' && t !== 'BUTTON' &&
+        $('tab-control').classList.contains('active')) { e.preventDefault(); drawRandom(); }
+  });
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active'); $('tab-' + id).classList.add('active');
+  if (id === 'control') focusManual();
+}
+
+/* ---------- TIRAGE ---------- */
+function renderAdminMainGrid() {
+  const g = $('admin-main-grid'); g.innerHTML = '';
+  for (let i = 1; i <= 90; i++) {
+    const b = document.createElement('div');
+    b.className = 'num-ball'; b.id = 'admin-ball-' + i; b.textContent = i;
+    b.onclick = () => toggleNumber(i); g.appendChild(b);
+  }
+}
+function toggleNumber(n) {
+  const i = drawnNumbers.indexOf(n);
+  if (i > -1) drawnNumbers.splice(i, 1); else drawnNumbers.push(n);
+  updateState();
+}
+function drawRandom() {
+  if (isPaused) return alert("Arrêtez l'entracte avant de tirer !");
+  const av = []; for (let i = 1; i <= 90; i++) if (!drawnNumbers.includes(i)) av.push(i);
+  if (!av.length) return alert("Tous les numéros sont sortis !");
+  drawnNumbers.push(av[Math.floor(Math.random() * av.length)]);
+  updateState();
+}
+function handleManualInput(input) {
+  input.value = input.value.replace(/\D/g, '').slice(0, 2);
+  if (input.value.length === 2) drawManual();   // 2 chiffres : validation automatique
+}
+function handleManualKeydown(e) {
+  if (e.key === 'Enter') { e.preventDefault(); drawManual(); } // 1 chiffre : Entrée
+}
+function drawManual() {
+  const input = $('manual-num-input');
+  if (isPaused) { input.value = ''; return alert("Arrêtez l'entracte avant de tirer !"); }
+  const raw = input.value.trim(); if (!raw) return;
+  const v = parseInt(raw, 10); input.value = '';
+  if (isNaN(v) || v < 1 || v > 90) { alert("Veuillez saisir un numéro entre 1 et 90."); focusManual(); return; }
+  if (drawnNumbers.includes(v)) { alert("Le numéro " + v + " a déjà été tiré !"); focusManual(); return; }
+  drawnNumbers.push(v); updateState(); focusManual();
+}
+function focusManual() { if (drawMode === 'manual') setTimeout(() => $('manual-num-input').focus(), 50); }
+function undoLastDraw() { if (drawnNumbers.length) { drawnNumbers.pop(); updateState(); } }
+function resetGame() { if (confirm("Réinitialiser tous les tirages ?")) { drawnNumbers = []; updateState(); } }
+
+function updateState() {
+  $('drawn-count').textContent = drawnNumbers.length + ' / 90 sortis';
+  const last = drawnNumbers[drawnNumbers.length - 1];
+  $('last-drawn-num').textContent = last || '--';
+  for (let i = 1; i <= 90; i++) {
+    const b = $('admin-ball-' + i); b.className = 'num-ball';
+    if (drawnNumbers.includes(i)) { b.classList.add('drawn'); if (i === last) b.classList.add('last-drawn'); }
+  }
+  saveData(); syncProjection();
+}
+
+/* ---------- ÉTAPES ---------- */
+const stepsOf = g => g && g.lots ? Object.keys(g.lots) : [];
+function updateCurrentStepInfo(autoPause) {
+  const item = programList[currentProgIdx];
+  if (!item) { ['info-game-name','info-step-name','info-lot-name','info-sponsor-name'].forEach(i => $(i).textContent = '--'); return syncProjection(); }
+  if (item.isPause) {
+    $('info-game-name').textContent = 'Entracte'; $('info-step-name').textContent = 'Pause';
+    $('info-lot-name').textContent = item.message; $('info-sponsor-name').textContent = '--';
+    if (autoPause) startPause(item.durationMins, item.message);
+  } else {
+    const k = stepsOf(item)[currentStepKeyIdx] || stepsOf(item)[0];
+    $('info-game-name').textContent = item.name; $('info-step-name').textContent = k;
+    $('info-lot-name').textContent = item.lots[k]; $('info-sponsor-name').textContent = item.sponsor;
+  }
+  saveData(); syncProjection();
+}
+function nextStep() {
+  const item = programList[currentProgIdx]; if (!item) return;
+  if (isPaused) stopPause(true);
+  if (item.isPause) { if (currentProgIdx < programList.length - 1) { currentProgIdx++; currentStepKeyIdx = 0; } else alert("Fin du programme !"); }
+  else if (currentStepKeyIdx < stepsOf(item).length - 1) currentStepKeyIdx++;
+  else if (currentProgIdx < programList.length - 1) { currentProgIdx++; currentStepKeyIdx = 0; }
+  else alert("Fin du programme du loto !");
+  updateCurrentStepInfo(true);
+}
+function prevStep() {
+  if (isPaused) stopPause(true);
+  if (currentStepKeyIdx > 0) currentStepKeyIdx--;
+  else if (currentProgIdx > 0) {
+    currentProgIdx--; const p = programList[currentProgIdx];
+    currentStepKeyIdx = p.isPause ? 0 : stepsOf(p).length - 1;
+  }
+  updateCurrentStepInfo(true);
+}
+
+/* ---------- PROGRAMME ---------- */
+function createNewGame() {
+  const name = $('new-game-name').value.trim() || `Partie ${programList.filter(p => !p.isPause).length + 1}`;
+  const type = $('new-game-type').value;
+  const sponsor = $('new-game-sponsor').value.trim() || assocName;
+  const lots = {};
+  if (type === 'Landaise') {
+    lots["1 Ligne"] = prompt("Lot pour la 1ère Ligne :") || "Lot surprise";
+    lots["2 Lignes"] = prompt("Lot pour les 2 Lignes :") || "Lot gourmand";
+  }
+  lots["Carton Plein"] = prompt("Lot pour le Carton Plein :") || "Gros lot";
+  programList.push({isPause:false,id:Date.now(),name,type,sponsor,lots});
+  $('new-game-name').value = ''; $('new-game-sponsor').value = '';
+  renderProgramDragList(); updateCurrentStepInfo();
+}
+function addPauseToProgram() {
+  const durationMins = parseInt($('pause-duration-input').value) || 15;
+  const message = $('pause-msg-input').value.trim() || "Buvette et crêpes vous attendent !";
+  programList.push({isPause:true,id:Date.now(),durationMins,message});
+  renderProgramDragList(); updateCurrentStepInfo();
+}
+function withCurrentKept(fn) {            // garde la position actuelle après un changement d'ordre
+  const curId = programList[currentProgIdx] && programList[currentProgIdx].id;
+  fn();
+  const ni = programList.findIndex(p => p.id === curId);
+  currentProgIdx = ni >= 0 ? ni : Math.min(currentProgIdx, Math.max(programList.length - 1, 0));
+  if (ni < 0) currentStepKeyIdx = 0;
+  renderProgramDragList(); updateCurrentStepInfo();
+}
+function moveItem(from, to) {
+  if (to < 0 || to >= programList.length || from === to) return;
+  withCurrentKept(() => programList.splice(to, 0, programList.splice(from, 1)[0]));
+}
+function deleteProgramItem(idx) {
+  if (programList[idx] && programList[idx].isPause && isPaused && idx === currentProgIdx) stopPause(true);
+  withCurrentKept(() => programList.splice(idx, 1));
+}
+function renderProgramDragList() {
+  const c = $('program-drag-list'); c.innerHTML = '';
+  let dragIdx = null;
+  programList.forEach((item, idx) => {
+    const el = document.createElement('div');
+    el.className = 'game-item' + (item.isPause ? ' pause-item' : '') + (idx === currentProgIdx ? ' current' : '');
+    el.draggable = true;
+    const label = item.isPause
+      ? `<strong>Entracte de ${esc(item.durationMins)} min</strong><span class="meta">${esc(item.message)}</span>`
+      : `<strong>${esc(item.name)}</strong><span class="meta">${item.type === 'Landaise' ? 'Partie landaise' : 'Carton plein direct'}, donateur : ${esc(item.sponsor)}</span>`;
+    el.innerHTML = `<span class="drag-handle">${ic('grip')}</span><div class="item-body">${label}${idx === currentProgIdx ? '<span class="tag">En cours</span>' : ''}</div>
+      <button class="btn ghost icon" data-a="up" aria-label="Monter">${ic('up')}</button><button class="btn ghost icon" data-a="down" aria-label="Descendre">${ic('down')}</button>
+      <button class="btn ghost icon" data-a="del" aria-label="Supprimer" style="color:var(--red)">${ic('x')}</button>`;
+    el.querySelector('[data-a=up]').onclick = () => moveItem(idx, idx - 1);
+    el.querySelector('[data-a=down]').onclick = () => moveItem(idx, idx + 1);
+    el.querySelector('[data-a=del]').onclick = () => deleteProgramItem(idx);
+    el.ondragstart = e => { dragIdx = idx; e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', String(idx)); };
+    el.ondragover = e => { e.preventDefault(); el.classList.add('drag-over'); };
+    el.ondragleave = () => el.classList.remove('drag-over');
+    el.ondrop = e => {
+      e.preventDefault(); el.classList.remove('drag-over');
+      const from = parseInt(e.dataTransfer.getData('text/plain'));
+      if (!isNaN(from)) moveItem(from, idx);
+    };
+    c.appendChild(el);
+  });
+}
+
+/* ---------- ENTRACTE ---------- */
+function togglePause() {
+  if (isPaused) stopPause(); else {
+    const it = programList[currentProgIdx];
+    it && it.isPause ? startPause(it.durationMins, it.message) : startPause(15, "Profitez de la buvette !");
+  }
+}
+function startPause(mins, msg) {
+  isPaused = true; pauseEndedWaiting = false; pauseMessage = msg || '';
+  pauseEnd = Date.now() + mins * 60000; pauseSecondsLeft = mins * 60;
+  $('btn-toggle-pause').innerHTML = ic('cup') + " Arrêter l'entracte";
+  clearInterval(pauseTimerInterval);
+  pauseTimerInterval = setInterval(() => {
+    pauseSecondsLeft = Math.max(0, Math.ceil((pauseEnd - Date.now()) / 1000));
+    if (pauseSecondsLeft <= 0) { clearInterval(pauseTimerInterval); pauseEndedWaiting = true; }
+    syncProjection();
+  }, 500);
+  syncProjection();
+}
+function stopPause(silent) {
+  isPaused = false; pauseEndedWaiting = false; clearInterval(pauseTimerInterval);
+  $('btn-toggle-pause').innerHTML = ic('cup') + " Lancer l'entracte";
+  if (!silent) syncProjection();
+}
+
+/* ---------- RÉGLAGES ---------- */
+function saveAssocName() { assocName = $('assoc-name-input').value.trim() || DEFAULT_ASSOC; saveData(); syncProjection(); }
+function applyDrawModeUI() {
+  $('draw-mode-select').value = drawMode; $('theme-select').value = currentTheme;
+  $('assoc-name-input').value = assocName;
+  $('draw-mode-random-box').style.display = drawMode === 'random' ? 'block' : 'none';
+  $('draw-mode-manual-box').style.display = drawMode === 'manual' ? 'block' : 'none';
+}
+function changeDrawMode() { drawMode = $('draw-mode-select').value; applyDrawModeUI(); saveData(); }
+function changeTheme() { currentTheme = $('theme-select').value; saveData(); syncProjection(); }
+
+/* ---------- ÉCRAN DE SALLE ---------- */
+function themeSVG(t) {
+  if (t === 'pink') return `<defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f9a8d4"/><stop offset="1" stop-color="#db2777"/></linearGradient></defs>
+    <path d="M130 105 L70 215 L110 200 L125 235 L158 120Z" fill="#be185d"/><path d="M170 105 L230 215 L190 200 L175 235 L142 120Z" fill="#be185d"/>
+    <path d="M150 105 C110 20 25 25 40 85 C50 125 115 120 150 105Z" fill="url(#rg)" stroke="#9d174d" stroke-width="5"/>
+    <path d="M150 105 C190 20 275 25 260 85 C250 125 185 120 150 105Z" fill="url(#rg)" stroke="#9d174d" stroke-width="5"/>
+    <circle cx="150" cy="105" r="28" fill="#ec4899" stroke="#9d174d" stroke-width="5"/>`;
+  if (t === 'halloween') return `<defs><radialGradient id="pg" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fdba74"/><stop offset=".6" stop-color="#ea580c"/><stop offset="1" stop-color="#9a3412"/></radialGradient></defs>
+    <ellipse cx="85" cy="140" rx="55" ry="80" fill="url(#pg)" stroke="#7c2d12" stroke-width="5"/><ellipse cx="215" cy="140" rx="55" ry="80" fill="url(#pg)" stroke="#7c2d12" stroke-width="5"/>
+    <ellipse cx="150" cy="140" rx="68" ry="88" fill="url(#pg)" stroke="#7c2d12" stroke-width="5"/>
+    <path d="M142 55 C140 30 150 20 165 15 L172 28 C160 32 158 42 160 55Z" fill="#166534" stroke="#14532d" stroke-width="3"/>`;
+  return `<defs><radialGradient id="bg" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fef9c3"/><stop offset=".45" stop-color="#f59e0b"/><stop offset="1" stop-color="#78350f"/></radialGradient></defs>
+    <circle cx="150" cy="125" r="95" fill="url(#bg)" stroke="#b45309" stroke-width="5"/>
+    <ellipse cx="120" cy="82" rx="30" ry="16" fill="#fff" opacity=".45" transform="rotate(-30 120 82)"/>
+    <circle cx="150" cy="125" r="52" fill="#fffbeb" opacity=".9"/>`;
+}
+const IS_SALLE = location.hash === '#salle';
+const bc = (() => { try { return new BroadcastChannel('lotomatic'); } catch (e) { return null; } })();
+let projLegacy = false;
+
+function projInner() {
+  return `<div class="pause-screen" id="p-pause-screen"><div class="pause-title">Entracte</div><div class="pause-sub" id="p-pause-msg">--</div><div class="pause-timer" id="p-pause-timer">15:00</div></div>
+<div class="proj-header"><div class="proj-logo">LotoMatic</div><div class="proj-step" id="p-step">--</div>
+<div class="proj-controls-top"><button class="btn-top-proj" onclick="document.documentElement.requestFullscreen().catch(function(){})">Plein écran</button>
+<button class="btn-top-proj" onclick="projRefresh()">Actualiser</button>
+<button class="btn-top-proj" onclick="projClose()">Fermer</button></div></div>
+<div class="proj-body"><div class="animation-stage"><div class="anim-card" id="p-anim-card"><svg id="p-anim-svg" viewBox="0 0 300 250" style="width:100%;height:100%"></svg><div class="anim-number-overlay" id="p-num">--</div></div>
+<div class="proj-lot-card"><div class="lab">Lot en jeu</div><h3 id="p-lot-name">--</h3><p id="p-lot-sponsor"></p></div></div>
+<div class="balls-display-container"><div class="balls-header-title">Numéros tirés (<span id="p-count-val">0</span> / 90)</div><div class="balls-flex-wrap" id="p-balls-flex"></div></div></div>
+<div class="proj-foot" id="p-assoc-footer">--</div><div id="p-status" style="position:absolute;right:14px;bottom:8px;font-size:11px;opacity:.4"></div>`;
+}
+let inlineOn = false;
+function projClose() {
+  if (inlineOn) { toggleInlineSalle(false); return; }
+  window.close();
+}
+function projRefresh() {
+  if (IS_SALLE) { location.reload(); return; }
+  syncProjection(true);
+}
+
+/* État envoyé à l'écran de salle */
+function liveState() {
+  const item = programList[currentProgIdx];
+  const key = item && !item.isPause ? (stepsOf(item)[currentStepKeyIdx] || stepsOf(item)[0]) : null;
+  return {
+    drawn: drawnNumbers.slice(), theme: currentTheme, assoc: assocName,
+    paused: isPaused, pauseMsg: pauseMessage, pauseEnd: pauseEnd,
+    step: item ? (item.isPause ? 'Pause' : key) : '--',
+    lot: item ? (item.isPause ? item.message : item.lots[key]) : '--',
+    sponsor: item && !item.isPause ? item.sponsor : ''
+  };
+}
+
+/* Dessine l'écran de salle dans le document d (la page elle-même ou une fenêtre de secours) */
+function renderProjection(d, st, ctx, force) {
+  const g = id => d.getElementById(id);
+  if (!g('p-body')) return false;
+  const last = st.drawn[st.drawn.length - 1];
+  g('p-body').className = `projection-view theme-${st.theme}`;
+  g('p-assoc-footer').textContent = 'Organisé par : ' + st.assoc;
+
+  const ps = g('p-pause-screen');
+  if (st.paused) {
+    const left = Math.max(0, Math.ceil((st.pauseEnd - Date.now()) / 1000));
+    ps.classList.add('active');
+    if (left <= 0) { g('p-pause-msg').textContent = "Le loto va reprendre dans un instant !"; g('p-pause-timer').textContent = "Reprise imminente"; }
+    else {
+      g('p-pause-msg').textContent = st.pauseMsg;
+      g('p-pause-timer').textContent = String(Math.floor(left / 60)).padStart(2, '0') + ':' + String(left % 60).padStart(2, '0');
+    }
+  } else ps.classList.remove('active');
+
+  g('p-step').textContent = st.step;
+  g('p-lot-name').textContent = st.lot;
+  g('p-lot-sponsor').textContent = st.sponsor ? 'Donateur : ' + st.sponsor : '';
+
+  if (force || ctx.shownTheme !== st.theme) { g('p-anim-svg').innerHTML = themeSVG(st.theme); ctx.shownTheme = st.theme; }
+  g('p-num').style.color = (st.theme === 'pink' || st.theme === 'halloween') ? '#fff' : '#3b2405';
+  if (force || ctx.shownNum !== (last || null)) {          // animation seulement si le numéro change
+    g('p-num').textContent = last || '--';
+    const card = g('p-anim-card'); card.classList.remove('animate-pop');
+    if (last) { void card.offsetWidth; card.classList.add('animate-pop'); }
+    g('p-count-val').textContent = st.drawn.length;
+    const fl = g('p-balls-flex'); fl.innerHTML = '';
+    st.drawn.forEach(n => {
+      const b = d.createElement('div'); b.className = 'drawn-ball-item' + (n === last ? ' last-drawn-highlight' : '');
+      b.textContent = n; fl.appendChild(b);
+    });
+    ctx.shownNum = last || null;
+  }
+  return true;
+}
+
+/* Page « écran de salle » (adresse de l'application + #salle) */
+function initSalle() {
+  document.documentElement.classList.add('salle');
+  document.title = 'LotoMatic - Écran de salle';
+  const root = document.createElement('div');
+  root.id = 'p-body'; root.className = 'projection-view theme-classic'; root.innerHTML = projInner();
+  document.body.appendChild(root);
+  const ctx = {}; let st = null, via = '', lastMsg = 0, lastRaw = '';
+  const apply = (s, how) => {
+    if (s && Array.isArray(s.drawn)) { st = s; via = how; lastMsg = Date.now(); renderProjection(document, st, ctx); }
+  };
+  try { apply(JSON.parse(store.get('lm_live')), 'stockage'); } catch (e) {}
+  if (bc) bc.onmessage = e => apply(e.data, 'diffusion');
+  window.addEventListener('storage', e => { if (e.key === 'lm_live' && e.newValue) { try { apply(JSON.parse(e.newValue), 'stockage'); } catch (_) {} } });
+  window.addEventListener('message', e => { if (e.data && e.data.lmLive) apply(e.data.lmLive, 'message'); });
+  const pull = () => {
+    try { const o = window.opener; if (o && typeof o.liveState === 'function') { apply(o.liveState(), 'direct'); return; } } catch (e) {}
+    try { if (window.opener) window.opener.postMessage({ lmHello: 1 }, '*'); } catch (e) {}
+  };
+  pull();
+  setInterval(() => {
+    try {                                                              // lecture directe : ne dépend d'aucune notification
+      const raw = store.get('lm_live');
+      if (raw && raw !== lastRaw) { lastRaw = raw; apply(JSON.parse(raw), 'stockage'); }
+    } catch (e) {}
+    if (st) renderProjection(document, st, ctx);                       // fait avancer le compte à rebours
+    else document.getElementById('p-step').textContent = 'En attente de la régie…';
+    if (Date.now() - lastMsg > 1500) pull();
+    const stat = document.getElementById('p-status');
+    if (stat) stat.textContent = st ? 'Liaison : ' + via : 'Aucune donnée reçue (gardez la régie ouverte)';
+  }, 500);
+}
+
+/* Fenêtre de secours (si l'adresse de la page ne permet pas d'ouvrir #salle) */
+function projHTML() {
+  const css = document.querySelector('style').textContent;
+  return `<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>LotoMatic - Écran de Salle</title><style>${css}</style></head>
+<body class="projection-view theme-${currentTheme}" id="p-body">${projInner()}<script>function projRefresh(){window.opener&&window.opener.syncProjection(true)}function projClose(){window.close()}<\/script></body></html>`;
+}
+function buildProjection() {
+  if (!projWindow || projWindow.closed) return;
+  try {
+    projWindow.document.open(); projWindow.document.write(projHTML()); projWindow.document.close();
+    projWindow._ctx = {};
+  } catch (e) { console.error(e); }
+}
+function openProjectionWindow() {
+  const base = location.href.split('#')[0];
+  if (/^(https?|file):/.test(base)) {
+    projLegacy = false;
+    syncProjection(true);                      // prépare l'état avant l'ouverture
+    projWindow = window.open(base + '#salle', 'LotoMaticProjection', 'width=1200,height=800');
+    if (!projWindow) return alert("Le navigateur a bloqué la fenêtre : autorisez les pop-ups pour ce site.");
+    [400, 1200, 3000].forEach(t => setTimeout(() => syncProjection(true), t));
+    return;
+  }
+  projLegacy = true;
+  projWindow = window.open('about:blank', 'LotoMaticProjection', 'width=1200,height=800');
+  if (!projWindow) return alert("Le navigateur a bloqué la fenêtre : autorisez les pop-ups pour ce site.");
+  try { projWindow.focus(); } catch (e) {}
+  buildProjection();
+  [200, 600, 1500].forEach(t => setTimeout(() => syncProjection(true), t));
+}
+let salleSrc = null;
+window.addEventListener('message', e => {
+  if (e.data && e.data.lmHello && !IS_SALLE) { salleSrc = e.source; try { e.source.postMessage({ lmLive: liveState() }, '*'); } catch (_) {} }
+});
+
+function syncProjection(force) {
+  if (IS_SALLE) return;
+  const st = liveState();
+  try { store.set('lm_live', JSON.stringify(st)); } catch (e) {}
+  try { if (bc) bc.postMessage(st); } catch (e) {}
+  [projWindow, salleSrc].forEach(w => { try { if (w && !w.closed) w.postMessage({ lmLive: st }, '*'); } catch (e) {} });
+  if (!projLegacy || !projWindow || projWindow.closed) return;
+  try {
+    let d = projWindow.document;
+    if (!d.getElementById('p-body')) {            // fenêtre vide : on la reconstruit
+      buildProjection(); d = projWindow.document;
+      if (!d.getElementById('p-body')) return;
+      force = true;
+    }
+    renderProjection(d, st, projWindow._ctx || (projWindow._ctx = {}), force);
+  } catch (e) {}
+}
+
+/* Mode de secours : écran de salle affiché dans l'onglet de la régie (Échap pour revenir) */
+function toggleInlineSalle(on) {
+  const old = document.getElementById('inline-salle');
+  if (on === false || old) { if (old) old.remove(); inlineOn = false; clearInterval(window._inlTimer); return; }
+  const r = document.createElement('div');
+  r.id = 'inline-salle'; r.style.cssText = 'position:fixed;inset:0;z-index:9000';
+  r.innerHTML = `<div id="p-body" class="projection-view theme-classic">${projInner()}</div>`;
+  document.body.appendChild(r); inlineOn = true;
+  const ctx = {};
+  const tick = () => { renderProjection(document, liveState(), ctx); const t = document.getElementById('p-status'); if (t) t.textContent = drawMode === 'random' ? 'Espace : tirer un numéro. Échap : revenir.' : 'Tapez le numéro (2 chiffres, ou 1 chiffre puis Entrée). Échap : revenir.'; };
+  try { document.activeElement.blur(); } catch (e) {}
+  tick(); window._inlTimer = setInterval(tick, 500);
+  try { document.documentElement.requestFullscreen().catch(() => {}); } catch (e) {}
+}
+let inlineBuf = '';
+function commitInline() {
+  const v = parseInt(inlineBuf, 10); inlineBuf = '';
+  if (v >= 1 && v <= 90 && !drawnNumbers.includes(v) && !isPaused) { drawnNumbers.push(v); updateState(); }
+}
+document.addEventListener('keydown', e => {
+  if (!inlineOn) return;
+  if (e.key === 'Escape') { toggleInlineSalle(false); return; }
+  if (e.code === 'Space') { e.preventDefault(); if (drawMode === 'random') drawRandom(); return; }
+  if (drawMode !== 'manual') return;
+  if (/^[0-9]$/.test(e.key)) { inlineBuf += e.key; if (inlineBuf.length >= 2) commitInline(); }
+  else if (e.key === 'Enter') commitInline();
+  else if (e.key === 'Backspace') inlineBuf = '';
+});
+
+/* ---------- SAUVEGARDE & COMPTE ---------- */
+const dataKey = () => currentUser ? 'lm_data_' + currentUser : 'lm_data_local';
+function saveData() {
+  const data = JSON.stringify({programList, assocName, drawnNumbers, currentProgIdx, currentStepKeyIdx, currentTheme, drawMode});
+  try { store.set(dataKey(), data); } catch (e) {}
+}
+function loadData() {
+  try {
+    const s = store.get(dataKey()); if (!s) return;
+    const p = JSON.parse(s);
+    if (p.programList) programList = p.programList;
+    if (p.assocName) assocName = p.assocName;
+    if (Array.isArray(p.drawnNumbers)) drawnNumbers = p.drawnNumbers;
+    currentProgIdx = Math.min(p.currentProgIdx || 0, Math.max(programList.length - 1, 0));
+    currentStepKeyIdx = p.currentStepKeyIdx || 0;
+    if (p.currentTheme) currentTheme = p.currentTheme;
+    if (p.drawMode) drawMode = p.drawMode;
+  } catch (e) {}
+}
+function updateUserBadge() { $('user-display').textContent = currentUser || 'Mode hors-ligne'; }
+function authMsg(t) { $('auth-msg').textContent = t; }
+async function hashPw(pw) {
+  if (window.crypto && crypto.subtle) {
+    const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
+    return Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, '0')).join('');
+  }
+  let h = 0; for (const c of pw) h = (h * 31 + c.charCodeAt(0)) | 0; return String(h);
+}
+const getUsers = () => { try { return JSON.parse(store.get('lm_users')) || {}; } catch (e) { return {}; } };
+function refreshAll() { applyDrawModeUI(); renderProgramDragList(); updateCurrentStepInfo(); updateState(); updateUserBadge(); }
+async function registerUser() {
+  const email = $('auth-email').value.trim().toLowerCase(), pw = $('auth-password').value;
+  if (!/^\S+@\S+\.\S+$/.test(email)) return authMsg("Adresse e-mail invalide.");
+  if (pw.length < 6) return authMsg("Mot de passe trop court (6 caractères min.).");
+  const users = getUsers();
+  if (users[email]) return authMsg("Ce compte existe déjà : utilisez Connexion.");
+  users[email] = await hashPw(pw); store.set('lm_users', JSON.stringify(users));
+  currentUser = email; store.set('lm_user', email);
+  saveData();                         // le compte reçoit les données actuelles
+  updateUserBadge(); authMsg("Compte créé et connecté. Vos données sont enregistrées.");
+}
+async function loginUser() {
+  const email = $('auth-email').value.trim().toLowerCase(), pw = $('auth-password').value;
+  const users = getUsers();
+  if (!users[email] || users[email] !== await hashPw(pw)) return authMsg("E-mail ou mot de passe incorrect.");
+  currentUser = email; store.set('lm_user', email);
+  loadData(); refreshAll(); authMsg("Connecté : données du compte chargées.");
+}
+function logoutUser() {
+  if (!currentUser) return authMsg("Vous n'êtes pas connecté.");
+  saveData(); currentUser = null; store.remove('lm_user');
+  $('auth-password').value = ''; updateUserBadge(); authMsg("Déconnecté (mode hors-ligne).");
+}
+</script>
+</body>
+</html>
