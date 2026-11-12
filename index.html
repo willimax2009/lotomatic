@@ -80,6 +80,13 @@ button,input,select{font-family:inherit;font-size:inherit}
 .tag{display:inline-block;align-self:flex-start;margin-top:4px;font-size:.78rem;font-weight:600;color:var(--pine-t);background:var(--tag-bg);border-radius:999px;padding:1px 9px}
 .msg{font-size:.88rem;margin-top:12px;color:var(--amber-ink);min-height:1.2em}
 .narrow{max-width:460px;margin:0 auto}
+.lot-block{border:1px solid var(--line);border-radius:8px;padding:12px;margin-bottom:12px}
+.lot-head{font-weight:700;margin-bottom:8px;color:var(--pine-t)}
+.lot-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lot-row label{display:block;font-size:.8rem;font-weight:600;margin-bottom:4px;color:var(--label)}
+@media(max-width:520px){.lot-row{grid-template-columns:1fr}}
+.btn.small{height:34px;padding:0 10px;width:auto;font-size:.88rem}
+.game-item.editing{outline:2px solid var(--brass)}
 
 /* THEMES DE LA REGIE */
 html[data-ui=gris]{--mist:#c9cfd3;--card:#e3e7ea;--cell:#d5dbdf;--cell-h:#c8d0d5;--cell-ink:#38464a;--line:#b3bec3;--hair:#cdd4d8;--field:#a3b0b6;--amber-bg:#ece6d4}
@@ -106,7 +113,7 @@ html.salle .topbar,html.salle .main-container{display:none}
 .theme-noir{--pa:#e3b341;background:#000}
 .theme-clair{--pa:#0e5a52;color:#14201f;background:radial-gradient(ellipse at 30% 40%,#f1f4f3 0%,#cdd7d5 100%)}
 .theme-clair .proj-header,.theme-clair .proj-lot-card{border-color:rgba(0,0,0,.18)}
-.theme-clair .proj-lot-card .lab,.theme-clair .proj-lot-card p,.theme-clair .proj-foot,.theme-clair .balls-header-title{color:#46565a}
+.theme-clair .proj-lot-card .lab,.theme-clair .proj-lot-card p,.theme-clair .proj-lot-card .cons,.theme-clair .proj-foot,.theme-clair .balls-header-title{color:#46565a}
 .theme-clair .btn-top-proj{color:#14201f;border-color:rgba(0,0,0,.35)}
 .theme-clair .drawn-ball-item{border-color:rgba(0,0,0,.3);background:#fff}
 .theme-clair .drawn-ball-item.last-drawn-highlight{background:var(--pa);border-color:var(--pa);color:#fff}
@@ -116,7 +123,7 @@ html.salle .topbar,html.salle .main-container{display:none}
 .proj-controls-top{display:flex;gap:8px;min-width:200px;justify-content:flex-end;opacity:.55}
 .proj-controls-top:hover{opacity:1}
 .btn-top-proj{background:none;border:1px solid rgba(255,255,255,.3);color:#fff;padding:5px 10px;border-radius:5px;cursor:pointer;font-size:.8rem}
-.proj-body{display:grid;grid-template-columns:520px 1fr;gap:40px;align-items:center;flex:1;margin:18px 0;min-height:0}
+.proj-body{display:grid;grid-template-columns:520px 1fr;grid-template-rows:minmax(0,1fr);gap:40px;align-items:stretch;flex:1;margin:18px 0;min-height:0}
 .animation-stage{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px}
 .anim-card{position:relative;width:380px;height:250px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 12px 22px rgba(0,0,0,.55))}
 .anim-card.animate-pop{animation:themePop 1.1s cubic-bezier(.175,.885,.32,1.275) forwards}
@@ -126,10 +133,11 @@ html.salle .topbar,html.salle .main-container{display:none}
 .proj-lot-card .lab{font-size:.9rem;color:rgba(238,243,242,.65)}
 .proj-lot-card h3{font-family:Georgia,serif;color:var(--pa);font-size:2rem;margin-top:4px;line-height:1.2}
 .proj-lot-card p{color:rgba(238,243,242,.75);margin-top:4px}
-.balls-display-container{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:10px}
+.proj-lot-card .cons{font-size:.95rem;color:rgba(238,243,242,.6);margin-top:10px}
+.balls-display-container{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:12px;padding:6px;min-height:0;height:100%}
 .balls-header-title{font-size:1.05rem;color:rgba(238,243,242,.7)}
-.balls-flex-wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:920px}
-.drawn-ball-item{width:56px;height:56px;border-radius:50%;border:2px solid rgba(255,255,255,.32);font-size:1.45rem;font-weight:600;font-variant-numeric:tabular-nums;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.04)}
+.balls-flex-wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-content:center;width:100%;flex:1;min-height:0;overflow:hidden;padding:12px;--bs:56px}
+.drawn-ball-item{width:var(--bs);height:var(--bs);flex:none;border-radius:50%;border:2px solid rgba(255,255,255,.32);font-size:calc(var(--bs) * .44);font-weight:600;font-variant-numeric:tabular-nums;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.04)}
 .drawn-ball-item.last-drawn-highlight{background:var(--pa);border-color:var(--pa);color:#1a1205;font-weight:700;transform:scale(1.15)}
 .proj-foot{text-align:center;color:rgba(238,243,242,.6);font-size:.95rem}
 .pause-screen{display:none;position:absolute;inset:0;background:inherit;z-index:99;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px}
@@ -158,6 +166,8 @@ html.salle .topbar,html.salle .main-container{display:none}
 <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
 <symbol id="i-dice" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 8h.01M16 8h.01M12 12h.01M8 16h.01M16 16h.01" stroke-width="3"/></symbol>
 <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L18 10l-4-4L4 16v4z"/><path d="M13 7l4 4"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-9"/></symbol>
 </defs></svg>
 
 <header class="topbar">
@@ -200,6 +210,7 @@ html.salle .topbar,html.salle .main-container{display:none}
       <div class="info-line"><span>Étape</span><strong id="info-step-name">--</strong></div>
       <div class="info-line"><span>Lot</span><strong id="info-lot-name">--</strong></div>
       <div class="info-line"><span>Donateur</span><strong id="info-sponsor-name">--</strong></div>
+      <div class="info-line"><span>Consolation</span><strong id="info-cons-name">--</strong></div>
       <div class="step-nav" style="margin:14px 0 0">
         <button class="btn" onclick="prevStep()"><svg class="ic"><use href="#i-prev"/></svg>Précédente</button>
         <button class="btn" onclick="nextStep()">Suivante<svg class="ic"><use href="#i-next"/></svg></button>
@@ -217,16 +228,20 @@ html.salle .topbar,html.salle .main-container{display:none}
 <!-- PROGRAMME -->
 <div id="tab-lots" class="tab-content">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;align-items:start">
-  <div class="card">
-    <div class="card-title">Ajouter une partie</div>
-    <div class="form-group"><label for="new-game-name">Nom de la partie</label><input type="text" id="new-game-name" class="form-control" placeholder="Ex : Partie 3"></div>
+  <div class="card" id="game-form-card">
+    <div class="card-title"><span id="form-title">Ajouter la partie 3</span></div>
     <div class="form-group"><label for="new-game-type">Format</label>
-      <select id="new-game-type" class="form-control">
+      <select id="new-game-type" class="form-control" onchange="onTypeChange()">
         <option value="Landaise">Partie landaise (1 ligne, 2 lignes, carton plein)</option>
         <option value="Direct">Carton plein direct</option>
       </select></div>
-    <div class="form-group"><label for="new-game-sponsor">Donateur</label><input type="text" id="new-game-sponsor" class="form-control"><div class="hint">Laissez vide si le lot vient de l'association.</div></div>
-    <button class="btn primary" onclick="createNewGame()"><svg class="ic"><use href="#i-plus"/></svg>Ajouter la partie</button>
+    <div id="lots-fields"></div>
+    <div class="hint" style="margin:-4px 0 12px">Donateur : laissez vide si le lot vient de l'association.</div>
+    <div class="form-group"><label for="game-cons">Lot de consolation (facultatif)</label>
+      <input type="text" id="game-cons" class="form-control" placeholder="Ex : Une boîte de chocolats">
+      <div class="hint">Le même pour tous les lots de la partie. Affiché en petit sous le lot, en cas d'égalité.</div></div>
+    <button class="btn primary" id="btn-save-game" onclick="saveGame()"><svg class="ic"><use href="#i-plus"/></svg> Ajouter la partie</button>
+    <button class="btn ghost" id="btn-cancel-edit" style="margin-top:6px;display:none" onclick="cancelEdit()">Annuler la modification</button>
   </div>
   <div class="card">
     <div class="card-title">Ajouter un entracte</div>
@@ -283,17 +298,28 @@ html.salle .topbar,html.salle .main-container{display:none}
 
 <!-- COMPTE -->
 <div id="tab-auth" class="tab-content"><div class="narrow">
-  <div class="card">
-    <div class="card-title">Compte et sauvegarde</div>
-    <div class="form-group"><label for="auth-email">Adresse e-mail</label><input type="email" id="auth-email" class="form-control" placeholder="association@lanton.fr"></div>
-    <div class="form-group"><label for="auth-password">Mot de passe</label><input type="password" id="auth-password" class="form-control"><div class="hint">6 caractères minimum. Les données restent sur cet ordinateur.</div></div>
-    <div class="row" style="margin-top:16px">
-      <button class="btn primary" onclick="loginUser()">Se connecter</button>
-      <button class="btn" onclick="registerUser()">Créer le compte</button>
-    </div>
-    <button class="btn ghost danger" style="margin-top:10px" onclick="logoutUser()">Se déconnecter</button>
-    <div class="msg" id="auth-msg"></div>
+  <div class="card" id="auth-nocfg" style="display:none">
+    <div class="card-title">Synchronisation non activée</div>
+    <p class="muted">Pour retrouver vos parties sur tous vos appareils, l'application doit être reliée à un compte en ligne gratuit (Firebase). Il faut renseigner deux valeurs dans la ligne <code>const FIREBASE</code> au début du code. En attendant, vos parties sont enregistrées sur cet appareil.</p>
   </div>
+  <div class="card" id="auth-in">
+    <div class="card-title">Connexion à votre compte</div>
+    <div class="form-group"><label for="auth-email">Adresse e-mail</label><input type="email" id="auth-email" class="form-control" placeholder="association@lanton.fr" autocomplete="username"></div>
+    <div class="form-group"><label for="auth-password">Mot de passe</label><input type="password" id="auth-password" class="form-control" autocomplete="current-password"><div class="hint">6 caractères minimum.</div></div>
+    <div class="row" style="margin-top:16px">
+      <button class="btn primary" onclick="authSubmit('login')">Se connecter</button>
+      <button class="btn" onclick="authSubmit('signup')">Créer le compte</button>
+    </div>
+    <button class="btn ghost" style="margin-top:8px" onclick="forgotPassword()">Mot de passe oublié ?</button>
+  </div>
+  <div class="card" id="auth-out" style="display:none">
+    <div class="card-title">Votre compte</div>
+    <div class="info-line"><span>Connecté</span><strong id="auth-who">--</strong></div>
+    <div class="hint" id="auth-state" style="margin-bottom:14px"></div>
+    <button class="btn" onclick="syncNow()">Synchroniser maintenant</button>
+    <button class="btn ghost danger" style="margin-top:8px" onclick="logoutUser()">Se déconnecter</button>
+  </div>
+  <div class="msg" id="auth-msg"></div>
 </div></div>
 </div>
 
@@ -302,11 +328,34 @@ const DEFAULT_ASSOC = "Amicale des Pêcheurs Lantonnais";
 let drawnNumbers = [], currentTheme = 'classic', drawMode = 'random', projWindow = null;
 let isPaused = false, pauseTimerInterval = null, pauseEnd = 0, pauseSecondsLeft = 0, pauseEndedWaiting = false, pauseMessage = '';
 let assocName = DEFAULT_ASSOC, currentProgIdx = 0, currentStepKeyIdx = 0, currentUser = null;
-let programList = [
-  {isPause:false,id:1,name:"Partie 1",type:"Landaise",sponsor:DEFAULT_ASSOC,lots:{"1 Ligne":"Bouteille de Vin","2 Lignes":"Panier Gourmand","Carton Plein":"Jambon Entier"}},
-  {isPause:true,id:2,durationMins:15,message:"Profitez de notre buvette et nos pâtisseries !"},
-  {isPause:false,id:3,name:"Partie 2",type:"Direct",sponsor:"Commerçants de Lanton",lots:{"Carton Plein":"TV LED 43 Pouces 4K"}}
-];
+/* ===== SYNCHRONISATION ENTRE APPAREILS =====
+   Valeurs de votre projet Firebase. Laissez vide pour travailler sans compte. */
+const FIREBASE = { apiKey: "AIzaSyAibKIqjgzEYD2FfzIU7dtlWCkWvHN7oJ0", projectId: "lotomatic-f4d0a" };
+
+let _idc = 0;
+function newId() { return Date.now() * 1000 + (++_idc % 1000); }
+const LOT_KEYS = { Landaise: ['1 Ligne', '2 Lignes', 'Carton Plein'], Direct: ['Carton Plein'] };
+const LOT_LABEL = { '1 Ligne': '1 ligne', '2 Lignes': '2 lignes', 'Carton Plein': 'Carton plein' };
+
+/* Met au bon format les parties (anciennes sauvegardes comprises) */
+function normalizeProgram(list) {
+  return (Array.isArray(list) ? list : []).filter(Boolean).map(it => {
+    if (it.isPause) return { isPause: true, id: it.id || newId(), durationMins: parseInt(it.durationMins, 10) || 15, message: String(it.message || '') };
+    const type = it.type === 'Direct' ? 'Direct' : 'Landaise', lots = {}, src = it.lots || {};
+    LOT_KEYS[type].forEach(k => {
+      const v = src[k];
+      lots[k] = (v && typeof v === 'object') ? { name: String(v.name || 'À définir'), donor: String(v.donor || '') }
+                                              : { name: v ? String(v) : 'À définir', donor: String(it.sponsor || '') };
+    });
+    return { isPause: false, id: it.id || newId(), type, lots, consolation: String(it.consolation || '') };
+  });
+}
+let programList = normalizeProgram([
+  { id: 1, type: "Landaise", lots: { "1 Ligne": { name: "Bouteille de vin", donor: "" }, "2 Lignes": { name: "Panier gourmand", donor: "" }, "Carton Plein": { name: "Jambon entier", donor: "" } } },
+  { isPause: true, id: 2, durationMins: 15, message: "Profitez de notre buvette et nos pâtisseries !" },
+  { id: 3, type: "Direct", lots: { "Carton Plein": { name: "TV LED 43 pouces 4K", donor: "Commerçants de Lanton" } } }
+]);
+const DEFAULT_PROGRAM_JSON = JSON.stringify(programList);
 
 const _mem = {};
 const store = {
@@ -331,15 +380,28 @@ function applyUI(v) {
 }
 function changeUITheme() { const v = $('ui-theme-select').value; store.set('lm_ui', v); applyUI(v); }
 
+function storageOK() { try { localStorage.setItem('lm_t', '1'); localStorage.removeItem('lm_t'); return true; } catch (e) { return false; } }
+function checkStorage() {
+  if (storageOK()) return;
+  const b = document.createElement('div');
+  b.style.cssText = 'background:#7a5a14;color:#fff;padding:10px 24px;font-size:14px';
+  b.innerHTML = "<strong>Attention :</strong> ce site d'hébergement bloque l'enregistrement. Vos tirages ne sont pas sauvegardés et l'écran de salle ne peut pas se mettre à jour dans une autre fenêtre. Utilisez « Afficher la salle dans cet onglet », ou hébergez le fichier sur un autre site (Netlify Drop, GitHub Pages).";
+  document.body.insertBefore(b, document.body.firstChild);
+}
+
 function init() {
   if (IS_SALLE) { initSalle(); return; }
+  try { checkStorage(); } catch (e) { console.error(e); }
   try { applyUI(store.get('lm_ui')); } catch (e) { console.error(e); }
   try { renderAdminMainGrid(); } catch (e) { console.error(e); }
-  try { currentUser = store.get('lm_user'); loadData(); } catch (e) { console.error(e); }
+  try { loadData(); } catch (e) { console.error(e); }
+  lastCloudStr = cloudState(); localMod = parseInt(store.get('lm_mod'), 10) || 0;
   try { applyDrawModeUI(); } catch (e) { console.error(e); }
+  try { resetForm(); } catch (e) { console.error(e); }
   try { renderProgramDragList(); } catch (e) { console.error(e); }
   try { updateCurrentStepInfo(); } catch (e) { console.error(e); }
   try { updateState(); updateUserBadge(); } catch (e) { console.error(e); }
+  try { initCloud(); } catch (e) { console.error(e); }
   document.addEventListener('keydown', e => {
     const t = document.activeElement.tagName;
     if (e.code === 'Space' && !inlineOn && drawMode === 'random' && t !== 'INPUT' && t !== 'SELECT' && t !== 'BUTTON' &&
@@ -411,15 +473,16 @@ function updateState() {
 const stepsOf = g => g && g.lots ? Object.keys(g.lots) : [];
 function updateCurrentStepInfo(autoPause) {
   const item = programList[currentProgIdx];
-  if (!item) { ['info-game-name','info-step-name','info-lot-name','info-sponsor-name'].forEach(i => $(i).textContent = '--'); return syncProjection(); }
+  const set = (id, v) => { $(id).textContent = v; };
+  if (!item) { ['info-game-name','info-step-name','info-lot-name','info-sponsor-name','info-cons-name'].forEach(i => set(i, '--')); return syncProjection(); }
   if (item.isPause) {
-    $('info-game-name').textContent = 'Entracte'; $('info-step-name').textContent = 'Pause';
-    $('info-lot-name').textContent = item.message; $('info-sponsor-name').textContent = '--';
+    set('info-game-name', 'Entracte'); set('info-step-name', 'Pause'); set('info-lot-name', item.message);
+    set('info-sponsor-name', '--'); set('info-cons-name', '--');
     if (autoPause) startPause(item.durationMins, item.message);
   } else {
-    const k = stepsOf(item)[currentStepKeyIdx] || stepsOf(item)[0];
-    $('info-game-name').textContent = item.name; $('info-step-name').textContent = k;
-    $('info-lot-name').textContent = item.lots[k]; $('info-sponsor-name').textContent = item.sponsor;
+    const k = stepsOf(item)[currentStepKeyIdx] || stepsOf(item)[0], lot = item.lots[k];
+    set('info-game-name', gameName(currentProgIdx)); set('info-step-name', k); set('info-lot-name', lot.name);
+    set('info-sponsor-name', donorOf(lot)); set('info-cons-name', item.consolation || '--');
   }
   saveData(); syncProjection();
 }
@@ -443,24 +506,68 @@ function prevStep() {
 }
 
 /* ---------- PROGRAMME ---------- */
-function createNewGame() {
-  const name = $('new-game-name').value.trim() || `Partie ${programList.filter(p => !p.isPause).length + 1}`;
-  const type = $('new-game-type').value;
-  const sponsor = $('new-game-sponsor').value.trim() || assocName;
-  const lots = {};
-  if (type === 'Landaise') {
-    lots["1 Ligne"] = prompt("Lot pour la 1ère Ligne :") || "Lot surprise";
-    lots["2 Lignes"] = prompt("Lot pour les 2 Lignes :") || "Lot gourmand";
-  }
-  lots["Carton Plein"] = prompt("Lot pour le Carton Plein :") || "Gros lot";
-  programList.push({isPause:false,id:Date.now(),name,type,sponsor,lots});
-  $('new-game-name').value = ''; $('new-game-sponsor').value = '';
-  renderProgramDragList(); updateCurrentStepInfo();
+let editingId = null;
+function gameName(idx) {            // « Partie N » : calculé selon la position, donc renuméroté automatiquement
+  let n = 0;
+  for (let i = 0; i <= idx; i++) if (programList[i] && !programList[i].isPause) n++;
+  return 'Partie ' + n;
+}
+const donorOf = lot => (lot && lot.donor && lot.donor.trim()) ? lot.donor.trim() : assocName;
+
+function renderLotFields(type, lots) {
+  const box = $('lots-fields'); box.innerHTML = '';
+  LOT_KEYS[type].forEach(k => {
+    const v = (lots && lots[k]) || { name: '', donor: '' };
+    const b = document.createElement('div'); b.className = 'lot-block'; b.dataset.key = k;
+    b.innerHTML = `<div class="lot-head">${LOT_LABEL[k]}</div>
+      <div class="lot-row"><div><label>Lot</label><input type="text" class="form-control" data-f="name" placeholder="Ex : Bouteille de vin"></div>
+      <div><label>Donateur</label><input type="text" class="form-control" data-f="donor" placeholder="Association"></div></div>`;
+    b.querySelector('[data-f=name]').value = v.name; b.querySelector('[data-f=donor]').value = v.donor;
+    box.appendChild(b);
+  });
+}
+function readLotFields() {
+  const out = {};
+  document.querySelectorAll('#lots-fields .lot-block').forEach(b => {
+    out[b.dataset.key] = { name: b.querySelector('[data-f=name]').value.trim(), donor: b.querySelector('[data-f=donor]').value.trim() };
+  });
+  return out;
+}
+function onTypeChange() { renderLotFields($('new-game-type').value, readLotFields()); }
+function updateFormTitle() {
+  const idx = editingId ? programList.findIndex(p => p.id === editingId) : -1;
+  $('form-title').textContent = idx >= 0 ? 'Modifier la ' + gameName(idx).toLowerCase() : 'Ajouter la partie ' + (programList.filter(p => !p.isPause).length + 1);
+}
+function resetForm() {
+  editingId = null; $('new-game-type').value = 'Landaise'; renderLotFields('Landaise', null); $('game-cons').value = '';
+  $('btn-save-game').innerHTML = ic('plus') + ' Ajouter la partie'; $('btn-cancel-edit').style.display = 'none';
+  updateFormTitle();
+}
+function editGame(idx) {
+  const g = programList[idx]; if (!g || g.isPause) return;
+  editingId = g.id; $('new-game-type').value = g.type; renderLotFields(g.type, g.lots); $('game-cons').value = g.consolation || '';
+  $('btn-save-game').innerHTML = ic('check') + ' Enregistrer les modifications'; $('btn-cancel-edit').style.display = '';
+  updateFormTitle(); renderProgramDragList();
+  $('game-form-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function cancelEdit() { resetForm(); renderProgramDragList(); }
+function saveGame() {
+  const type = $('new-game-type').value, raw = readLotFields(), lots = {};
+  LOT_KEYS[type].forEach(k => { const v = raw[k] || { name: '', donor: '' }; lots[k] = { name: v.name || 'À définir', donor: v.donor }; });
+  const consolation = $('game-cons').value.trim();
+  if (editingId) {
+    const idx = programList.findIndex(p => p.id === editingId);
+    if (idx >= 0) {
+      programList[idx] = { isPause: false, id: editingId, type, lots, consolation };
+      if (idx === currentProgIdx) currentStepKeyIdx = Math.min(currentStepKeyIdx, LOT_KEYS[type].length - 1);
+    }
+  } else programList.push({ isPause: false, id: newId(), type, lots, consolation });
+  resetForm(); renderProgramDragList(); updateCurrentStepInfo();
 }
 function addPauseToProgram() {
   const durationMins = parseInt($('pause-duration-input').value) || 15;
   const message = $('pause-msg-input').value.trim() || "Buvette et crêpes vous attendent !";
-  programList.push({isPause:true,id:Date.now(),durationMins,message});
+  programList.push({isPause:true,id:newId(),durationMins,message});
   renderProgramDragList(); updateCurrentStepInfo();
 }
 function withCurrentKept(fn) {            // garde la position actuelle après un changement d'ordre
@@ -480,22 +587,27 @@ function deleteProgramItem(idx) {
   withCurrentKept(() => programList.splice(idx, 1));
 }
 function renderProgramDragList() {
+  if (editingId && !programList.some(p => p.id === editingId)) resetForm();
   const c = $('program-drag-list'); c.innerHTML = '';
-  let dragIdx = null;
   programList.forEach((item, idx) => {
     const el = document.createElement('div');
-    el.className = 'game-item' + (item.isPause ? ' pause-item' : '') + (idx === currentProgIdx ? ' current' : '');
+    el.className = 'game-item' + (item.isPause ? ' pause-item' : '') + (idx === currentProgIdx ? ' current' : '') + (item.id === editingId ? ' editing' : '');
     el.draggable = true;
-    const label = item.isPause
-      ? `<strong>Entracte de ${esc(item.durationMins)} min</strong><span class="meta">${esc(item.message)}</span>`
-      : `<strong>${esc(item.name)}</strong><span class="meta">${item.type === 'Landaise' ? 'Partie landaise' : 'Carton plein direct'}, donateur : ${esc(item.sponsor)}</span>`;
+    let label;
+    if (item.isPause) label = `<strong>Entracte de ${esc(item.durationMins)} min</strong><span class="meta">${esc(item.message)}</span>`;
+    else {
+      const lines = Object.keys(item.lots).map(k => { const l = item.lots[k]; return `${esc(LOT_LABEL[k])} : ${esc(l.name)}${l.donor ? ' (' + esc(l.donor) + ')' : ''}`; }).join('<br>');
+      label = `<strong>${esc(gameName(idx))}</strong><span class="meta">${lines}</span>` + (item.consolation ? `<span class="meta">Consolation : ${esc(item.consolation)}</span>` : '');
+    }
     el.innerHTML = `<span class="drag-handle">${ic('grip')}</span><div class="item-body">${label}${idx === currentProgIdx ? '<span class="tag">En cours</span>' : ''}</div>
+      ${item.isPause ? '' : `<button class="btn small" data-a="edit">${ic('edit')}Modifier</button>`}
       <button class="btn ghost icon" data-a="up" aria-label="Monter">${ic('up')}</button><button class="btn ghost icon" data-a="down" aria-label="Descendre">${ic('down')}</button>
       <button class="btn ghost icon" data-a="del" aria-label="Supprimer" style="color:var(--red)">${ic('x')}</button>`;
+    if (!item.isPause) el.querySelector('[data-a=edit]').onclick = () => editGame(idx);
     el.querySelector('[data-a=up]').onclick = () => moveItem(idx, idx - 1);
     el.querySelector('[data-a=down]').onclick = () => moveItem(idx, idx + 1);
     el.querySelector('[data-a=del]').onclick = () => deleteProgramItem(idx);
-    el.ondragstart = e => { dragIdx = idx; e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', String(idx)); };
+    el.ondragstart = e => { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', String(idx)); };
     el.ondragover = e => { e.preventDefault(); el.classList.add('drag-over'); };
     el.ondragleave = () => el.classList.remove('drag-over');
     el.ondrop = e => {
@@ -505,6 +617,7 @@ function renderProgramDragList() {
     };
     c.appendChild(el);
   });
+  updateFormTitle();
 }
 
 /* ---------- ENTRACTE ---------- */
@@ -570,7 +683,7 @@ function projInner() {
 <button class="btn-top-proj" onclick="projRefresh()">Actualiser</button>
 <button class="btn-top-proj" onclick="projClose()">Fermer</button></div></div>
 <div class="proj-body"><div class="animation-stage"><div class="anim-card" id="p-anim-card"><svg id="p-anim-svg" viewBox="0 0 300 250" style="width:100%;height:100%"></svg><div class="anim-number-overlay" id="p-num">--</div></div>
-<div class="proj-lot-card"><div class="lab">Lot en jeu</div><h3 id="p-lot-name">--</h3><p id="p-lot-sponsor"></p></div></div>
+<div class="proj-lot-card"><div class="lab">Lot en jeu</div><h3 id="p-lot-name">--</h3><p id="p-lot-sponsor"></p><p class="cons" id="p-cons"></p></div></div>
 <div class="balls-display-container"><div class="balls-header-title">Numéros tirés (<span id="p-count-val">0</span> / 90)</div><div class="balls-flex-wrap" id="p-balls-flex"></div></div></div>
 <div class="proj-foot" id="p-assoc-footer">--</div><div id="p-status" style="position:absolute;right:14px;bottom:8px;font-size:11px;opacity:.4"></div>`;
 }
@@ -588,13 +701,29 @@ function projRefresh() {
 function liveState() {
   const item = programList[currentProgIdx];
   const key = item && !item.isPause ? (stepsOf(item)[currentStepKeyIdx] || stepsOf(item)[0]) : null;
+  const lot = key ? item.lots[key] : null;
   return {
     drawn: drawnNumbers.slice(), theme: currentTheme, assoc: assocName,
     paused: isPaused, pauseMsg: pauseMessage, pauseEnd: pauseEnd,
     step: item ? (item.isPause ? 'Pause' : key) : '--',
-    lot: item ? (item.isPause ? item.message : item.lots[key]) : '--',
-    sponsor: item && !item.isPause ? item.sponsor : ''
+    lot: item ? (item.isPause ? item.message : lot.name) : '--',
+    sponsor: lot ? donorOf(lot) : '',
+    cons: item && !item.isPause ? (item.consolation || '') : ''
   };
+}
+
+/* Adapte la taille des numéros tirés à la place disponible (les plus grands possible) */
+function fitBalls(d, n, ctx) {
+  const wrap = d.getElementById('p-balls-flex'); if (!wrap) return;
+  const w = wrap.clientWidth - 24, h = wrap.clientHeight - 24, gap = 12;
+  if (w <= 0 || h <= 0) return;
+  const count = Math.max(n, 30);
+  let size = 40;
+  for (let s = 130; s >= 40; s -= 2) {
+    const perRow = Math.max(1, Math.floor((w + gap) / (s + gap)));
+    if (Math.ceil(count / perRow) * (s + gap) - gap <= h) { size = s; break; }
+  }
+  if (ctx.bs !== size) { ctx.bs = size; wrap.style.setProperty('--bs', size + 'px'); }
 }
 
 /* Dessine l'écran de salle dans le document d (la page elle-même ou une fenêtre de secours) */
@@ -619,6 +748,7 @@ function renderProjection(d, st, ctx, force) {
   g('p-step').textContent = st.step;
   g('p-lot-name').textContent = st.lot;
   g('p-lot-sponsor').textContent = st.sponsor ? 'Donateur : ' + st.sponsor : '';
+  g('p-cons').textContent = st.cons ? "Lot de consolation en cas d'égalité : " + st.cons : '';
 
   if (force || ctx.shownTheme !== st.theme) { g('p-anim-svg').innerHTML = themeSVG(st.theme); ctx.shownTheme = st.theme; }
   g('p-num').style.color = (st.theme === 'pink' || st.theme === 'halloween') ? '#fff' : '#3b2405';
@@ -634,6 +764,7 @@ function renderProjection(d, st, ctx, force) {
     });
     ctx.shownNum = last || null;
   }
+  fitBalls(d, st.drawn.length, ctx);
   return true;
 }
 
@@ -666,7 +797,7 @@ function initSalle() {
     else document.getElementById('p-step').textContent = 'En attente de la régie…';
     if (Date.now() - lastMsg > 1500) pull();
     const stat = document.getElementById('p-status');
-    if (stat) stat.textContent = st ? 'Liaison : ' + via : 'Aucune donnée reçue (gardez la régie ouverte)';
+    if (stat) stat.textContent = st ? 'Liaison : ' + via : 'Aucune donnée reçue. ' + (storageOK() ? 'Gardez la régie ouverte.' : 'Ce site bloque la liaison entre fenêtres.');
   }, 500);
 }
 
@@ -752,17 +883,21 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'Backspace') inlineBuf = '';
 });
 
-/* ---------- SAUVEGARDE & COMPTE ---------- */
-const dataKey = () => currentUser ? 'lm_data_' + currentUser : 'lm_data_local';
+/* ---------- SAUVEGARDE SUR CET APPAREIL ---------- */
+const DATA_KEY = 'lm_data_local';
+let lastCloudStr = '', localMod = 0;
+const cloudState = () => JSON.stringify({ p: programList, a: assocName, t: currentTheme, m: drawMode });
 function saveData() {
-  const data = JSON.stringify({programList, assocName, drawnNumbers, currentProgIdx, currentStepKeyIdx, currentTheme, drawMode});
-  try { store.set(dataKey(), data); } catch (e) {}
+  const data = JSON.stringify({ programList, assocName, drawnNumbers, currentProgIdx, currentStepKeyIdx, currentTheme, drawMode });
+  try { store.set(DATA_KEY, data); } catch (e) {}
+  const cs = cloudState();
+  if (cs !== lastCloudStr) { lastCloudStr = cs; localMod = Date.now(); store.set('lm_mod', String(localMod)); scheduleCloudSave(); }
 }
 function loadData() {
   try {
-    const s = store.get(dataKey()); if (!s) return;
+    const s = store.get(DATA_KEY); if (!s) return;
     const p = JSON.parse(s);
-    if (p.programList) programList = p.programList;
+    if (Array.isArray(p.programList)) programList = normalizeProgram(p.programList);
     if (p.assocName) assocName = p.assocName;
     if (Array.isArray(p.drawnNumbers)) drawnNumbers = p.drawnNumbers;
     currentProgIdx = Math.min(p.currentProgIdx || 0, Math.max(programList.length - 1, 0));
@@ -771,40 +906,185 @@ function loadData() {
     if (p.drawMode) drawMode = p.drawMode;
   } catch (e) {}
 }
-function updateUserBadge() { $('user-display').textContent = currentUser || 'Mode hors-ligne'; }
-function authMsg(t) { $('auth-msg').textContent = t; }
-async function hashPw(pw) {
-  if (window.crypto && crypto.subtle) {
-    const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
-    return Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, '0')).join('');
-  }
-  let h = 0; for (const c of pw) h = (h * 31 + c.charCodeAt(0)) | 0; return String(h);
+
+/* ---------- COMPTE ET SYNCHRONISATION (Firebase, via son interface web) ---------- */
+const CLOUD_ON = !!(FIREBASE.apiKey && FIREBASE.projectId);
+let auth = null, syncState = 'idle', saveTimer = null, cloudDirty = false, savingNow = false, lastErr = '', cloudStarted = false;
+
+const FR_ERR = {
+  EMAIL_EXISTS: "Un compte existe déjà avec cette adresse : utilisez « Se connecter ».",
+  INVALID_PASSWORD: "E-mail ou mot de passe incorrect.", EMAIL_NOT_FOUND: "E-mail ou mot de passe incorrect.",
+  INVALID_LOGIN_CREDENTIALS: "E-mail ou mot de passe incorrect.", INVALID_EMAIL: "Adresse e-mail invalide.",
+  MISSING_PASSWORD: "Saisissez votre mot de passe.", WEAK_PASSWORD: "Mot de passe trop court (6 caractères minimum).",
+  TOO_MANY_ATTEMPTS_TRY_LATER: "Trop d'essais. Réessayez dans quelques minutes.", USER_DISABLED: "Ce compte est désactivé.",
+  OPERATION_NOT_ALLOWED: "La connexion par e-mail n'est pas activée dans Firebase.",
+  PERMISSION_DENIED: "Le serveur refuse l'enregistrement : vérifiez les règles de la base Firestore.",
+  NOT_FOUND: "La base Firestore n'est pas encore créée dans votre projet Firebase.",
+  API_KEY_INVALID: "La clé Firebase du code est incorrecte.", 'API key not valid': "La clé Firebase du code est incorrecte."
+};
+function frError(msg) {
+  msg = String(msg || '');
+  if (/Failed to fetch|NetworkError|Load failed/i.test(msg)) return "Impossible de joindre le serveur. Vérifiez votre connexion internet.";
+  const k = Object.keys(FR_ERR).find(x => msg.indexOf(x) === 0 || msg.indexOf(x) > -1);
+  return k ? FR_ERR[k] : "Erreur du serveur (" + msg + ").";
 }
-const getUsers = () => { try { return JSON.parse(store.get('lm_users')) || {}; } catch (e) { return {}; } };
-function refreshAll() { applyDrawModeUI(); renderProgramDragList(); updateCurrentStepInfo(); updateState(); updateUserBadge(); }
-async function registerUser() {
-  const email = $('auth-email').value.trim().toLowerCase(), pw = $('auth-password').value;
-  if (!/^\S+@\S+\.\S+$/.test(email)) return authMsg("Adresse e-mail invalide.");
-  if (pw.length < 6) return authMsg("Mot de passe trop court (6 caractères min.).");
-  const users = getUsers();
-  if (users[email]) return authMsg("Ce compte existe déjà : utilisez Connexion.");
-  users[email] = await hashPw(pw); store.set('lm_users', JSON.stringify(users));
-  currentUser = email; store.set('lm_user', email);
-  saveData();                         // le compte reçoit les données actuelles
-  updateUserBadge(); authMsg("Compte créé et connecté. Vos données sont enregistrées.");
+async function fbPost(url, body, form) {
+  const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': form ? 'application/x-www-form-urlencoded' : 'application/json' }, body: form ? body : JSON.stringify(body) });
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(d && d.error && d.error.message ? d.error.message : 'HTTP ' + r.status);
+  return d;
 }
-async function loginUser() {
-  const email = $('auth-email').value.trim().toLowerCase(), pw = $('auth-password').value;
-  const users = getUsers();
-  if (!users[email] || users[email] !== await hashPw(pw)) return authMsg("E-mail ou mot de passe incorrect.");
-  currentUser = email; store.set('lm_user', email);
-  loadData(); refreshAll(); authMsg("Connecté : données du compte chargées.");
+function setAuth(d) {
+  auth = {
+    email: d.email || (auth && auth.email) || '', uid: d.localId || d.user_id || (auth && auth.uid),
+    refreshToken: d.refreshToken || d.refresh_token, idToken: d.idToken || d.id_token,
+    exp: Date.now() + (parseInt(d.expiresIn || d.expires_in, 10) || 3600) * 1000
+  };
+  store.set('lm_auth', JSON.stringify({ email: auth.email, uid: auth.uid, refreshToken: auth.refreshToken }));
 }
-function logoutUser() {
-  if (!currentUser) return authMsg("Vous n'êtes pas connecté.");
-  saveData(); currentUser = null; store.remove('lm_user');
-  $('auth-password').value = ''; updateUserBadge(); authMsg("Déconnecté (mode hors-ligne).");
+async function getToken() {
+  if (!auth) throw new Error('NO_AUTH');
+  if (auth.idToken && Date.now() < auth.exp - 60000) return auth.idToken;
+  const d = await fbPost('https://securetoken.googleapis.com/v1/token?key=' + FIREBASE.apiKey,
+    'grant_type=refresh_token&refresh_token=' + encodeURIComponent(auth.refreshToken), true);
+  setAuth(d); return auth.idToken;
 }
+const docUrl = () => 'https://firestore.googleapis.com/v1/projects/' + encodeURIComponent(FIREBASE.projectId) + '/databases/(default)/documents/users/' + encodeURIComponent(auth.uid);
+const errMsgOf = d => (d && d.error && (d.error.status || d.error.message)) || '';
+async function cloudLoad() {
+  const tok = await getToken();
+  const r = await fetch(docUrl(), { headers: { Authorization: 'Bearer ' + tok } });
+  if (r.status === 404) return null;
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(errMsgOf(d) || 'HTTP ' + r.status);
+  const f = d.fields || {};
+  const data = f.data && f.data.stringValue ? JSON.parse(f.data.stringValue) : null;
+  const ts = f.updatedAt && f.updatedAt.integerValue ? parseInt(f.updatedAt.integerValue, 10) : 0;
+  return data ? { data, ts } : null;
+}
+async function cloudSave(ts) {
+  const tok = await getToken();
+  const body = { fields: { data: { stringValue: JSON.stringify({ programList, assocName, theme: currentTheme, drawMode }) }, updatedAt: { integerValue: String(ts) } } };
+  const r = await fetch(docUrl() + '?updateMask.fieldPaths=data&updateMask.fieldPaths=updatedAt',
+    { method: 'PATCH', headers: { Authorization: 'Bearer ' + tok, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  if (!r.ok) { const d = await r.json().catch(() => ({})); throw new Error(errMsgOf(d) || 'HTTP ' + r.status); }
+}
+
+function syncLabel() { return { idle: '', pending: 'modifications en attente', saving: 'enregistrement…', saved: 'synchronisé', error: 'erreur de synchronisation' }[syncState] || ''; }
+function setSync(st) { syncState = st; updateUserBadge(); renderAuthUI(); }
+function updateUserBadge() { const l = syncLabel(); $('user-display').textContent = auth ? auth.email + (l ? ' (' + l + ')' : '') : 'Mode hors-ligne'; }
+function authMsg(t) { const e = $('auth-msg'); if (e) e.textContent = t; }
+function renderAuthUI() {
+  const show = (id, on) => { const e = $(id); if (e) e.style.display = on ? '' : 'none'; };
+  show('auth-nocfg', !CLOUD_ON); show('auth-in', CLOUD_ON && !auth); show('auth-out', CLOUD_ON && !!auth);
+  if (auth && $('auth-who')) { $('auth-who').textContent = auth.email; $('auth-state').textContent = syncState === 'error' ? 'Erreur : ' + lastErr : 'Statut : ' + (syncLabel() || 'prêt'); }
+}
+function signOutLocal(msg) {
+  auth = null; store.remove('lm_auth'); clearTimeout(saveTimer); cloudDirty = false;
+  setSync('idle'); if (msg) authMsg(msg);
+}
+function handleAuthFail(e) {
+  if (/INVALID_REFRESH_TOKEN|TOKEN_EXPIRED|USER_NOT_FOUND|USER_DISABLED|UNAUTHENTICATED|CREDENTIAL_TOO_OLD/.test(String(e && e.message))) signOutLocal('Session expirée : reconnectez-vous.');
+}
+
+/* Envoi automatique des parties vers le compte */
+function scheduleCloudSave() {
+  if (!auth || !CLOUD_ON) return;
+  cloudDirty = true; setSync('pending'); clearTimeout(saveTimer); saveTimer = setTimeout(pushNow, 1200);
+}
+async function pushNow() {
+  if (!auth || !CLOUD_ON) return false;
+  if (savingNow) { clearTimeout(saveTimer); saveTimer = setTimeout(pushNow, 800); return false; }
+  clearTimeout(saveTimer); savingNow = true; setSync('saving');
+  const ts = Date.now(); let ok = false;
+  try { await cloudSave(ts); localMod = ts; store.set('lm_mod', String(ts)); cloudDirty = false; ok = true; setSync('saved'); }
+  catch (e) { lastErr = frError(e.message); handleAuthFail(e); if (auth) setSync('error'); }
+  savingNow = false; return ok;
+}
+/* Reprise des parties du compte dans l'application */
+function applyRemote(r) {
+  const d = r.data || {}, curId = programList[currentProgIdx] && programList[currentProgIdx].id;
+  programList = Array.isArray(d.programList) ? normalizeProgram(d.programList) : normalizeProgram(JSON.parse(DEFAULT_PROGRAM_JSON));
+  assocName = d.assocName || DEFAULT_ASSOC; currentTheme = d.theme || 'classic'; drawMode = d.drawMode || 'random';
+  const ni = programList.findIndex(p => p.id === curId);
+  if (ni >= 0) currentProgIdx = ni; else { currentProgIdx = 0; currentStepKeyIdx = 0; }
+  lastCloudStr = cloudState(); localMod = r.ts || Date.now(); store.set('lm_mod', String(localMod));
+  applyDrawModeUI(); resetForm(); renderProgramDragList(); updateCurrentStepInfo();
+}
+async function pullIfNewer() {
+  if (!auth || !CLOUD_ON || savingNow || cloudDirty || editingId) return;
+  try {
+    const r = await cloudLoad();
+    if (r && r.ts > localMod) applyRemote(r);
+    if (syncState === 'error') setSync('saved');
+  } catch (e) { handleAuthFail(e); }
+}
+async function initCloud() {
+  renderAuthUI(); updateUserBadge();
+  if (!CLOUD_ON || cloudStarted) return;
+  cloudStarted = true;
+  window.addEventListener('focus', pullIfNewer);
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') pullIfNewer(); });
+  window.addEventListener('online', () => { if (cloudDirty) pushNow(); else pullIfNewer(); });
+  let saved = null; try { saved = JSON.parse(store.get('lm_auth')); } catch (e) {}
+  if (!saved || !saved.refreshToken) return;
+  auth = { email: saved.email, uid: saved.uid, refreshToken: saved.refreshToken, idToken: '', exp: 0 };
+  setSync('saving');
+  try {
+    const remote = await cloudLoad();
+    if (!remote || remote.ts < localMod) await pushNow();
+    else if (remote.ts > localMod && !editingId) { applyRemote(remote); setSync('saved'); }
+    else setSync('saved');
+  } catch (e) { lastErr = frError(e.message); handleAuthFail(e); if (auth) setSync('error'); }
+}
+
+/* Boutons de l'onglet Compte */
+async function authSubmit(mode) {
+  const email = $('auth-email').value.trim(), pw = $('auth-password').value;
+  if (!/^\S+@\S+\.\S+$/.test(email)) return authMsg('Adresse e-mail invalide.');
+  if (pw.length < 6) return authMsg('Mot de passe trop court (6 caractères minimum).');
+  authMsg('Connexion en cours…');
+  try {
+    const d = await fbPost('https://identitytoolkit.googleapis.com/v1/accounts:' + (mode === 'signup' ? 'signUp' : 'signInWithPassword') + '?key=' + FIREBASE.apiKey,
+      { email, password: pw, returnSecureToken: true });
+    setAuth(d); $('auth-password').value = '';
+    await firstSync(mode === 'signup');
+  } catch (e) { authMsg(frError(e.message)); }
+}
+async function firstSync(isNew) {
+  setSync('saving');
+  try {
+    const remote = isNew ? null : await cloudLoad();
+    if (!remote) {
+      const ok = await pushNow();
+      authMsg(ok ? (isNew ? 'Compte créé : vos parties sont enregistrées sur votre compte.' : 'Connecté : les parties de cet appareil ont été enregistrées sur votre compte.') : lastErr);
+      return;
+    }
+    const same = JSON.stringify(normalizeProgram(remote.data.programList)) === JSON.stringify(programList);
+    if (same || JSON.stringify(programList) === DEFAULT_PROGRAM_JSON ||
+        confirm("Cet appareil contient des parties différentes de celles de votre compte.\n\nOK : charger les parties de votre compte (celles de cet appareil seront remplacées).\nAnnuler : garder celles de cet appareil et les envoyer sur votre compte.")) {
+      applyRemote(remote); setSync('saved'); authMsg('Connecté : vos parties ont été retrouvées.');
+    } else { const ok = await pushNow(); authMsg(ok ? 'Les parties de cet appareil ont été envoyées sur votre compte.' : lastErr); }
+  } catch (e) { lastErr = frError(e.message); handleAuthFail(e); if (auth) setSync('error'); authMsg(lastErr); }
+}
+async function syncNow() {
+  if (!auth) return;
+  setSync('saving');
+  try {
+    const r = await cloudLoad();
+    if (r && r.ts > localMod) { applyRemote(r); setSync('saved'); authMsg('Parties mises à jour depuis votre compte.'); }
+    else { const ok = await pushNow(); authMsg(ok ? 'Parties enregistrées sur votre compte.' : lastErr); }
+  } catch (e) { lastErr = frError(e.message); handleAuthFail(e); if (auth) setSync('error'); authMsg(lastErr); }
+}
+async function forgotPassword() {
+  const email = $('auth-email').value.trim();
+  if (!/^\S+@\S+\.\S+$/.test(email)) return authMsg("Saisissez d'abord votre adresse e-mail.");
+  try {
+    await fbPost('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=' + FIREBASE.apiKey, { requestType: 'PASSWORD_RESET', email });
+    authMsg("E-mail de réinitialisation envoyé (pensez à regarder les courriers indésirables).");
+  } catch (e) { authMsg(frError(e.message)); }
+}
+function logoutUser() { signOutLocal('Déconnecté. Les parties restent enregistrées sur cet appareil.'); }
 </script>
 </body>
 </html>
