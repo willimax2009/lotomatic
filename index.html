@@ -12,7 +12,6 @@ body{font-family:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,Rob
 button,input,select{font-family:inherit;font-size:inherit}
 :focus-visible{outline:2px solid var(--pine-t);outline-offset:2px}
 .ic{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-3px}
-
 .topbar{background:var(--top);color:#fff;display:flex;align-items:center;flex-wrap:wrap;gap:8px 24px;padding:0 24px;min-height:60px}
 .wordmark{display:flex;align-items:center;gap:10px;font-family:Georgia,"Times New Roman",serif;font-size:1.3rem;font-weight:700;letter-spacing:.01em}
 .wordmark .logo{width:30px;height:30px}
@@ -21,7 +20,6 @@ button,input,select{font-family:inherit;font-size:inherit}
 .tab-btn:hover{color:#fff}
 .tab-btn.active{color:#fff;border-bottom-color:var(--brass)}
 .user-badge{font-size:13px;color:#aebfbc;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:4px 12px}
-
 .main-container{max-width:1360px;margin:0 auto;padding:24px}
 .tab-content{display:none}.tab-content.active{display:block}
 .dashboard-grid{display:grid;grid-template-columns:1fr 380px;gap:20px;align-items:start}
@@ -30,13 +28,11 @@ button,input,select{font-family:inherit;font-size:inherit}
 .card-title{font-size:1.05rem;font-weight:700;margin-bottom:14px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .card-title .count{font-size:.95rem;color:var(--pine-t);font-variant-numeric:tabular-nums}
 .muted{color:var(--muted)}
-
 .lotto-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
 .num-ball{aspect-ratio:1;background:var(--cell);border:1px solid var(--line);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:1.05rem;font-variant-numeric:tabular-nums;color:var(--cell-ink);cursor:pointer;user-select:none;transition:background .15s}
 .num-ball:hover{background:var(--cell-h)}
 .num-ball.drawn{background:var(--pine);border-color:var(--pine);color:#fff}
 .num-ball.last-drawn{outline:3px solid var(--brass);outline-offset:2px}
-
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 16px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:600;cursor:pointer;width:100%}
 .btn:hover{background:var(--cell)}
 .btn.primary{background:var(--pine);border-color:var(--pine);color:#fff}
@@ -53,13 +49,11 @@ button,input,select{font-family:inherit;font-size:inherit}
 .btn.amber{background:var(--card);border-color:var(--brass);color:var(--amber-ink)}
 .btn.amber:hover{background:var(--amber-bg)}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-
 .last-drawn-box{display:flex;align-items:center;gap:16px;margin-bottom:16px}
 .last-ball{width:92px;height:92px;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--pine-l),var(--pine-d));border:4px solid var(--brass);display:flex;align-items:center;justify-content:center;flex:none}
 .last-drawn-val{font-family:Georgia,"Times New Roman",serif;font-size:2.6rem;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
 .last-label{font-weight:600}
 .step-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-size:.85rem;font-weight:600;margin-bottom:5px;color:var(--label)}
 .form-control{width:100%;height:42px;padding:0 12px;background:var(--card);border:1px solid var(--field);color:var(--ink);border-radius:6px}
@@ -69,7 +63,6 @@ button,input,select{font-family:inherit;font-size:inherit}
 .info-line:last-child{border-bottom:0}
 .info-line span:first-child{color:var(--muted)}
 .info-line strong{text-align:right}
-
 .game-item{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);padding:12px 12px 12px 8px;border-radius:6px;margin-bottom:8px;display:flex;align-items:center;gap:8px;cursor:grab}
 .game-item.pause-item{background:var(--amber-bg);border-left-color:var(--brass)}
 .game-item.current{border-left-color:var(--pine)}
@@ -87,7 +80,6 @@ button,input,select{font-family:inherit;font-size:inherit}
 @media(max-width:520px){.lot-row{grid-template-columns:1fr}}
 .btn.small{height:34px;padding:0 10px;width:auto;font-size:.88rem}
 .game-item.editing{outline:2px solid var(--brass)}
-
 /* THEMES DE LA REGIE */
 html[data-ui=gris]{--mist:#c9cfd3;--card:#e3e7ea;--cell:#d5dbdf;--cell-h:#c8d0d5;--cell-ink:#38464a;--line:#b3bec3;--hair:#cdd4d8;--field:#a3b0b6;--amber-bg:#ece6d4}
 html[data-ui=nuit],html[data-ui=ardoise],html[data-ui=bordeaux],html[data-ui=ocean],html[data-ui=ambre]{color-scheme:dark;--ink:#e9efee;--muted:#9aa9a7;--cell-ink:#b8c5c3;--label:#c3cfcd;--red:#ff8a80;--brass:#dcad42;--amber-ink:#e8c66f;--danger-line:#6e3430;--danger-bg:#2d1715;--amber-bg:color-mix(in srgb,var(--card),#d9a93f 14%);--cell:color-mix(in srgb,var(--card),#fff 6%);--cell-h:color-mix(in srgb,var(--card),#fff 13%);--line:color-mix(in srgb,var(--card),#fff 15%);--hair:color-mix(in srgb,var(--card),#fff 9%);--field:color-mix(in srgb,var(--card),#fff 28%);--top:color-mix(in srgb,var(--mist),#000 45%);--top-h:color-mix(in srgb,var(--mist),#fff 8%);--pine-d:color-mix(in srgb,var(--pine),#000 28%);--pine-l:color-mix(in srgb,var(--pine),#fff 18%);--pine-t:color-mix(in srgb,var(--pine),#fff 50%);--tag-bg:color-mix(in srgb,var(--pine),var(--card) 72%)}
@@ -96,10 +88,8 @@ html[data-ui=ardoise]{--mist:#0e131f;--card:#172033;--pine:#3d6fe6}
 html[data-ui=bordeaux]{--mist:#180d11;--card:#25141a;--pine:#b8374f}
 html[data-ui=ocean]{--mist:#08171f;--card:#102632;--pine:#1a8fb8}
 html[data-ui=ambre]{--mist:#14110e;--card:#201b16;--pine:#cf7a22}
-
 html.salle,html.salle body{background:#000;overflow:hidden}
 html.salle .topbar,html.salle .main-container{display:none}
-
 /* ECRAN DE SALLE */
 .projection-view{height:100vh;width:100vw;padding:28px 40px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative;color:#eef3f2;--pa:#d6a843}
 .theme-classic{background:radial-gradient(ellipse at 30% 40%,#14403b 0%,#0a1c1b 75%)}
@@ -169,7 +159,6 @@ html.salle .topbar,html.salle .main-container{display:none}
 <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L18 10l-4-4L4 16v4z"/><path d="M13 7l4 4"/></symbol>
 <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-9"/></symbol>
 </defs></svg>
-
 <header class="topbar">
   <div class="wordmark"><svg class="logo" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#c99a35"/><circle cx="16" cy="16" r="10" fill="#0e2a28"/><text x="16" y="20.5" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="11" fill="#f1dfae">90</text></svg><span>LotoMatic</span></div>
   <nav class="tabs">
@@ -180,7 +169,6 @@ html.salle .topbar,html.salle .main-container{display:none}
   </nav>
   <span id="user-display" class="user-badge">Mode hors-ligne</span>
 </header>
-
 <div class="main-container">
 <!-- TIRAGE -->
 <div id="tab-control" class="tab-content active"><div class="dashboard-grid">
@@ -224,7 +212,6 @@ html.salle .topbar,html.salle .main-container{display:none}
     </div>
   </div>
 </div></div>
-
 <!-- PROGRAMME -->
 <div id="tab-lots" class="tab-content">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;align-items:start">
@@ -254,7 +241,6 @@ html.salle .topbar,html.salle .main-container{display:none}
     <div id="program-drag-list"></div>
   </div>
 </div>
-
 <!-- RÉGLAGES -->
 <div id="tab-params" class="tab-content"><div class="narrow">
   <div class="card"><div class="card-title">Association</div>
@@ -295,7 +281,6 @@ html.salle .topbar,html.salle .main-container{display:none}
         <option value="clair">Jour, fond clair</option>
       </optgroup></select></div></div>
 </div></div>
-
 <!-- COMPTE -->
 <div id="tab-auth" class="tab-content"><div class="narrow">
   <div class="card" id="auth-nocfg" style="display:none">
@@ -322,22 +307,26 @@ html.salle .topbar,html.salle .main-container{display:none}
   <div class="msg" id="auth-msg"></div>
 </div></div>
 </div>
-
 <script>
 const DEFAULT_ASSOC = "Amicale des Pêcheurs Lantonnais";
 let drawnNumbers = [], currentTheme = 'classic', drawMode = 'random', projWindow = null;
 let isPaused = false, pauseTimerInterval = null, pauseEnd = 0, pauseSecondsLeft = 0, pauseEndedWaiting = false, pauseMessage = '';
 let assocName = DEFAULT_ASSOC, currentProgIdx = 0, currentStepKeyIdx = 0, currentUser = null;
-/* ===== SYNCHRONISATION ENTRE APPAREILS =====
-   apiKey : clé de votre projet Firebase (laissez vide pour travailler sans compte).
-   projectId : facultatif, l'application le retrouve toute seule à partir de la clé. */
-const FIREBASE = { apiKey: "AIzaSyAibKIqjgzEYD2FfzIU7dtlWCkWvHN7oJ0", projectId: "lotomatic-f4d0a" };
-
+/* ===== SYNCHRONISATION ENTRE APPAREILS ===== */
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const FIREBASE = {
+  apiKey: "AIzaSyDHbaJEnxTEI9msiCwxqV8AkV-CrwEdZa4",
+  authDomain: "lotomatic-f4d0a.firebaseapp.com",
+  projectId: "lotomatic-f4d0a",
+  storageBucket: "lotomatic-f4d0a.firebasestorage.app",
+  messagingSenderId: "923340118097",
+  appId: "1:923340118097:web:c6e6ebd3bbdd92d552c070",
+  measurementId: "G-LCBW8KQP2R"
+};
 let _idc = 0;
 function newId() { return Date.now() * 1000 + (++_idc % 1000); }
 const LOT_KEYS = { Landaise: ['1 Ligne', '2 Lignes', 'Carton Plein'], Direct: ['Carton Plein'] };
 const LOT_LABEL = { '1 Ligne': '1 ligne', '2 Lignes': '2 lignes', 'Carton Plein': 'Carton plein' };
-
 /* Met au bon format les parties (anciennes sauvegardes comprises) */
 function normalizeProgram(list) {
   return (Array.isArray(list) ? list : []).filter(Boolean).map(it => {
@@ -357,7 +346,6 @@ let programList = normalizeProgram([
   { id: 3, type: "Direct", lots: { "Carton Plein": { name: "TV LED 43 pouces 4K", donor: "Commerçants de Lanton" } } }
 ]);
 const DEFAULT_PROGRAM_JSON = JSON.stringify(programList);
-
 const _mem = {};
 const store = {
   get(k){ try { return localStorage.getItem(k); } catch(e){ return k in _mem ? _mem[k] : null; } },
@@ -374,13 +362,11 @@ window.addEventListener('error', e => {
 const $ = id => document.getElementById(id);
 const ic = n => `<svg class="ic"><use href="#i-${n}"/></svg>`;
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-
 function applyUI(v) {
   v = v || 'clair'; document.documentElement.setAttribute('data-ui', v);
   const s = $('ui-theme-select'); if (s) s.value = v;
 }
 function changeUITheme() { const v = $('ui-theme-select').value; store.set('lm_ui', v); applyUI(v); }
-
 function storageOK() { try { localStorage.setItem('lm_t', '1'); localStorage.removeItem('lm_t'); return true; } catch (e) { return false; } }
 function checkStorage() {
   if (storageOK()) return;
@@ -389,7 +375,6 @@ function checkStorage() {
   b.innerHTML = "<strong>Attention :</strong> ce site d'hébergement bloque l'enregistrement. Vos tirages ne sont pas sauvegardés et l'écran de salle ne peut pas se mettre à jour dans une autre fenêtre. Utilisez « Afficher la salle dans cet onglet », ou hébergez le fichier sur un autre site (Netlify Drop, GitHub Pages).";
   document.body.insertBefore(b, document.body.firstChild);
 }
-
 function init() {
   if (IS_SALLE) { initSalle(); return; }
   try { checkStorage(); } catch (e) { console.error(e); }
@@ -410,14 +395,12 @@ function init() {
   });
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
-
 function switchTab(id, btn) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
   btn.classList.add('active'); $('tab-' + id).classList.add('active');
   if (id === 'control') focusManual();
 }
-
 /* ---------- TIRAGE ---------- */
 function renderAdminMainGrid() {
   const g = $('admin-main-grid'); g.innerHTML = '';
@@ -458,7 +441,6 @@ function drawManual() {
 function focusManual() { if (drawMode === 'manual') setTimeout(() => $('manual-num-input').focus(), 50); }
 function undoLastDraw() { if (drawnNumbers.length) { drawnNumbers.pop(); updateState(); } }
 function resetGame() { if (confirm("Réinitialiser tous les tirages ?")) { drawnNumbers = []; updateState(); } }
-
 function updateState() {
   $('drawn-count').textContent = drawnNumbers.length + ' / 90 sortis';
   const last = drawnNumbers[drawnNumbers.length - 1];
@@ -469,7 +451,6 @@ function updateState() {
   }
   saveData(); syncProjection();
 }
-
 /* ---------- ÉTAPES ---------- */
 const stepsOf = g => g && g.lots ? Object.keys(g.lots) : [];
 function updateCurrentStepInfo(autoPause) {
@@ -505,7 +486,6 @@ function prevStep() {
   }
   updateCurrentStepInfo(true);
 }
-
 /* ---------- PROGRAMME ---------- */
 let editingId = null;
 function gameName(idx) {            // « Partie N » : calculé selon la position, donc renuméroté automatiquement
@@ -514,7 +494,6 @@ function gameName(idx) {            // « Partie N » : calculé selon la positi
   return 'Partie ' + n;
 }
 const donorOf = lot => (lot && lot.donor && lot.donor.trim()) ? lot.donor.trim() : assocName;
-
 function renderLotFields(type, lots) {
   const box = $('lots-fields'); box.innerHTML = '';
   LOT_KEYS[type].forEach(k => {
@@ -595,14 +574,14 @@ function renderProgramDragList() {
     el.className = 'game-item' + (item.isPause ? ' pause-item' : '') + (idx === currentProgIdx ? ' current' : '') + (item.id === editingId ? ' editing' : '');
     el.draggable = true;
     let label;
-    if (item.isPause) label = `<strong>Entracte de ${esc(item.durationMins)} min</strong><span class="meta">${esc(item.message)}</span>`;
+    if (item.isPause) label = `<strong>Entracte de esc(item.durationMins)min</strong><spanclass="meta">{esc(item.message)}</span>`;
     else {
-      const lines = Object.keys(item.lots).map(k => { const l = item.lots[k]; return `${esc(LOT_LABEL[k])} : ${esc(l.name)}${l.donor ? ' (' + esc(l.donor) + ')' : ''}`; }).join('<br>');
-      label = `<strong>${esc(gameName(idx))}</strong><span class="meta">${lines}</span>` + (item.consolation ? `<span class="meta">Consolation : ${esc(item.consolation)}</span>` : '');
+      const lines = Object.keys(item.lots).map(k => { const l = item.lots[k]; return `${esc(LOT_LABEL[k])} : esc(l.name){l.donor ? ' (' + esc(l.donor) + ')' : ''}`; }).join('<br>');
+      label = `<strong>esc(gameName(idx))</strong><spanclass="meta">{lines}</span>` + (item.consolation ? `<span class="meta">Consolation : ${esc(item.consolation)}</span>` : '');
     }
-    el.innerHTML = `<span class="drag-handle">${ic('grip')}</span><div class="item-body">${label}${idx === currentProgIdx ? '<span class="tag">En cours</span>' : ''}</div>
+    el.innerHTML = `<span class="drag-handle">ic('grip')</span><divclass="item-body">{label}${idx === currentProgIdx ? '<span class="tag">En cours</span>' : ''}</div>
       ${item.isPause ? '' : `<button class="btn small" data-a="edit">${ic('edit')}Modifier</button>`}
-      <button class="btn ghost icon" data-a="up" aria-label="Monter">${ic('up')}</button><button class="btn ghost icon" data-a="down" aria-label="Descendre">${ic('down')}</button>
+      <button class="btn ghost icon" data-a="up" aria-label="Monter">ic('up')</button><buttonclass="btnghosticon"data-a="down"aria-label="Descendre">{ic('down')}</button>
       <button class="btn ghost icon" data-a="del" aria-label="Supprimer" style="color:var(--red)">${ic('x')}</button>`;
     if (!item.isPause) el.querySelector('[data-a=edit]').onclick = () => editGame(idx);
     el.querySelector('[data-a=up]').onclick = () => moveItem(idx, idx - 1);
@@ -620,7 +599,6 @@ function renderProgramDragList() {
   });
   updateFormTitle();
 }
-
 /* ---------- ENTRACTE ---------- */
 function togglePause() {
   if (isPaused) stopPause(); else {
@@ -645,7 +623,6 @@ function stopPause(silent) {
   $('btn-toggle-pause').innerHTML = ic('cup') + " Lancer l'entracte";
   if (!silent) syncProjection();
 }
-
 /* ---------- RÉGLAGES ---------- */
 function saveAssocName() { assocName = $('assoc-name-input').value.trim() || DEFAULT_ASSOC; saveData(); syncProjection(); }
 function applyDrawModeUI() {
@@ -656,7 +633,6 @@ function applyDrawModeUI() {
 }
 function changeDrawMode() { drawMode = $('draw-mode-select').value; applyDrawModeUI(); saveData(); }
 function changeTheme() { currentTheme = $('theme-select').value; saveData(); syncProjection(); }
-
 /* ---------- ÉCRAN DE SALLE ---------- */
 function themeSVG(t) {
   if (t === 'pink') return `<defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f9a8d4"/><stop offset="1" stop-color="#db2777"/></linearGradient></defs>
@@ -676,7 +652,6 @@ function themeSVG(t) {
 const IS_SALLE = location.hash === '#salle';
 const bc = (() => { try { return new BroadcastChannel('lotomatic'); } catch (e) { return null; } })();
 let projLegacy = false;
-
 function projInner() {
   return `<div class="pause-screen" id="p-pause-screen"><div class="pause-title">Entracte</div><div class="pause-sub" id="p-pause-msg">--</div><div class="pause-timer" id="p-pause-timer">15:00</div></div>
 <div class="proj-header"><div class="proj-logo">LotoMatic</div><div class="proj-step" id="p-step">--</div>
@@ -697,7 +672,6 @@ function projRefresh() {
   if (IS_SALLE) { location.reload(); return; }
   syncProjection(true);
 }
-
 /* État envoyé à l'écran de salle */
 function liveState() {
   const item = programList[currentProgIdx];
@@ -712,7 +686,6 @@ function liveState() {
     cons: item && !item.isPause ? (item.consolation || '') : ''
   };
 }
-
 /* Adapte la taille des numéros tirés à la place disponible (les plus grands possible) */
 function fitBalls(d, n, ctx) {
   const wrap = d.getElementById('p-balls-flex'); if (!wrap) return;
@@ -726,7 +699,6 @@ function fitBalls(d, n, ctx) {
   }
   if (ctx.bs !== size) { ctx.bs = size; wrap.style.setProperty('--bs', size + 'px'); }
 }
-
 /* Dessine l'écran de salle dans le document d (la page elle-même ou une fenêtre de secours) */
 function renderProjection(d, st, ctx, force) {
   const g = id => d.getElementById(id);
@@ -734,7 +706,6 @@ function renderProjection(d, st, ctx, force) {
   const last = st.drawn[st.drawn.length - 1];
   g('p-body').className = `projection-view theme-${st.theme}`;
   g('p-assoc-footer').textContent = 'Organisé par : ' + st.assoc;
-
   const ps = g('p-pause-screen');
   if (st.paused) {
     const left = Math.max(0, Math.ceil((st.pauseEnd - Date.now()) / 1000));
@@ -745,12 +716,10 @@ function renderProjection(d, st, ctx, force) {
       g('p-pause-timer').textContent = String(Math.floor(left / 60)).padStart(2, '0') + ':' + String(left % 60).padStart(2, '0');
     }
   } else ps.classList.remove('active');
-
   g('p-step').textContent = st.step;
   g('p-lot-name').textContent = st.lot;
   g('p-lot-sponsor').textContent = st.sponsor ? 'Donateur : ' + st.sponsor : '';
   g('p-cons').textContent = st.cons ? "Lot de consolation en cas d'égalité : " + st.cons : '';
-
   if (force || ctx.shownTheme !== st.theme) { g('p-anim-svg').innerHTML = themeSVG(st.theme); ctx.shownTheme = st.theme; }
   g('p-num').style.color = (st.theme === 'pink' || st.theme === 'halloween') ? '#fff' : '#3b2405';
   if (force || ctx.shownNum !== (last || null)) {          // animation seulement si le numéro change
@@ -768,7 +737,6 @@ function renderProjection(d, st, ctx, force) {
   fitBalls(d, st.drawn.length, ctx);
   return true;
 }
-
 /* Page « écran de salle » (adresse de l'application + #salle) */
 function initSalle() {
   document.documentElement.classList.add('salle');
@@ -801,12 +769,11 @@ function initSalle() {
     if (stat) stat.textContent = st ? 'Liaison : ' + via : 'Aucune donnée reçue. ' + (storageOK() ? 'Gardez la régie ouverte.' : 'Ce site bloque la liaison entre fenêtres.');
   }, 500);
 }
-
 /* Fenêtre de secours (si l'adresse de la page ne permet pas d'ouvrir #salle) */
 function projHTML() {
   const css = document.querySelector('style').textContent;
   return `<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>LotoMatic - Écran de Salle</title><style>${css}</style></head>
-<body class="projection-view theme-${currentTheme}" id="p-body">${projInner()}<script>function projRefresh(){window.opener&&window.opener.syncProjection(true)}function projClose(){window.close()}<\/script></body></html>`;
+<body class="projection-view theme-currentTheme"id="p-body">{projInner()}<script>function projRefresh(){window.opener&&window.opener.syncProjection(true)}function projClose(){window.close()}<\/script></body></html>`;
 }
 function buildProjection() {
   if (!projWindow || projWindow.closed) return;
@@ -836,7 +803,6 @@ let salleSrc = null;
 window.addEventListener('message', e => {
   if (e.data && e.data.lmHello && !IS_SALLE) { salleSrc = e.source; try { e.source.postMessage({ lmLive: liveState() }, '*'); } catch (_) {} }
 });
-
 function syncProjection(force) {
   if (IS_SALLE) return;
   const st = liveState();
@@ -854,7 +820,6 @@ function syncProjection(force) {
     renderProjection(d, st, projWindow._ctx || (projWindow._ctx = {}), force);
   } catch (e) {}
 }
-
 /* Mode de secours : écran de salle affiché dans l'onglet de la régie (Échap pour revenir) */
 function toggleInlineSalle(on) {
   const old = document.getElementById('inline-salle');
@@ -883,7 +848,6 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'Enter') commitInline();
   else if (e.key === 'Backspace') inlineBuf = '';
 });
-
 /* ---------- SAUVEGARDE SUR CET APPAREIL ---------- */
 const DATA_KEY = 'lm_data_local';
 let lastCloudStr = '', localMod = 0;
@@ -907,11 +871,9 @@ function loadData() {
     if (p.drawMode) drawMode = p.drawMode;
   } catch (e) {}
 }
-
 /* ---------- COMPTE ET SYNCHRONISATION (Firebase, via son interface web) ---------- */
 const CLOUD_ON = !!FIREBASE.apiKey;
 let auth = null, syncState = 'idle', saveTimer = null, cloudDirty = false, savingNow = false, lastErr = '', cloudStarted = false;
-
 const FR_ERR = {
   EMAIL_EXISTS: "Un compte existe déjà avec cette adresse : utilisez « Se connecter ».",
   INVALID_PASSWORD: "E-mail ou mot de passe incorrect.", EMAIL_NOT_FOUND: "E-mail ou mot de passe incorrect.",
@@ -980,7 +942,6 @@ async function cloudSave(ts) {
     { method: 'PATCH', headers: { Authorization: 'Bearer ' + tok, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
   if (!r.ok) { const d = await r.json().catch(() => ({})); throw new Error(errMsgOf(d) || 'HTTP ' + r.status); }
 }
-
 function syncLabel() { return { idle: '', pending: 'modifications en attente', saving: 'enregistrement…', saved: 'synchronisé', error: 'erreur de synchronisation' }[syncState] || ''; }
 function setSync(st) { syncState = st; updateUserBadge(); renderAuthUI(); }
 function updateUserBadge() { const l = syncLabel(); $('user-display').textContent = auth ? auth.email + (l ? ' (' + l + ')' : '') : 'Mode hors-ligne'; }
@@ -997,7 +958,6 @@ function signOutLocal(msg) {
 function handleAuthFail(e) {
   if (/INVALID_REFRESH_TOKEN|TOKEN_EXPIRED|USER_NOT_FOUND|USER_DISABLED|UNAUTHENTICATED|CREDENTIAL_TOO_OLD/.test(String(e && e.message))) signOutLocal('Session expirée : reconnectez-vous.');
 }
-
 /* Envoi automatique des parties vers le compte */
 function scheduleCloudSave() {
   if (!auth || !CLOUD_ON) return;
@@ -1048,7 +1008,6 @@ async function initCloud() {
     else setSync('saved');
   } catch (e) { lastErr = frError(e.message); handleAuthFail(e); if (auth) setSync('error'); }
 }
-
 /* Boutons de l'onglet Compte */
 async function authSubmit(mode) {
   const email = $('auth-email').value.trim(), pw = $('auth-password').value;
