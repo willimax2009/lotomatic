@@ -300,7 +300,7 @@ html.salle .topbar,html.salle .main-container{display:none}
 <div id="tab-auth" class="tab-content"><div class="narrow">
   <div class="card" id="auth-nocfg" style="display:none">
     <div class="card-title">Synchronisation non activée</div>
-    <p class="muted">Pour retrouver vos parties sur tous vos appareils, l'application doit être reliée à un compte en ligne gratuit (Firebase). Il faut renseigner deux valeurs dans la ligne <code>const FIREBASE</code> au début du code. En attendant, vos parties sont enregistrées sur cet appareil.</p>
+    <p class="muted">Pour retrouver vos parties sur tous vos appareils, l'application doit être reliée à un compte en ligne gratuit (Firebase). Il faut renseigner la clé dans la ligne <code>const FIREBASE</code> au début du code. En attendant, vos parties sont enregistrées sur cet appareil.</p>
   </div>
   <div class="card" id="auth-in">
     <div class="card-title">Connexion à votre compte</div>
@@ -329,7 +329,8 @@ let drawnNumbers = [], currentTheme = 'classic', drawMode = 'random', projWindow
 let isPaused = false, pauseTimerInterval = null, pauseEnd = 0, pauseSecondsLeft = 0, pauseEndedWaiting = false, pauseMessage = '';
 let assocName = DEFAULT_ASSOC, currentProgIdx = 0, currentStepKeyIdx = 0, currentUser = null;
 /* ===== SYNCHRONISATION ENTRE APPAREILS =====
-   Valeurs de votre projet Firebase. Laissez vide pour travailler sans compte. */
+   apiKey : clé de votre projet Firebase (laissez vide pour travailler sans compte).
+   projectId : facultatif, l'application le retrouve toute seule à partir de la clé. */
 const FIREBASE = { apiKey: "AIzaSyAibKIqjgzEYD2FfzIU7dtlWCkWvHN7oJ0", projectId: "lotomatic-f4d0a" };
 
 let _idc = 0;
@@ -908,7 +909,7 @@ function loadData() {
 }
 
 /* ---------- COMPTE ET SYNCHRONISATION (Firebase, via son interface web) ---------- */
-const CLOUD_ON = !!(FIREBASE.apiKey && FIREBASE.projectId);
+const CLOUD_ON = !!FIREBASE.apiKey;
 let auth = null, syncState = 'idle', saveTimer = null, cloudDirty = false, savingNow = false, lastErr = '', cloudStarted = false;
 
 const FR_ERR = {
@@ -926,7 +927,9 @@ function frError(msg) {
   msg = String(msg || '');
   if (/Failed to fetch|NetworkError|Load failed/i.test(msg)) return "Impossible de joindre le serveur. Vérifiez votre connexion internet.";
   const k = Object.keys(FR_ERR).find(x => msg.indexOf(x) === 0 || msg.indexOf(x) > -1);
-  return k ? FR_ERR[k] : "Erreur du serveur (" + msg + ").";
+  const detail = msg.length > 170 ? msg.slice(0, 170) + '…' : msg;
+  if (!k) return "Erreur du serveur (" + detail + ").";
+  return (k === 'NOT_FOUND' || k === 'PERMISSION_DENIED') ? FR_ERR[k] + " [détail : " + detail + "]" : FR_ERR[k];
 }
 async function fbPost(url, body, form) {
   const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': form ? 'application/x-www-form-urlencoded' : 'application/json' }, body: form ? body : JSON.stringify(body) });
@@ -934,8 +937,12 @@ async function fbPost(url, body, form) {
   if (!r.ok) throw new Error(d && d.error && d.error.message ? d.error.message : 'HTTP ' + r.status);
   return d;
 }
+function projectFromToken(t) {          // l'ID du projet est écrit dans le jeton de connexion (champ « aud »)
+  try { return JSON.parse(atob(String(t).split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))).aud || ''; } catch (e) { return ''; }
+}
 function setAuth(d) {
   auth = {
+    project: projectFromToken(d.idToken || d.id_token) || (auth && auth.project) || '',
     email: d.email || (auth && auth.email) || '', uid: d.localId || d.user_id || (auth && auth.uid),
     refreshToken: d.refreshToken || d.refresh_token, idToken: d.idToken || d.id_token,
     exp: Date.now() + (parseInt(d.expiresIn || d.expires_in, 10) || 3600) * 1000
@@ -949,13 +956,17 @@ async function getToken() {
     'grant_type=refresh_token&refresh_token=' + encodeURIComponent(auth.refreshToken), true);
   setAuth(d); return auth.idToken;
 }
-const docUrl = () => 'https://firestore.googleapis.com/v1/projects/' + encodeURIComponent(FIREBASE.projectId) + '/databases/(default)/documents/users/' + encodeURIComponent(auth.uid);
-const errMsgOf = d => (d && d.error && (d.error.status || d.error.message)) || '';
+const docUrl = () => 'https://firestore.googleapis.com/v1/projects/' + encodeURIComponent(auth.project || FIREBASE.projectId) + '/databases/(default)/documents/users/' + encodeURIComponent(auth.uid);
+const errMsgOf = d => { const e = d && d.error; return e ? ((e.status || '') + ': ' + (e.message || '')).replace(/^: /, '') : ''; };
 async function cloudLoad() {
   const tok = await getToken();
   const r = await fetch(docUrl(), { headers: { Authorization: 'Bearer ' + tok } });
-  if (r.status === 404) return null;
   const d = await r.json().catch(() => ({}));
+  if (r.status === 404) {          // 404 = pas encore de document (normal), sauf si c'est la base elle-même qui manque
+    const m = errMsgOf(d);
+    if (/database/i.test(m) && /not exist|not found/i.test(m) && !/Document/i.test(m)) throw new Error(m);
+    return null;
+  }
   if (!r.ok) throw new Error(errMsgOf(d) || 'HTTP ' + r.status);
   const f = d.fields || {};
   const data = f.data && f.data.stringValue ? JSON.parse(f.data.stringValue) : null;
