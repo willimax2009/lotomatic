@@ -331,7 +331,7 @@ let assocName = DEFAULT_ASSOC, currentProgIdx = 0, currentStepKeyIdx = 0, curren
 /* ===== SYNCHRONISATION ENTRE APPAREILS =====
    apiKey : clé de votre projet Firebase (laissez vide pour travailler sans compte).
    projectId : facultatif, l'application le retrouve toute seule à partir de la clé. */
-const FIREBASE = { apiKey: "AIzaSyAibKIqjgzEYD2FfzIU7dtlWCkWvHN7oJ0", projectId: "lotomatic-f4d0a" };
+const FIREBASE = { apiKey: "AIzaSyDHbaJEnxTEI9msiCwxqV8AkV-CrwEdZa4", projectId: "lotomatic-f4d0a" };
 
 let _idc = 0;
 function newId() { return Date.now() * 1000 + (++_idc % 1000); }
@@ -913,6 +913,7 @@ const CLOUD_ON = !!FIREBASE.apiKey;
 let auth = null, syncState = 'idle', saveTimer = null, cloudDirty = false, savingNow = false, lastErr = '', cloudStarted = false;
 
 const FR_ERR = {
+  CONFIGURATION_NOT_FOUND: "Firebase ne reconnaît pas cette configuration : vérifiez que « Authentification » est activée dans le projet (méthode E-mail/Mot de passe) et que la clé API du code vient bien de ce projet.",
   EMAIL_EXISTS: "Un compte existe déjà avec cette adresse : utilisez « Se connecter ».",
   INVALID_PASSWORD: "E-mail ou mot de passe incorrect.", EMAIL_NOT_FOUND: "E-mail ou mot de passe incorrect.",
   INVALID_LOGIN_CREDENTIALS: "E-mail ou mot de passe incorrect.", INVALID_EMAIL: "Adresse e-mail invalide.",
