@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LotoMatic Pro</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTUiIGZpbGw9IiNjOTlhMzUiLz48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMSIgZmlsbD0iIzBlMmEyOCIvPjx0ZXh0IHg9IjE2IiB5PSIyMSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsJ0RlamFWdSBTZXJpZicsc2VyaWYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZvbnQtc2l6ZT0iMTMiIGZpbGw9IiNmMWRmYWUiPjkwPC90ZXh0Pjwvc3ZnPg==">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<meta name="theme-color" content="#0e2a28">
+<script>document.documentElement.classList.add(location.hash==='#salle'?'salle':'locked')</script>
+<style>
+:root{--ink:#14201f;--pine:#0e5a52;--pine-d:#0a423c;--brass:#c99a35;--mist:#eceff0;--line:#d5dcda;--muted:#5d6b69;--red:#a3261e;--card:#fff;--cell:#f3f5f4;--cell-h:#e3e9e7;--cell-ink:#41504e;--top:#0e2a28;--top-h:#163a37;--field:#bcc7c4;--hair:#edf0ef;--label:#34423f;--tag-bg:#dcebe8;--pine-l:#17796e;--pine-t:#0e5a52;--danger-line:#e3bdb9;--danger-bg:#fbeeed;--amber-ink:#7a5a14;--amber-bg:#fbf7ec}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;background:var(--mist);color:var(--ink);min-height:100vh;font-size:15px;line-height:1.45;overflow-x:hidden}
+button,input,select{font-family:inherit;font-size:inherit}
+:focus-visible{outline:2px solid var(--pine-t);outline-offset:2px}
+.ic{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-3px}
+
+.topbar{background:var(--top);color:#fff;display:flex;align-items:center;flex-wrap:wrap;gap:8px 24px;padding:0 24px;min-height:60px}
+.wordmark{display:flex;align-items:center;gap:10px;font-family:Georgia,"Times New Roman",serif;font-size:1.3rem;font-weight:700;letter-spacing:.01em}
+.wordmark .logo{width:30px;height:30px}
+.tabs{display:flex;gap:2px;margin-left:auto;align-self:stretch}
+.tab-btn{background:none;border:0;border-bottom:3px solid transparent;color:#aebfbc;padding:0 14px;min-height:56px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px}
+.tab-btn:hover{color:#fff}
+.tab-btn.active{color:#fff;border-bottom-color:var(--brass)}
+.user-badge{font-size:13px;color:#aebfbc;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:4px 12px}
+
+.main-container{max-width:1360px;margin:0 auto;padding:24px}
+.tab-content{display:none}.tab-content.active{display:block}
+.dashboard-grid{display:grid;grid-template-columns:1fr 380px;gap:20px;align-items:start}
+@media(max-width:960px){.dashboard-grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px;margin-bottom:20px}
+.card-title{font-size:1.05rem;font-weight:700;margin-bottom:14px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.card-title .count{font-size:.95rem;color:var(--pine-t);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+
+.lotto-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+.num-ball{aspect-ratio:1;background:var(--cell);border:1px solid var(--line);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:1.05rem;font-variant-numeric:tabular-nums;color:var(--cell-ink);cursor:pointer;user-select:none;transition:background .15s}
+.num-ball:hover{background:var(--cell-h)}
+.num-ball.drawn{background:var(--pine);border-color:var(--pine);color:#fff}
+.num-ball.last-drawn{outline:3px solid var(--brass);outline-offset:2px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 16px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:600;cursor:pointer;width:100%}
+.btn:hover{background:var(--cell)}
+.btn.primary{background:var(--pine);border-color:var(--pine);color:#fff}
+.btn.primary:hover{background:var(--pine-d)}
+.btn.big{height:54px;font-size:1.05rem}
+.btn.dark{background:var(--top);border-color:var(--top);color:#fff}
+.btn.dark:hover{background:var(--top-h)}
+.btn.danger{color:var(--red);border-color:var(--danger-line)}
+.btn.danger:hover{background:var(--danger-bg)}
+.btn.ghost{border-color:transparent;background:none}
+.btn.ghost:hover{background:var(--cell)}
+.btn.icon{width:36px;height:36px;padding:0}
+.btn.auto{width:auto}
+.btn.amber{background:var(--card);border-color:var(--brass);color:var(--amber-ink)}
+.btn.amber:hover{background:var(--amber-bg)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+
+.last-drawn-box{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.last-ball{width:92px;height:92px;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--pine-l),var(--pine-d));border:4px solid var(--brass);display:flex;align-items:center;justify-content:center;flex:none}
+.last-drawn-val{font-family:Georgia,"Times New Roman",serif;font-size:2.6rem;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+.last-label{font-weight:600}
+.step-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:.85rem;font-weight:600;margin-bottom:5px;color:var(--label)}
+.form-control{width:100%;height:42px;padding:0 12px;background:var(--card);border:1px solid var(--field);color:var(--ink);border-radius:6px}
+.form-control:focus{outline:2px solid var(--pine-t);outline-offset:0;border-color:var(--pine-t)}
+.hint{font-size:.82rem;color:var(--muted);margin-top:4px}
+.info-line{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--hair)}
+.info-line:last-child{border-bottom:0}
+.info-line span:first-child{color:var(--muted)}
+.info-line strong{text-align:right}
+
+.game-item{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);padding:12px 12px 12px 8px;border-radius:6px;margin-bottom:8px;display:flex;align-items:center;gap:8px;cursor:grab}
+.game-item.pause-item{background:var(--amber-bg);border-left-color:var(--brass)}
+.game-item.current{border-left-color:var(--pine)}
+.game-item.drag-over{outline:2px dashed var(--pine)}
+.drag-handle{color:var(--muted);display:flex;padding:4px}
+.item-body{flex:1;display:flex;flex-direction:column;min-width:0}
+.item-body .meta{color:var(--muted);font-size:.88rem}
+.tag{display:inline-block;align-self:flex-start;margin-top:4px;font-size:.78rem;font-weight:600;color:var(--pine-t);background:var(--tag-bg);border-radius:999px;padding:1px 9px}
+.msg{font-size:.88rem;margin-top:12px;color:var(--amber-ink);min-height:1.2em}
+.narrow{max-width:460px;margin:0 auto}
+.lot-block{border:1px solid var(--line);border-radius:8px;padding:12px;margin-bottom:12px}
+.lot-head{font-weight:700;margin-bottom:8px;color:var(--pine-t)}
+.lot-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lot-row label{display:block;font-size:.8rem;font-weight:600;margin-bottom:4px;color:var(--label)}
+@media(max-width:520px){.lot-row{grid-template-columns:1fr}}
+.btn.small{height:34px;padding:0 10px;width:auto;font-size:.88rem}
+.game-item.editing{outline:2px solid var(--brass)}
+
+/* EN-TETE SUR TELEPHONE : rien ne doit dépasser de l'écran */
+.tabs{max-width:100%;overflow-x:auto}
+@media(max-width:600px){.topbar{padding:0 12px;gap:6px 10px}.tab-btn{padding:0 8px;gap:5px;font-size:13px}.tab-btn .ic{width:15px;height:15px}.tabs{margin-left:0;width:100%}}
+
+.lotto-grid{grid-template-columns:repeat(10,minmax(0,1fr))}
+@media(max-width:420px){.main-container{padding:16px}.lotto-grid{gap:4px}.num-ball{font-size:.85rem}}
+
+/* CONNEXION OBLIGATOIRE */
+.only-locked{display:none}
+html.locked .only-locked{display:block}
+html.locked .tabs,html.locked #user-display,html.locked .help-btn{display:none}
+html.locked .tab-content{display:none!important}
+html.locked #tab-auth{display:block!important}
+.help-btn{width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:none;color:#aebfbc;font-weight:700;font-size:1rem;cursor:pointer}
+.help-btn:hover{color:#fff;border-color:#fff}
+
+/* VISITE GUIDEE */
+.tour{position:fixed;inset:0;z-index:9500;display:none;overflow:hidden;touch-action:none}
+.tour.open{display:block}
+.tour.dim{background:rgba(5,12,11,.78)}
+.tour-hole{position:absolute;border-radius:10px;box-shadow:0 0 0 100vmax rgba(5,12,11,.78);outline:3px solid var(--brass);pointer-events:none;transition:left .22s,top .22s,width .22s,height .22s;animation:tourPulse 1.6s ease-in-out infinite}
+@keyframes tourPulse{0%,100%{outline-offset:2px}50%{outline-offset:6px}}
+.tour-arrow{position:absolute;width:40px;height:40px;pointer-events:none;transition:left .22s,top .22s;animation:tourBob .9s ease-in-out infinite;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
+.tour-arrow path{fill:var(--brass);stroke:#1a1205;stroke-width:2;stroke-linejoin:round}
+@keyframes tourBob{0%,100%{transform:translate(0,0) rotate(var(--rot,0deg))}50%{transform:translate(var(--bx,0),var(--by,-8px)) rotate(var(--rot,0deg))}}
+.tour-bubble{position:absolute;width:min(380px,calc(100vw - 24px));max-height:calc(100vh - 24px);overflow:auto;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:0 12px 40px rgba(0,0,0,.45);transition:left .22s,top .22s}
+.tour.still *{transition:none!important}
+.tour-meta{display:flex;justify-content:space-between;gap:10px;font-size:.8rem;color:var(--muted);margin-bottom:6px}
+.tour-bar{height:4px;border-radius:2px;background:var(--hair);margin-bottom:10px;overflow:hidden}
+.tour-bar i{display:block;height:100%;background:var(--pine);transition:width .25s}
+.tour-bubble h2{font-size:1.1rem;margin-bottom:6px;color:var(--pine-t)}
+.tour-bubble p{line-height:1.45}
+.tour-nav{display:flex;gap:8px;margin-top:14px}
+.tour-nav .btn{width:auto;flex:1;height:38px;padding:0 10px}
+
+/* THEMES DE LA REGIE */
+html[data-ui=gris]{--mist:#c9cfd3;--card:#e3e7ea;--cell:#d5dbdf;--cell-h:#c8d0d5;--cell-ink:#38464a;--line:#b3bec3;--hair:#cdd4d8;--field:#a3b0b6;--amber-bg:#ece6d4}
+html[data-ui=nuit],html[data-ui=ardoise],html[data-ui=bordeaux],html[data-ui=ocean],html[data-ui=ambre]{color-scheme:dark;--ink:#e9efee;--muted:#9aa9a7;--cell-ink:#b8c5c3;--label:#c3cfcd;--red:#ff8a80;--brass:#dcad42;--amber-ink:#e8c66f;--danger-line:#6e3430;--danger-bg:#2d1715;--amber-bg:color-mix(in srgb,var(--card),#d9a93f 14%);--cell:color-mix(in srgb,var(--card),#fff 6%);--cell-h:color-mix(in srgb,var(--card),#fff 13%);--line:color-mix(in srgb,var(--card),#fff 15%);--hair:color-mix(in srgb,var(--card),#fff 9%);--field:color-mix(in srgb,var(--card),#fff 28%);--top:color-mix(in srgb,var(--mist),#000 45%);--top-h:color-mix(in srgb,var(--mist),#fff 8%);--pine-d:color-mix(in srgb,var(--pine),#000 28%);--pine-l:color-mix(in srgb,var(--pine),#fff 18%);--pine-t:color-mix(in srgb,var(--pine),#fff 50%);--tag-bg:color-mix(in srgb,var(--pine),var(--card) 72%)}
+html[data-ui=nuit]{--mist:#0b1413;--card:#13221f;--pine:#1f8a7c}
+html[data-ui=ardoise]{--mist:#0e131f;--card:#172033;--pine:#3d6fe6}
+html[data-ui=bordeaux]{--mist:#180d11;--card:#25141a;--pine:#b8374f}
+html[data-ui=ocean]{--mist:#08171f;--card:#102632;--pine:#1a8fb8}
+html[data-ui=ambre]{--mist:#14110e;--card:#201b16;--pine:#cf7a22}
+
+html.salle,html.salle body{background:#000;overflow:hidden}
+html.salle .topbar,html.salle .main-container{display:none}
+
+/* ECRAN DE SALLE */
+.projection-view{height:100vh;width:100vw;padding:28px 40px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative;color:#eef3f2;--pa:#d6a843}
+.theme-classic{background:radial-gradient(ellipse at 30% 40%,#14403b 0%,#0a1c1b 75%)}
+.theme-pink{--pa:#f6a8cb;background:radial-gradient(ellipse at 30% 40%,#6a1b45 0%,#2b0a1c 75%)}
+.theme-halloween{--pa:#ff9a3c;background:radial-gradient(ellipse at 30% 40%,#4a2008 0%,#150a03 75%)}
+.theme-ocean{--pa:#7fd4ff;background:radial-gradient(ellipse at 30% 40%,#0f4560 0%,#06141d 75%)}
+.theme-foret{--pa:#b6e07a;background:radial-gradient(ellipse at 30% 40%,#17482b 0%,#08170e 75%)}
+.theme-bordeaux{--pa:#f0b7a4;background:radial-gradient(ellipse at 30% 40%,#5b1426 0%,#1f070d 75%)}
+.theme-violet{--pa:#c3a6ff;background:radial-gradient(ellipse at 30% 40%,#33205e 0%,#0e0a1c 75%)}
+.theme-ardoise{--pa:#9db8ff;background:radial-gradient(ellipse at 30% 40%,#22315c 0%,#0a0e1a 75%)}
+.theme-noir{--pa:#e3b341;background:#000}
+.theme-clair{--pa:#0e5a52;color:#14201f;background:radial-gradient(ellipse at 30% 40%,#f1f4f3 0%,#cdd7d5 100%)}
+.theme-clair .proj-header,.theme-clair .proj-lot-card{border-color:rgba(0,0,0,.18)}
+.theme-clair .proj-lot-card .lab,.theme-clair .proj-lot-card p,.theme-clair .proj-lot-card .cons,.theme-clair .proj-foot,.theme-clair .balls-header-title{color:#46565a}
+.theme-clair .btn-top-proj{color:#14201f;border-color:rgba(0,0,0,.35)}
+.theme-clair .drawn-ball-item{border-color:rgba(0,0,0,.3);background:#fff}
+.theme-clair .drawn-ball-item.last-drawn-highlight{background:var(--pa);border-color:var(--pa);color:#fff}
+.proj-header{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.14)}
+.proj-logo{font-family:Georgia,serif;font-size:1.4rem;font-weight:700;color:var(--pa);min-width:200px}
+.proj-step{font-size:2.3rem;font-weight:700;color:var(--pa);text-transform:none;background:none;padding:0}
+.proj-controls-top{display:flex;gap:8px;min-width:200px;justify-content:flex-end;opacity:.55}
+.proj-controls-top:hover{opacity:1}
+.btn-top-proj{background:none;border:1px solid rgba(255,255,255,.3);color:#fff;padding:5px 10px;border-radius:5px;cursor:pointer;font-size:.8rem}
+.proj-body{display:grid;grid-template-columns:520px 1fr;grid-template-rows:minmax(0,1fr);gap:40px;align-items:stretch;flex:1;margin:18px 0;min-height:0}
+.animation-stage{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px}
+.anim-card{position:relative;width:380px;height:250px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 12px 22px rgba(0,0,0,.55))}
+.anim-card.animate-pop{animation:themePop 1.1s cubic-bezier(.175,.885,.32,1.275) forwards}
+@keyframes themePop{0%{transform:scale(.2) rotate(-15deg);opacity:0}60%{transform:scale(1.15) rotate(5deg);opacity:1}100%{transform:scale(1.3) rotate(0)}}
+.anim-number-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:Georgia,"Times New Roman",serif;font-size:5.4rem;font-weight:700;font-variant-numeric:tabular-nums;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+.proj-lot-card{width:100%;text-align:center;border-top:1px solid rgba(255,255,255,.14);padding-top:18px}
+.proj-lot-card .lab{font-size:.9rem;color:rgba(238,243,242,.65)}
+.proj-lot-card h3{font-family:Georgia,serif;color:var(--pa);font-size:2rem;margin-top:4px;line-height:1.2}
+.proj-lot-card p{color:rgba(238,243,242,.75);margin-top:4px}
+.proj-lot-card .cons{font-size:.95rem;color:rgba(238,243,242,.6);margin-top:10px}
+.balls-display-container{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:12px;padding:6px;min-height:0;height:100%}
+.balls-header-title{font-size:1.05rem;color:rgba(238,243,242,.7)}
+.balls-flex-wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-content:center;width:100%;flex:1;min-height:0;overflow:hidden;padding:12px;--bs:56px}
+.drawn-ball-item{width:var(--bs);height:var(--bs);flex:none;border-radius:50%;border:2px solid rgba(255,255,255,.32);font-size:calc(var(--bs) * .44);font-weight:600;font-variant-numeric:tabular-nums;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.04)}
+.drawn-ball-item.last-drawn-highlight{background:var(--pa);border-color:var(--pa);color:#1a1205;font-weight:700;transform:scale(1.15)}
+.proj-foot{text-align:center;color:rgba(238,243,242,.6);font-size:.95rem}
+.pause-screen{display:none;position:absolute;inset:0;background:inherit;z-index:99;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px}
+.pause-screen.active{display:flex}
+.pause-title{font-family:Georgia,serif;font-size:3.6rem;font-weight:700;color:var(--pa)}
+.pause-sub{font-size:2rem;max-width:900px}
+.pause-timer{font-size:8rem;font-weight:600;color:var(--pa);margin:24px 0;font-variant-numeric:tabular-nums}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-board" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+<symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h10M20 18h0"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></symbol>
+<symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 010 12h-3"/></symbol>
+<symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 12a9 9 0 109-9 9 9 0 00-7 3.3L3 8"/><path d="M3 3v5h5"/></symbol>
+<symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 21h8M12 16v5"/></symbol>
+<symbol id="i-prev" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+<symbol id="i-next" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+<symbol id="i-cup" viewBox="0 0 24 24"><path d="M5 8h12v6a5 5 0 01-5 5h-2a5 5 0 01-5-5V8z"/><path d="M17 10h2a2 2 0 010 4h-2"/></symbol>
+<symbol id="i-grip" viewBox="0 0 24 24"><path d="M9 6h.01M15 6h.01M9 12h.01M15 12h.01M9 18h.01M15 18h.01" stroke-width="3"/></symbol>
+<symbol id="i-up" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-dice" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 8h.01M16 8h.01M12 12h.01M8 16h.01M16 16h.01" stroke-width="3"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L18 10l-4-4L4 16v4z"/><path d="M13 7l4 4"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-9"/></symbol>
+</defs></svg>
+
+<header class="topbar">
+  <div class="wordmark"><svg class="logo" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#c99a35"/><circle cx="16" cy="16" r="10" fill="#0e2a28"/><text x="16" y="20.5" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="11" fill="#f1dfae">90</text></svg><span>LotoMatic</span></div>
+  <nav class="tabs">
+    <button class="tab-btn active" onclick="switchTab('control',this)"><svg class="ic"><use href="#i-board"/></svg>Tirage</button>
+    <button class="tab-btn" onclick="switchTab('lots',this)"><svg class="ic"><use href="#i-list"/></svg>Programme</button>
+    <button class="tab-btn" onclick="switchTab('params',this)"><svg class="ic"><use href="#i-sliders"/></svg>Réglages</button>
+    <button class="tab-btn" onclick="switchTab('auth',this)"><svg class="ic"><use href="#i-user"/></svg>Compte</button>
+  </nav>
+  <button class="help-btn" id="btn-help" onclick="openTuto()" title="Aide : à quoi servent les boutons" aria-label="Aide">?</button>
+  <span id="user-display" class="user-badge">Mode hors-ligne</span>
+</header>
+
+<div class="main-container">
+<!-- TIRAGE -->
+<div id="tab-control" class="tab-content active"><div class="dashboard-grid">
+  <div class="card">
+    <div class="card-title"><span>Tableau de tirage</span><span class="count" id="drawn-count">0 / 90 sortis</span></div>
+    <div class="lotto-grid" id="admin-main-grid"></div>
+  </div>
+  <div>
+    <div class="card">
+      <div class="last-drawn-box"><div class="last-ball"><span class="last-drawn-val" id="last-drawn-num">--</span></div><div><div class="last-label">Dernier numéro tiré</div><div class="muted" style="font-size:.88rem">Cliquez un numéro du tableau pour le corriger.</div></div></div>
+      <div id="draw-mode-random-box"><button class="btn primary big" onclick="drawRandom()"><svg class="ic"><use href="#i-dice"/></svg>Tirer un numéro</button><div class="hint">Raccourci : barre Espace</div></div>
+      <div id="draw-mode-manual-box" style="display:none">
+        <div class="form-group"><label for="manual-num-input">Numéro tiré au boulier</label>
+          <div style="display:flex;gap:8px">
+            <input type="text" inputmode="numeric" maxlength="2" id="manual-num-input" class="form-control" placeholder="Ex : 7 ou 42" autocomplete="off" oninput="handleManualInput(this)" onkeydown="handleManualKeydown(event)">
+            <button class="btn primary auto" onclick="drawManual()">OK</button>
+          </div><div class="hint">Deux chiffres : validé automatiquement. Un chiffre : appuyez sur Entrée.</div></div>
+      </div>
+      <div class="row">
+        <button class="btn" id="tour-undo" onclick="undoLastDraw()"><svg class="ic"><use href="#i-undo"/></svg>Annuler</button>
+        <button class="btn danger" id="tour-reset" onclick="resetGame()"><svg class="ic"><use href="#i-reset"/></svg>Tout effacer</button>
+      </div>
+    </div>
+    <div class="card" id="tour-step-card">
+      <div class="card-title">Partie en cours</div>
+      <div class="info-line"><span>Partie</span><strong id="info-game-name">--</strong></div>
+      <div class="info-line"><span>Étape</span><strong id="info-step-name">--</strong></div>
+      <div class="info-line"><span>Lot</span><strong id="info-lot-name">--</strong></div>
+      <div class="info-line"><span>Donateur</span><strong id="info-sponsor-name">--</strong></div>
+      <div class="info-line"><span>Consolation</span><strong id="info-cons-name">--</strong></div>
+      <div class="step-nav" id="tour-step-nav" style="margin:14px 0 0">
+        <button class="btn" onclick="prevStep()"><svg class="ic"><use href="#i-prev"/></svg>Précédente</button>
+        <button class="btn" onclick="nextStep()">Suivante<svg class="ic"><use href="#i-next"/></svg></button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Salle et entracte</div>
+      <button class="btn dark" id="tour-open-salle" onclick="openProjectionWindow()"><svg class="ic"><use href="#i-monitor"/></svg>Ouvrir l'écran de salle</button>
+      <button class="btn ghost" id="tour-inline-salle" style="margin-top:6px" onclick="toggleInlineSalle()">Afficher la salle dans cet onglet</button>
+      <button class="btn amber" id="btn-toggle-pause" style="margin-top:10px" onclick="togglePause()"><svg class="ic"><use href="#i-cup"/></svg> Lancer l'entracte</button>
+    </div>
+  </div>
+</div></div>
+
+<!-- PROGRAMME -->
+<div id="tab-lots" class="tab-content">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;align-items:start">
+  <div class="card" id="game-form-card">
+    <div class="card-title"><span id="form-title">Ajouter la partie 3</span></div>
+    <div class="form-group"><label for="new-game-type">Format</label>
+      <select id="new-game-type" class="form-control" onchange="onTypeChange()">
+        <option value="Landaise">Partie landaise (1 ligne, 2 lignes, carton plein)</option>
+        <option value="Direct">Carton plein direct</option>
+      </select></div>
+    <div id="lots-fields"></div>
+    <div class="hint" style="margin:-4px 0 12px">Donateur : laissez vide si le lot vient de l'association.</div>
+    <div class="form-group"><label for="game-cons">Lot de consolation (facultatif)</label>
+      <input type="text" id="game-cons" class="form-control" placeholder="Ex : Une boîte de chocolats">
+      <div class="hint">Le même pour tous les lots de la partie. Affiché en petit sous le lot, en cas d'égalité.</div></div>
+    <button class="btn primary" id="btn-save-game" onclick="saveGame()"><svg class="ic"><use href="#i-plus"/></svg> Ajouter la partie</button>
+    <button class="btn ghost" id="btn-cancel-edit" style="margin-top:6px;display:none" onclick="cancelEdit()">Annuler la modification</button>
+  </div>
+  <div class="card" id="tour-pause-card">
+    <div class="card-title">Ajouter un entracte</div>
+    <div class="form-group"><label for="pause-duration-input">Durée en minutes</label><input type="number" id="pause-duration-input" class="form-control" value="15" min="1"></div>
+    <div class="form-group"><label for="pause-msg-input">Message affiché dans la salle</label><input type="text" id="pause-msg-input" class="form-control" value="Profitez de notre buvette et nos crêpes !"></div>
+    <button class="btn" onclick="addPauseToProgram()"><svg class="ic"><use href="#i-plus"/></svg>Ajouter l'entracte</button>
+  </div></div>
+  <div class="card">
+    <div class="card-title"><span>Déroulé de la soirée</span><span class="muted" style="font-size:.85rem;font-weight:400">Glissez par la poignée, ou utilisez les flèches</span></div>
+    <div id="program-drag-list"></div>
+  </div>
+</div>
+
+<!-- RÉGLAGES -->
+<div id="tab-params" class="tab-content"><div class="narrow">
+  <div class="card"><div class="card-title">Association</div>
+    <div class="form-group" style="margin:0"><label for="assoc-name-input">Nom affiché en bas de l'écran de salle</label><input type="text" id="assoc-name-input" class="form-control" onchange="saveAssocName()"></div></div>
+  <div class="card"><div class="card-title">Apparence de la régie</div>
+    <div class="form-group" style="margin:0"><select id="ui-theme-select" class="form-control" onchange="changeUITheme()">
+      <optgroup label="Sombres">
+        <option value="nuit">Nuit sapin</option>
+        <option value="ardoise">Ardoise bleue</option>
+        <option value="ocean">Océan</option>
+        <option value="bordeaux">Bordeaux</option>
+        <option value="ambre">Ambre</option>
+      </optgroup>
+      <optgroup label="Clairs">
+        <option value="clair">Sapin clair</option>
+        <option value="gris">Gris doux, moins éblouissant</option>
+      </optgroup></select></div></div>
+  <div class="card"><div class="card-title">Mode de tirage</div>
+    <div class="form-group" style="margin:0"><select id="draw-mode-select" class="form-control" onchange="changeDrawMode()">
+      <option value="random">Tirage aléatoire (bouton ou barre Espace)</option>
+      <option value="manual">Saisie des numéros du boulier</option></select></div></div>
+  <div class="card"><div class="card-title">Thème de l'écran de salle</div>
+    <div class="form-group" style="margin:0"><select id="theme-select" class="form-control" onchange="changeTheme()">
+      <optgroup label="Sombres">
+        <option value="classic">Classique, boule dorée</option>
+        <option value="ocean">Océan</option>
+        <option value="foret">Forêt</option>
+        <option value="bordeaux">Bordeaux</option>
+        <option value="violet">Violet nuit</option>
+        <option value="ardoise">Ardoise bleue</option>
+        <option value="noir">Noir et or, contraste maximal</option>
+      </optgroup>
+      <optgroup label="Thèmes de fête">
+        <option value="pink">Octobre rose, ruban</option>
+        <option value="halloween">Halloween, citrouille</option>
+      </optgroup>
+      <optgroup label="Clair">
+        <option value="clair">Jour, fond clair</option>
+      </optgroup></select></div></div>
+</div></div>
+
+<!-- COMPTE -->
+<div id="tab-auth" class="tab-content"><div class="narrow">
+  <div class="card only-locked" id="auth-welcome">
+    <div class="card-title">Bienvenue sur LotoMatic</div>
+    <p class="muted">Pour utiliser l'application, connectez-vous ou créez un compte gratuit. Vos parties seront enregistrées automatiquement et vous les retrouverez sur tous vos appareils.</p>
+  </div>
+  <div class="card" id="auth-nocfg" style="display:none">
+    <div class="card-title">Synchronisation non activée</div>
+    <p class="muted">Pour retrouver vos parties sur tous vos appareils, l'application doit être reliée à un compte en ligne gratuit (Firebase). Il faut renseigner la clé dans la ligne <code>const FIREBASE</code> au début du code. En attendant, vos parties sont enregistrées sur cet appareil.</p>
+  </div>
+  <div class="card" id="auth-in">
+    <div class="card-title">Connexion à votre compte</div>
+    <div class="form-group"><label for="auth-email">Adresse e-mail</label><input type="email" id="auth-email" class="form-control" placeholder="association@lanton.fr" autocomplete="username"></div>
+    <div class="form-group"><label for="auth-password">Mot de passe</label><input type="password" id="auth-password" class="form-control" autocomplete="current-password"><div class="hint">6 caractères minimum.</div></div>
+    <div class="row" style="margin-top:16px">
+      <button class="btn primary" onclick="authSubmit('login')">Se connecter</button>
+      <button class="btn" onclick="authSubmit('signup')">Créer le compte</button>
+    </div>
+    <button class="btn ghost" style="margin-top:8px" onclick="forgotPassword()">Mot de passe oublié ?</button>
+  </div>
+  <div class="card" id="auth-out" style="display:none">
+    <div class="card-title">Votre compte</div>
+    <div class="info-line"><span>Connecté</span><strong id="auth-who">--</strong></div>
+    <div class="hint" id="auth-state" style="margin-bottom:14px"></div>
+    <button class="btn" id="tour-sync" onclick="syncNow()">Synchroniser maintenant</button>
+    <button class="btn ghost danger" id="tour-logout" style="margin-top:8px" onclick="logoutUser()">Se déconnecter</button>
+  </div>
+  <div class="msg" id="auth-msg"></div>
+</div></div>
+</div>
+
+<div class="tour" id="tuto" role="dialog" aria-modal="true" aria-labelledby="tuto-title">
+  <div class="tour-hole" id="tour-hole"></div>
+  <div class="tour-arrow" id="tour-arrow"><svg viewBox="0 0 40 40" width="40" height="40"><path d="M20 3 L35 20 H25 V37 H15 V20 H5 Z"/></svg></div>
+  <div class="tour-bubble" id="tour-bubble">
+    <div class="tour-meta"><span id="tuto-page"></span><span id="tuto-step"></span></div>
+    <div class="tour-bar"><i id="tuto-bar"></i></div>
+    <h2 id="tuto-title"></h2>
+    <p id="tuto-body"></p>
+    <div class="tour-nav">
+      <button class="btn ghost" id="tuto-skip" onclick="closeTuto()">Passer</button>
+      <button class="btn" id="tuto-prev" onclick="tutoGo(-1)">Précédent</button>
+      <button class="btn primary" id="tuto-next" onclick="tutoGo(1)">Suivant</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const DEFAULT_ASSOC = "Amicale des Pêcheurs Lantonnais";
+let drawnNumbers = [], currentTheme = 'classic', drawMode = 'random', projWindow = null;
+let isPaused = false, pauseTimerInterval = null, pauseEnd = 0, pauseSecondsLeft = 0, pauseEndedWaiting = false, pauseMessage = '';
+let assocName = DEFAULT_ASSOC, currentProgIdx = 0, currentStepKeyIdx = 0, currentUser = null;
+/* ===== SYNCHRONISATION ENTRE APPAREILS =====
+   apiKey : clé de votre projet Firebase (laissez vide pour travailler sans compte).
+   projectId : facultatif, l'application le retrouve toute seule à partir de la clé. */
+const FIREBASE = { apiKey: "AIzaSyDHbaJEnxTEI9msiCwxqV8AkV-CrwEdZa4", projectId: "lotomatic-f4d0a" };
+
+let _idc = 0;
+function newId() { return Date.now() * 1000 + (++_idc % 1000); }
+const LOT_KEYS = { Landaise: ['1 Ligne', '2 Lignes', 'Carton Plein'], Direct: ['Carton Plein'] };
+const LOT_LABEL = { '1 Ligne': '1 ligne', '2 Lignes': '2 lignes', 'Carton Plein': 'Carton plein' };
+
+/* Met au bon format les parties (anciennes sauvegardes comprises) */
+function normalizeProgram(list) {
+  return (Array.isArray(list) ? list : []).filter(Boolean).map(it => {
+    if (it.isPause) return { isPause: true, id: it.id || newId(), durationMins: parseInt(it.durationMins, 10) || 15, message: String(it.message || '') };
+    const type = it.type === 'Direct' ? 'Direct' : 'Landaise', lots = {}, src = it.lots || {};
+    LOT_KEYS[type].forEach(k => {
+      const v = src[k];
+      lots[k] = (v && typeof v === 'object') ? { name: String(v.name || 'À définir'), donor: String(v.donor || '') }
+                                              : { name: v ? String(v) : 'À définir', donor: String(it.sponsor || '') };
+    });
+    return { isPause: false, id: it.id || newId(), type, lots, consolation: String(it.consolation || '') };
+  });
+}
+let programList = normalizeProgram([
+  { id: 1, type: "Landaise", lots: { "1 Ligne": { name: "Bouteille de vin", donor: "" }, "2 Lignes": { name: "Panier gourmand", donor: "" }, "Carton Plein": { name: "Jambon entier", donor: "" } } },
+  { isPause: true, id: 2, durationMins: 15, message: "Profitez de notre buvette et nos pâtisseries !" },
+  { id: 3, type: "Direct", lots: { "Carton Plein": { name: "TV LED 43 pouces 4K", donor: "Commerçants de Lanton" } } }
+]);
+const DEFAULT_PROGRAM_JSON = JSON.stringify(programList);
+
+const _mem = {};
+const store = {
+  get(k){ try { return localStorage.getItem(k); } catch(e){ return k in _mem ? _mem[k] : null; } },
+  set(k,v){ try { localStorage.setItem(k,v); } catch(e){ _mem[k]=v; } },
+  remove(k){ try { localStorage.removeItem(k); } catch(e){ delete _mem[k]; } }
+};
+window.addEventListener('error', e => {
+  let b = document.getElementById('err-banner');
+  if (!b) { b = document.createElement('div'); b.id = 'err-banner';
+    b.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#b91c1c;color:#fff;padding:8px 12px;font:13px monospace;z-index:9999';
+    document.body.appendChild(b); }
+  b.textContent = 'Erreur : ' + e.message + ' (ligne ' + e.lineno + ')';
+});
+const $ = id => document.getElementById(id);
+const ic = n => `<svg class="ic"><use href="#i-${n}"/></svg>`;
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function applyUI(v) {
+  v = v || 'clair'; document.documentElement.setAttribute('data-ui', v);
+  const s = $('ui-theme-select'); if (s) s.value = v;
+}
+function changeUITheme() { const v = $('ui-theme-select').value; store.set('lm_ui', v); applyUI(v); }
+
+function storageOK() { try { localStorage.setItem('lm_t', '1'); localStorage.removeItem('lm_t'); return true; } catch (e) { return false; } }
+function checkStorage() {
+  if (storageOK()) return;
+  const b = document.createElement('div');
+  b.style.cssText = 'background:#7a5a14;color:#fff;padding:10px 24px;font-size:14px';
+  b.innerHTML = "<strong>Attention :</strong> ce site d'hébergement bloque l'enregistrement. Vos tirages ne sont pas sauvegardés et l'écran de salle ne peut pas se mettre à jour dans une autre fenêtre. Utilisez « Afficher la salle dans cet onglet », ou hébergez le fichier sur un autre site (Netlify Drop, GitHub Pages).";
+  document.body.insertBefore(b, document.body.firstChild);
+}
+
+function init() {
+  if (IS_SALLE) { initSalle(); return; }
+  try { checkStorage(); } catch (e) { console.error(e); }
+  try { applyUI(store.get('lm_ui')); } catch (e) { console.error(e); }
+  try { renderAdminMainGrid(); } catch (e) { console.error(e); }
+  try { loadData(); } catch (e) { console.error(e); }
+  lastCloudStr = cloudState(); localMod = parseInt(store.get('lm_mod'), 10) || 0;
+  try { applyDrawModeUI(); } catch (e) { console.error(e); }
+  try { resetForm(); } catch (e) { console.error(e); }
+  try { renderProgramDragList(); } catch (e) { console.error(e); }
+  try { updateCurrentStepInfo(); } catch (e) { console.error(e); }
+  try { updateState(); updateUserBadge(); } catch (e) { console.error(e); }
+  try { initCloud(); } catch (e) { console.error(e); }
+  document.addEventListener('keydown', e => {
+    const t = document.activeElement.tagName;
+    if (e.code === 'Space' && !inlineOn && !tutoOpen && drawMode === 'random' && t !== 'INPUT' && t !== 'SELECT' && t !== 'BUTTON' &&
+        $('tab-control').classList.contains('active')) { e.preventDefault(); drawRandom(); }
+  });
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active'); $('tab-' + id).classList.add('active');
+  if (id === 'control') focusManual();
+}
+
+/* ---------- TIRAGE ---------- */
+function renderAdminMainGrid() {
+  const g = $('admin-main-grid'); g.innerHTML = '';
+  for (let i = 1; i <= 90; i++) {
+    const b = document.createElement('div');
+    b.className = 'num-ball'; b.id = 'admin-ball-' + i; b.textContent = i;
+    b.onclick = () => toggleNumber(i); g.appendChild(b);
+  }
+}
+function toggleNumber(n) {
+  const i = drawnNumbers.indexOf(n);
+  if (i > -1) drawnNumbers.splice(i, 1); else drawnNumbers.push(n);
+  updateState();
+}
+function drawRandom() {
+  if (isPaused) return alert("Arrêtez l'entracte avant de tirer !");
+  const av = []; for (let i = 1; i <= 90; i++) if (!drawnNumbers.includes(i)) av.push(i);
+  if (!av.length) return alert("Tous les numéros sont sortis !");
+  drawnNumbers.push(av[Math.floor(Math.random() * av.length)]);
+  updateState();
+}
+function handleManualInput(input) {
+  input.value = input.value.replace(/\D/g, '').slice(0, 2);
+  if (input.value.length === 2) drawManual();   // 2 chiffres : validation automatique
+}
+function handleManualKeydown(e) {
+  if (e.key === 'Enter') { e.preventDefault(); drawManual(); } // 1 chiffre : Entrée
+}
+function drawManual() {
+  const input = $('manual-num-input');
+  if (isPaused) { input.value = ''; return alert("Arrêtez l'entracte avant de tirer !"); }
+  const raw = input.value.trim(); if (!raw) return;
+  const v = parseInt(raw, 10); input.value = '';
+  if (isNaN(v) || v < 1 || v > 90) { alert("Veuillez saisir un numéro entre 1 et 90."); focusManual(); return; }
+  if (drawnNumbers.includes(v)) { alert("Le numéro " + v + " a déjà été tiré !"); focusManual(); return; }
+  drawnNumbers.push(v); updateState(); focusManual();
+}
+function focusManual() { if (drawMode === 'manual') setTimeout(() => $('manual-num-input').focus(), 50); }
+function undoLastDraw() { if (drawnNumbers.length) { drawnNumbers.pop(); updateState(); } }
+function resetGame() { if (confirm("Réinitialiser tous les tirages ?")) { drawnNumbers = []; updateState(); } }
+
+function updateState() {
+  $('drawn-count').textContent = drawnNumbers.length + ' / 90 sortis';
+  const last = drawnNumbers[drawnNumbers.length - 1];
+  $('last-drawn-num').textContent = last || '--';
+  for (let i = 1; i <= 90; i++) {
+    const b = $('admin-ball-' + i); b.className = 'num-ball';
+    if (drawnNumbers.includes(i)) { b.classList.add('drawn'); if (i === last) b.classList.add('last-drawn'); }
+  }
+  saveData(); syncProjection();
+}
+
+/* ---------- ÉTAPES ---------- */
+const stepsOf = g => g && g.lots ? Object.keys(g.lots) : [];
+function updateCurrentStepInfo(autoPause) {
+  const item = programList[currentProgIdx];
+  const set = (id, v) => { $(id).textContent = v; };
+  if (!item) { ['info-game-name','info-step-name','info-lot-name','info-sponsor-name','info-cons-name'].forEach(i => set(i, '--')); return syncProjection(); }
+  if (item.isPause) {
+    set('info-game-name', 'Entracte'); set('info-step-name', 'Pause'); set('info-lot-name', item.message);
+    set('info-sponsor-name', '--'); set('info-cons-name', '--');
+    if (autoPause) startPause(item.durationMins, item.message);
+  } else {
+    const k = stepsOf(item)[currentStepKeyIdx] || stepsOf(item)[0], lot = item.lots[k];
+    set('info-game-name', gameName(currentProgIdx)); set('info-step-name', k); set('info-lot-name', lot.name);
+    set('info-sponsor-name', donorOf(lot)); set('info-cons-name', item.consolation || '--');
+  }
+  saveData(); syncProjection();
+}
+function nextStep() {
+  const item = programList[currentProgIdx]; if (!item) return;
+  if (isPaused) stopPause(true);
+  if (item.isPause) { if (currentProgIdx < programList.length - 1) { currentProgIdx++; currentStepKeyIdx = 0; } else alert("Fin du programme !"); }
+  else if (currentStepKeyIdx < stepsOf(item).length - 1) currentStepKeyIdx++;
+  else if (currentProgIdx < programList.length - 1) { currentProgIdx++; currentStepKeyIdx = 0; }
+  else alert("Fin du programme du loto !");
+  updateCurrentStepInfo(true);
+}
+function prevStep() {
+  if (isPaused) stopPause(true);
+  if (currentStepKeyIdx > 0) currentStepKeyIdx--;
+  else if (currentProgIdx > 0) {
+    currentProgIdx--; const p = programList[currentProgIdx];
+    currentStepKeyIdx = p.isPause ? 0 : stepsOf(p).length - 1;
+  }
+  updateCurrentStepInfo(true);
+}
+
+/* ---------- PROGRAMME ---------- */
+let editingId = null;
+function gameName(idx) {            // « Partie N » : calculé selon la position, donc renuméroté automatiquement
+  let n = 0;
+  for (let i = 0; i <= idx; i++) if (programList[i] && !programList[i].isPause) n++;
+  return 'Partie ' + n;
+}
+const donorOf = lot => (lot && lot.donor && lot.donor.trim()) ? lot.donor.trim() : assocName;
+
+function renderLotFields(type, lots) {
+  const box = $('lots-fields'); box.innerHTML = '';
+  LOT_KEYS[type].forEach(k => {
+    const v = (lots && lots[k]) || { name: '', donor: '' };
+    const b = document.createElement('div'); b.className = 'lot-block'; b.dataset.key = k;
+    b.innerHTML = `<div class="lot-head">${LOT_LABEL[k]}</div>
+      <div class="lot-row"><div><label>Lot</label><input type="text" class="form-control" data-f="name" placeholder="Ex : Bouteille de vin"></div>
+      <div><label>Donateur</label><input type="text" class="form-control" data-f="donor" placeholder="Association"></div></div>`;
+    b.querySelector('[data-f=name]').value = v.name; b.querySelector('[data-f=donor]').value = v.donor;
+    box.appendChild(b);
+  });
+}
+function readLotFields() {
+  const out = {};
+  document.querySelectorAll('#lots-fields .lot-block').forEach(b => {
+    out[b.dataset.key] = { name: b.querySelector('[data-f=name]').value.trim(), donor: b.querySelector('[data-f=donor]').value.trim() };
+  });
+  return out;
+}
+function onTypeChange() { renderLotFields($('new-game-type').value, readLotFields()); }
+function updateFormTitle() {
+  const idx = editingId ? programList.findIndex(p => p.id === editingId) : -1;
+  $('form-title').textContent = idx >= 0 ? 'Modifier la ' + gameName(idx).toLowerCase() : 'Ajouter la partie ' + (programList.filter(p => !p.isPause).length + 1);
+}
+function resetForm() {
+  editingId = null; $('new-game-type').value = 'Landaise'; renderLotFields('Landaise', null); $('game-cons').value = '';
+  $('btn-save-game').innerHTML = ic('plus') + ' Ajouter la partie'; $('btn-cancel-edit').style.display = 'none';
+  updateFormTitle();
+}
+function editGame(idx) {
+  const g = programList[idx]; if (!g || g.isPause) return;
+  editingId = g.id; $('new-game-type').value = g.type; renderLotFields(g.type, g.lots); $('game-cons').value = g.consolation || '';
+  $('btn-save-game').innerHTML = ic('check') + ' Enregistrer les modifications'; $('btn-cancel-edit').style.display = '';
+  updateFormTitle(); renderProgramDragList();
+  $('game-form-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function cancelEdit() { resetForm(); renderProgramDragList(); }
+function saveGame() {
+  const type = $('new-game-type').value, raw = readLotFields(), lots = {};
+  LOT_KEYS[type].forEach(k => { const v = raw[k] || { name: '', donor: '' }; lots[k] = { name: v.name || 'À définir', donor: v.donor }; });
+  const consolation = $('game-cons').value.trim();
+  if (editingId) {
+    const idx = programList.findIndex(p => p.id === editingId);
+    if (idx >= 0) {
+      programList[idx] = { isPause: false, id: editingId, type, lots, consolation };
+      if (idx === currentProgIdx) currentStepKeyIdx = Math.min(currentStepKeyIdx, LOT_KEYS[type].length - 1);
+    }
+  } else programList.push({ isPause: false, id: newId(), type, lots, consolation });
+  resetForm(); renderProgramDragList(); updateCurrentStepInfo();
+}
+function addPauseToProgram() {
+  const durationMins = parseInt($('pause-duration-input').value) || 15;
+  const message = $('pause-msg-input').value.trim() || "Buvette et crêpes vous attendent !";
+  programList.push({isPause:true,id:Date.now(),durationMins,message});
+  renderProgramDragList(); updateCurrentStepInfo();
+}
+function withCurrentKept(fn) {            // garde la position actuelle après un changement d'ordre
+  const curId = programList[currentProgIdx] && programList[currentProgIdx].id;
+  fn();
+  const ni = programList.findIndex(p => p.id === curId);
+  currentProgIdx = ni >= 0 ? ni : Math.min(currentProgIdx, Math.max(programList.length - 1, 0));
+  if (ni < 0) currentStepKeyIdx = 0;
+  renderProgramDragList(); updateCurrentStepInfo();
+}
+function moveItem(from, to) {
+  if (to < 0 || to >= programList.length || from === to) return;
+  withCurrentKept(() => programList.splice(to, 0, programList.splice(from, 1)[0]));
+}
+function deleteProgramItem(idx) {
+  if (programList[idx] && programList[idx].isPause && isPaused && idx === currentProgIdx) stopPause(true);
+  withCurrentKept(() => programList.splice(idx, 1));
+}
+function renderProgramDragList() {
+  if (editingId && !programList.some(p => p.id === editingId)) resetForm();
+  const c = $('program-drag-list'); c.innerHTML = '';
+  programList.forEach((item, idx) => {
+    const el = document.createElement('div');
+    el.className = 'game-item' + (item.isPause ? ' pause-item' : '') + (idx === currentProgIdx ? ' current' : '') + (item.id === editingId ? ' editing' : '');
+    el.draggable = true;
+    let label;
+    if (item.isPause) label = `<strong>Entracte de ${esc(item.durationMins)} min</strong><span class="meta">${esc(item.message)}</span>`;
+    else {
+      const lines = Object.keys(item.lots).map(k => { const l = item.lots[k]; return `${esc(LOT_LABEL[k])} : ${esc(l.name)}${l.donor ? ' (' + esc(l.donor) + ')' : ''}`; }).join('<br>');
+      label = `<strong>${esc(gameName(idx))}</strong><span class="meta">${lines}</span>` + (item.consolation ? `<span class="meta">Consolation : ${esc(item.consolation)}</span>` : '');
+    }
+    el.innerHTML = `<span class="drag-handle">${ic('grip')}</span><div class="item-body">${label}${idx === currentProgIdx ? '<span class="tag">En cours</span>' : ''}</div>
+      ${item.isPause ? '' : `<button class="btn small" data-a="edit">${ic('edit')}Modifier</button>`}
+      <button class="btn ghost icon" data-a="up" aria-label="Monter">${ic('up')}</button><button class="btn ghost icon" data-a="down" aria-label="Descendre">${ic('down')}</button>
+      <button class="btn ghost icon" data-a="del" aria-label="Supprimer" style="color:var(--red)">${ic('x')}</button>`;
+    if (!item.isPause) el.querySelector('[data-a=edit]').onclick = () => editGame(idx);
+    el.querySelector('[data-a=up]').onclick = () => moveItem(idx, idx - 1);
+    el.querySelector('[data-a=down]').onclick = () => moveItem(idx, idx + 1);
+    el.querySelector('[data-a=del]').onclick = () => deleteProgramItem(idx);
+    el.ondragstart = e => { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', String(idx)); };
+    el.ondragover = e => { e.preventDefault(); el.classList.add('drag-over'); };
+    el.ondragleave = () => el.classList.remove('drag-over');
+    el.ondrop = e => {
+      e.preventDefault(); el.classList.remove('drag-over');
+      const from = parseInt(e.dataTransfer.getData('text/plain'));
+      if (!isNaN(from)) moveItem(from, idx);
+    };
+    c.appendChild(el);
+  });
+  updateFormTitle();
+}
+
+/* ---------- ENTRACTE ---------- */
+function togglePause() {
+  if (isPaused) stopPause(); else {
+    const it = programList[currentProgIdx];
+    it && it.isPause ? startPause(it.durationMins, it.message) : startPause(15, "Profitez de la buvette !");
+  }
+}
+function startPause(mins, msg) {
+  isPaused = true; pauseEndedWaiting = false; pauseMessage = msg || '';
+  pauseEnd = Date.now() + mins * 60000; pauseSecondsLeft = mins * 60;
+  $('btn-toggle-pause').innerHTML = ic('cup') + " Arrêter l'entracte";
+  clearInterval(pauseTimerInterval);
+  pauseTimerInterval = setInterval(() => {
+    pauseSecondsLeft = Math.max(0, Math.ceil((pauseEnd - Date.now()) / 1000));
+    if (pauseSecondsLeft <= 0) { clearInterval(pauseTimerInterval); pauseEndedWaiting = true; }
+    syncProjection();
+  }, 500);
+  syncProjection();
+}
+function stopPause(silent) {
+  isPaused = false; pauseEndedWaiting = false; clearInterval(pauseTimerInterval);
+  $('btn-toggle-pause').innerHTML = ic('cup') + " Lancer l'entracte";
+  if (!silent) syncProjection();
+}
+
+/* ---------- RÉGLAGES ---------- */
+function saveAssocName() { assocName = $('assoc-name-input').value.trim() || DEFAULT_ASSOC; saveData(); syncProjection(); }
+function applyDrawModeUI() {
+  $('draw-mode-select').value = drawMode; $('theme-select').value = currentTheme;
+  $('assoc-name-input').value = assocName;
+  $('draw-mode-random-box').style.display = drawMode === 'random' ? 'block' : 'none';
+  $('draw-mode-manual-box').style.display = drawMode === 'manual' ? 'block' : 'none';
+}
+function changeDrawMode() { drawMode = $('draw-mode-select').value; applyDrawModeUI(); saveData(); }
+function changeTheme() { currentTheme = $('theme-select').value; saveData(); syncProjection(); }
+
+/* ---------- ÉCRAN DE SALLE ---------- */
+function themeSVG(t) {
+  if (t === 'pink') return `<defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f9a8d4"/><stop offset="1" stop-color="#db2777"/></linearGradient></defs>
+    <path d="M130 105 L70 215 L110 200 L125 235 L158 120Z" fill="#be185d"/><path d="M170 105 L230 215 L190 200 L175 235 L142 120Z" fill="#be185d"/>
+    <path d="M150 105 C110 20 25 25 40 85 C50 125 115 120 150 105Z" fill="url(#rg)" stroke="#9d174d" stroke-width="5"/>
+    <path d="M150 105 C190 20 275 25 260 85 C250 125 185 120 150 105Z" fill="url(#rg)" stroke="#9d174d" stroke-width="5"/>
+    <circle cx="150" cy="105" r="28" fill="#ec4899" stroke="#9d174d" stroke-width="5"/>`;
+  if (t === 'halloween') return `<defs><radialGradient id="pg" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fdba74"/><stop offset=".6" stop-color="#ea580c"/><stop offset="1" stop-color="#9a3412"/></radialGradient></defs>
+    <ellipse cx="85" cy="140" rx="55" ry="80" fill="url(#pg)" stroke="#7c2d12" stroke-width="5"/><ellipse cx="215" cy="140" rx="55" ry="80" fill="url(#pg)" stroke="#7c2d12" stroke-width="5"/>
+    <ellipse cx="150" cy="140" rx="68" ry="88" fill="url(#pg)" stroke="#7c2d12" stroke-width="5"/>
+    <path d="M142 55 C140 30 150 20 165 15 L172 28 C160 32 158 42 160 55Z" fill="#166534" stroke="#14532d" stroke-width="3"/>`;
+  return `<defs><radialGradient id="bg" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fef9c3"/><stop offset=".45" stop-color="#f59e0b"/><stop offset="1" stop-color="#78350f"/></radialGradient></defs>
+    <circle cx="150" cy="125" r="95" fill="url(#bg)" stroke="#b45309" stroke-width="5"/>
+    <ellipse cx="120" cy="82" rx="30" ry="16" fill="#fff" opacity=".45" transform="rotate(-30 120 82)"/>
+    <circle cx="150" cy="125" r="52" fill="#fffbeb" opacity=".9"/>`;
+}
+const IS_SALLE = location.hash === '#salle';
+const bc = (() => { try { return new BroadcastChannel('lotomatic'); } catch (e) { return null; } })();
+let projLegacy = false;
+
+function projInner() {
+  return `<div class="pause-screen" id="p-pause-screen"><div class="pause-title">Entracte</div><div class="pause-sub" id="p-pause-msg">--</div><div class="pause-timer" id="p-pause-timer">15:00</div></div>
+<div class="proj-header"><div class="proj-logo">LotoMatic</div><div class="proj-step" id="p-step">--</div>
+<div class="proj-controls-top"><button class="btn-top-proj" onclick="document.documentElement.requestFullscreen().catch(function(){})">Plein écran</button>
+<button class="btn-top-proj" onclick="projRefresh()">Actualiser</button>
+<button class="btn-top-proj" onclick="projClose()">Fermer</button></div></div>
+<div class="proj-body"><div class="animation-stage"><div class="anim-card" id="p-anim-card"><svg id="p-anim-svg" viewBox="0 0 300 250" style="width:100%;height:100%"></svg><div class="anim-number-overlay" id="p-num">--</div></div>
+<div class="proj-lot-card"><div class="lab">Lot en jeu</div><h3 id="p-lot-name">--</h3><p id="p-lot-sponsor"></p><p class="cons" id="p-cons"></p></div></div>
+<div class="balls-display-container"><div class="balls-header-title">Numéros tirés (<span id="p-count-val">0</span> / 90)</div><div class="balls-flex-wrap" id="p-balls-flex"></div></div></div>
+<div class="proj-foot" id="p-assoc-footer">--</div><div id="p-status" style="position:absolute;right:14px;bottom:8px;font-size:11px;opacity:.4"></div>`;
+}
+let inlineOn = false;
+function projClose() {
+  if (inlineOn) { toggleInlineSalle(false); return; }
+  window.close();
+}
+function projRefresh() {
+  if (IS_SALLE) { location.reload(); return; }
+  syncProjection(true);
+}
+
+/* État envoyé à l'écran de salle */
+function liveState() {
+  const item = programList[currentProgIdx];
+  const key = item && !item.isPause ? (stepsOf(item)[currentStepKeyIdx] || stepsOf(item)[0]) : null;
+  const lot = key ? item.lots[key] : null;
+  return {
+    drawn: drawnNumbers.slice(), theme: currentTheme, assoc: assocName,
+    paused: isPaused, pauseMsg: pauseMessage, pauseEnd: pauseEnd,
+    step: item ? (item.isPause ? 'Pause' : key) : '--',
+    lot: item ? (item.isPause ? item.message : lot.name) : '--',
+    sponsor: lot ? donorOf(lot) : '',
+    cons: item && !item.isPause ? (item.consolation || '') : ''
+  };
+}
+
+/* Adapte la taille des numéros tirés à la place disponible (les plus grands possible) */
+function fitBalls(d, n, ctx) {
+  const wrap = d.getElementById('p-balls-flex'); if (!wrap) return;
+  const w = wrap.clientWidth - 24, h = wrap.clientHeight - 24, gap = 12;
+  if (w <= 0 || h <= 0) return;
+  const count = Math.max(n, 30);
+  let size = 40;
+  for (let s = 130; s >= 40; s -= 2) {
+    const perRow = Math.max(1, Math.floor((w + gap) / (s + gap)));
+    if (Math.ceil(count / perRow) * (s + gap) - gap <= h) { size = s; break; }
+  }
+  if (ctx.bs !== size) { ctx.bs = size; wrap.style.setProperty('--bs', size + 'px'); }
+}
+
+/* Dessine l'écran de salle dans le document d (la page elle-même ou une fenêtre de secours) */
+function renderProjection(d, st, ctx, force) {
+  const g = id => d.getElementById(id);
+  if (!g('p-body')) return false;
+  const last = st.drawn[st.drawn.length - 1];
+  g('p-body').className = `projection-view theme-${st.theme}`;
+  g('p-assoc-footer').textContent = 'Organisé par : ' + st.assoc;
+
+  const ps = g('p-pause-screen');
+  if (st.paused) {
+    const left = Math.max(0, Math.ceil((st.pauseEnd - Date.now()) / 1000));
+    ps.classList.add('active');
+    if (left <= 0) { g('p-pause-msg').textContent = "Le loto va reprendre dans un instant !"; g('p-pause-timer').textContent = "Reprise imminente"; }
+    else {
+      g('p-pause-msg').textContent = st.pauseMsg;
+      g('p-pause-timer').textContent = String(Math.floor(left / 60)).padStart(2, '0') + ':' + String(left % 60).padStart(2, '0');
+    }
+  } else ps.classList.remove('active');
+
+  g('p-step').textContent = st.step;
+  g('p-lot-name').textContent = st.lot;
+  g('p-lot-sponsor').textContent = st.sponsor ? 'Donateur : ' + st.sponsor : '';
+  g('p-cons').textContent = st.cons ? "Lot de consolation en cas d'égalité : " + st.cons : '';
+
+  if (force || ctx.shownTheme !== st.theme) { g('p-anim-svg').innerHTML = themeSVG(st.theme); ctx.shownTheme = st.theme; }
+  g('p-num').style.color = (st.theme === 'pink' || st.theme === 'halloween') ? '#fff' : '#3b2405';
+  if (force || ctx.shownNum !== (last || null)) {          // animation seulement si le numéro change
+    g('p-num').textContent = last || '--';
+    const card = g('p-anim-card'); card.classList.remove('animate-pop');
+    if (last) { void card.offsetWidth; card.classList.add('animate-pop'); }
+    g('p-count-val').textContent = st.drawn.length;
+    const fl = g('p-balls-flex'); fl.innerHTML = '';
+    st.drawn.forEach(n => {
+      const b = d.createElement('div'); b.className = 'drawn-ball-item' + (n === last ? ' last-drawn-highlight' : '');
+      b.textContent = n; fl.appendChild(b);
+    });
+    ctx.shownNum = last || null;
+  }
+  fitBalls(d, st.drawn.length, ctx);
+  return true;
+}
+
+/* Page « écran de salle » (adresse de l'application + #salle) */
+function initSalle() {
+  document.documentElement.classList.add('salle');
+  document.title = 'LotoMatic - Écran de salle';
+  const root = document.createElement('div');
+  root.id = 'p-body'; root.className = 'projection-view theme-classic'; root.innerHTML = projInner();
+  document.body.appendChild(root);
+  const ctx = {}; let st = null, via = '', lastMsg = 0, lastRaw = '';
+  const apply = (s, how) => {
+    if (s && Array.isArray(s.drawn)) { st = s; via = how; lastMsg = Date.now(); renderProjection(document, st, ctx); }
+  };
+  try { apply(JSON.parse(store.get('lm_live')), 'stockage'); } catch (e) {}
+  if (bc) bc.onmessage = e => apply(e.data, 'diffusion');
+  window.addEventListener('storage', e => { if (e.key === 'lm_live' && e.newValue) { try { apply(JSON.parse(e.newValue), 'stockage'); } catch (_) {} } });
+  window.addEventListener('message', e => { if (e.data && e.data.lmLive) apply(e.data.lmLive, 'message'); });
+  const pull = () => {
+    try { const o = window.opener; if (o && typeof o.liveState === 'function') { apply(o.liveState(), 'direct'); return; } } catch (e) {}
+    try { if (window.opener) window.opener.postMessage({ lmHello: 1 }, '*'); } catch (e) {}
+  };
+  pull();
+  setInterval(() => {
+    try {                                                              // lecture directe : ne dépend d'aucune notification
+      const raw = store.get('lm_live');
+      if (raw && raw !== lastRaw) { lastRaw = raw; apply(JSON.parse(raw), 'stockage'); }
+    } catch (e) {}
+    if (st) renderProjection(document, st, ctx);                       // fait avancer le compte à rebours
+    else document.getElementById('p-step').textContent = 'En attente de la régie…';
+    if (Date.now() - lastMsg > 1500) pull();
+    const stat = document.getElementById('p-status');
+    if (stat) stat.textContent = st ? 'Liaison : ' + via : 'Aucune donnée reçue. ' + (storageOK() ? 'Gardez la régie ouverte.' : 'Ce site bloque la liaison entre fenêtres.');
+  }, 500);
+}
+
+/* Fenêtre de secours (si l'adresse de la page ne permet pas d'ouvrir #salle) */
+function projHTML() {
+  const css = document.querySelector('style').textContent;
+  return `<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><title>LotoMatic - Écran de Salle</title><style>${css}</style></head>
+<body class="projection-view theme-${currentTheme}" id="p-body">${projInner()}<script>function projRefresh(){window.opener&&window.opener.syncProjection(true)}function projClose(){window.close()}<\/script></body></html>`;
+}
+function buildProjection() {
+  if (!projWindow || projWindow.closed) return;
+  try {
+    projWindow.document.open(); projWindow.document.write(projHTML()); projWindow.document.close();
+    projWindow._ctx = {};
+  } catch (e) { console.error(e); }
+}
+function openProjectionWindow() {
+  const base = location.href.split('#')[0];
+  if (/^(https?|file):/.test(base)) {
+    projLegacy = false;
+    syncProjection(true);                      // prépare l'état avant l'ouverture
+    projWindow = window.open(base + '#salle', 'LotoMaticProjection', 'width=1200,height=800');
+    if (!projWindow) return alert("Le navigateur a bloqué la fenêtre : autorisez les pop-ups pour ce site.");
+    [400, 1200, 3000].forEach(t => setTimeout(() => syncProjection(true), t));
+    return;
+  }
+  projLegacy = true;
+  projWindow = window.open('about:blank', 'LotoMaticProjection', 'width=1200,height=800');
+  if (!projWindow) return alert("Le navigateur a bloqué la fenêtre : autorisez les pop-ups pour ce site.");
+  try { projWindow.focus(); } catch (e) {}
+  buildProjection();
+  [200, 600, 1500].forEach(t => setTimeout(() => syncProjection(true), t));
+}
+let salleSrc = null;
+window.addEventListener('message', e => {
+  if (e.data && e.data.lmHello && !IS_SALLE) { salleSrc = e.source; try { e.source.postMessage({ lmLive: liveState() }, '*'); } catch (_) {} }
+});
+
+function syncProjection(force) {
+  if (IS_SALLE) return;
+  const st = liveState();
+  try { store.set('lm_live', JSON.stringify(st)); } catch (e) {}
+  try { if (bc) bc.postMessage(st); } catch (e) {}
+  [projWindow, salleSrc].forEach(w => { try { if (w && !w.closed) w.postMessage({ lmLive: st }, '*'); } catch (e) {} });
+  if (!projLegacy || !projWindow || projWindow.closed) return;
+  try {
+    let d = projWindow.document;
+    if (!d.getElementById('p-body')) {            // fenêtre vide : on la reconstruit
+      buildProjection(); d = projWindow.document;
+      if (!d.getElementById('p-body')) return;
+      force = true;
+    }
+    renderProjection(d, st, projWindow._ctx || (projWindow._ctx = {}), force);
+  } catch (e) {}
+}
+
+/* Mode de secours : écran de salle affiché dans l'onglet de la régie (Échap pour revenir) */
+function toggleInlineSalle(on) {
+  const old = document.getElementById('inline-salle');
+  if (on === false || old) { if (old) old.remove(); inlineOn = false; clearInterval(window._inlTimer); return; }
+  const r = document.createElement('div');
+  r.id = 'inline-salle'; r.style.cssText = 'position:fixed;inset:0;z-index:9000';
+  r.innerHTML = `<div id="p-body" class="projection-view theme-classic">${projInner()}</div>`;
+  document.body.appendChild(r); inlineOn = true;
+  const ctx = {};
+  const tick = () => { renderProjection(document, liveState(), ctx); const t = document.getElementById('p-status'); if (t) t.textContent = drawMode === 'random' ? 'Espace : tirer un numéro. Échap : revenir.' : 'Tapez le numéro (2 chiffres, ou 1 chiffre puis Entrée). Échap : revenir.'; };
+  try { document.activeElement.blur(); } catch (e) {}
+  tick(); window._inlTimer = setInterval(tick, 500);
+  try { document.documentElement.requestFullscreen().catch(() => {}); } catch (e) {}
+}
+let inlineBuf = '';
+function commitInline() {
+  const v = parseInt(inlineBuf, 10); inlineBuf = '';
+  if (v >= 1 && v <= 90 && !drawnNumbers.includes(v) && !isPaused) { drawnNumbers.push(v); updateState(); }
+}
+document.addEventListener('keydown', e => {
+  if (!inlineOn) return;
+  if (e.key === 'Escape') { toggleInlineSalle(false); return; }
+  if (e.code === 'Space') { e.preventDefault(); if (drawMode === 'random') drawRandom(); return; }
+  if (drawMode !== 'manual') return;
+  if (/^[0-9]$/.test(e.key)) { inlineBuf += e.key; if (inlineBuf.length >= 2) commitInline(); }
+  else if (e.key === 'Enter') commitInline();
+  else if (e.key === 'Backspace') inlineBuf = '';
+});
+
+/* ---------- SAUVEGARDE SUR CET APPAREIL ---------- */
+const DATA_KEY = 'lm_data_local';
+let lastCloudStr = '', localMod = 0;
+const cloudState = () => JSON.stringify({ p: programList, a: assocName, t: currentTheme, m: drawMode });
+function saveData() {
+  const data = JSON.stringify({ programList, assocName, drawnNumbers, currentProgIdx, currentStepKeyIdx, currentTheme, drawMode });
+  try { store.set(DATA_KEY, data); } catch (e) {}
+  const cs = cloudState();
+  if (cs !== lastCloudStr) { lastCloudStr = cs; localMod = Date.now(); store.set('lm_mod', String(localMod)); scheduleCloudSave(); }
+}
+function loadData() {
+  try {
+    const s = store.get(DATA_KEY); if (!s) return;
+    const p = JSON.parse(s);
+    if (Array.isArray(p.programList)) programList = normalizeProgram(p.programList);
+    if (p.assocName) assocName = p.assocName;
+    if (Array.isArray(p.drawnNumbers)) drawnNumbers = p.drawnNumbers;
+    currentProgIdx = Math.min(p.currentProgIdx || 0, Math.max(programList.length - 1, 0));
+    currentStepKeyIdx = p.currentStepKeyIdx || 0;
+    if (p.currentTheme) currentTheme = p.currentTheme;
+    if (p.drawMode) drawMode = p.drawMode;
+  } catch (e) {}
+}
+
+/* ---------- COMPTE ET SYNCHRONISATION (Firebase, via son interface web) ---------- */
+const CLOUD_ON = !!FIREBASE.apiKey;
+let auth = null, syncState = 'idle', saveTimer = null, cloudDirty = false, savingNow = false, lastErr = '', cloudStarted = false;
+
+const FR_ERR = {
+  CONFIGURATION_NOT_FOUND: "Firebase ne reconnaît pas cette configuration : vérifiez que « Authentification » est activée dans le projet (méthode E-mail/Mot de passe) et que la clé API du code vient bien de ce projet.",
+  EMAIL_EXISTS: "Un compte existe déjà avec cette adresse : utilisez « Se connecter ».",
+  INVALID_PASSWORD: "E-mail ou mot de passe incorrect.", EMAIL_NOT_FOUND: "E-mail ou mot de passe incorrect.",
+  INVALID_LOGIN_CREDENTIALS: "E-mail ou mot de passe incorrect.", INVALID_EMAIL: "Adresse e-mail invalide.",
+  MISSING_PASSWORD: "Saisissez votre mot de passe.", WEAK_PASSWORD: "Mot de passe trop court (6 caractères minimum).",
+  TOO_MANY_ATTEMPTS_TRY_LATER: "Trop d'essais. Réessayez dans quelques minutes.", USER_DISABLED: "Ce compte est désactivé.",
+  OPERATION_NOT_ALLOWED: "La connexion par e-mail n'est pas activée dans Firebase.",
+  PERMISSION_DENIED: "Le serveur refuse l'enregistrement : vérifiez les règles de la base Firestore.",
+  NOT_FOUND: "La base Firestore n'est pas encore créée dans votre projet Firebase.",
+  API_KEY_INVALID: "La clé Firebase du code est incorrecte.", 'API key not valid': "La clé Firebase du code est incorrecte."
+};
+function frError(msg) {
+  msg = String(msg || '');
+  if (/Failed to fetch|NetworkError|Load failed/i.test(msg)) return "Impossible de joindre le serveur. Vérifiez votre connexion internet.";
+  const k = Object.keys(FR_ERR).find(x => msg.indexOf(x) === 0 || msg.indexOf(x) > -1);
+  const detail = msg.length > 170 ? msg.slice(0, 170) + '…' : msg;
+  if (!k) return "Erreur du serveur (" + detail + ").";
+  return (k === 'NOT_FOUND' || k === 'PERMISSION_DENIED') ? FR_ERR[k] + " [détail : " + detail + "]" : FR_ERR[k];
+}
+async function fbPost(url, body, form) {
+  const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': form ? 'application/x-www-form-urlencoded' : 'application/json' }, body: form ? body : JSON.stringify(body) });
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(d && d.error && d.error.message ? d.error.message : 'HTTP ' + r.status);
+  return d;
+}
+function projectFromToken(t) {          // l'ID du projet est écrit dans le jeton de connexion (champ « aud »)
+  try { return JSON.parse(atob(String(t).split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))).aud || ''; } catch (e) { return ''; }
+}
+function setAuth(d) {
+  auth = {
+    project: projectFromToken(d.idToken || d.id_token) || (auth && auth.project) || '',
+    email: d.email || (auth && auth.email) || '', uid: d.localId || d.user_id || (auth && auth.uid),
+    refreshToken: d.refreshToken || d.refresh_token, idToken: d.idToken || d.id_token,
+    exp: Date.now() + (parseInt(d.expiresIn || d.expires_in, 10) || 3600) * 1000
+  };
+  store.set('lm_auth', JSON.stringify({ email: auth.email, uid: auth.uid, refreshToken: auth.refreshToken }));
+}
+async function getToken() {
+  if (!auth) throw new Error('NO_AUTH');
+  if (auth.idToken && Date.now() < auth.exp - 60000) return auth.idToken;
+  const d = await fbPost('https://securetoken.googleapis.com/v1/token?key=' + FIREBASE.apiKey,
+    'grant_type=refresh_token&refresh_token=' + encodeURIComponent(auth.refreshToken), true);
+  setAuth(d); return auth.idToken;
+}
+const docUrl = () => 'https://firestore.googleapis.com/v1/projects/' + encodeURIComponent(auth.project || FIREBASE.projectId) + '/databases/(default)/documents/users/' + encodeURIComponent(auth.uid);
+const errMsgOf = d => { const e = d && d.error; return e ? ((e.status || '') + ': ' + (e.message || '')).replace(/^: /, '') : ''; };
+async function cloudLoad() {
+  const tok = await getToken();
+  const r = await fetch(docUrl(), { headers: { Authorization: 'Bearer ' + tok } });
+  const d = await r.json().catch(() => ({}));
+  if (r.status === 404) {          // 404 = pas encore de document (normal), sauf si c'est la base elle-même qui manque
+    const m = errMsgOf(d);
+    if (/database/i.test(m) && /not exist|not found/i.test(m) && !/Document/i.test(m)) throw new Error(m);
+    return null;
+  }
+  if (!r.ok) throw new Error(errMsgOf(d) || 'HTTP ' + r.status);
+  const f = d.fields || {};
+  const data = f.data && f.data.stringValue ? JSON.parse(f.data.stringValue) : null;
+  const ts = f.updatedAt && f.updatedAt.integerValue ? parseInt(f.updatedAt.integerValue, 10) : 0;
+  return data ? { data, ts } : null;
+}
+async function cloudSave(ts) {
+  const tok = await getToken();
+  const body = { fields: { data: { stringValue: JSON.stringify({ programList, assocName, theme: currentTheme, drawMode }) }, updatedAt: { integerValue: String(ts) } } };
+  const r = await fetch(docUrl() + '?updateMask.fieldPaths=data&updateMask.fieldPaths=updatedAt',
+    { method: 'PATCH', headers: { Authorization: 'Bearer ' + tok, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  if (!r.ok) { const d = await r.json().catch(() => ({})); throw new Error(errMsgOf(d) || 'HTTP ' + r.status); }
+}
+
+function syncLabel() { return { idle: '', pending: 'modifications en attente', saving: 'enregistrement…', saved: 'synchronisé', error: 'erreur de synchronisation' }[syncState] || ''; }
+function setSync(st) { syncState = st; updateUserBadge(); renderAuthUI(); }
+function updateUserBadge() { const l = syncLabel(); $('user-display').textContent = auth ? auth.email + (l ? ' (' + l + ')' : '') : 'Mode hors-ligne'; }
+function authMsg(t) { const e = $('auth-msg'); if (e) e.textContent = t; }
+function renderAuthUI() {
+  const show = (id, on) => { const e = $(id); if (e) e.style.display = on ? '' : 'none'; };
+  show('auth-nocfg', !CLOUD_ON); show('auth-in', CLOUD_ON && !auth); show('auth-out', CLOUD_ON && !!auth);
+  if (auth && $('auth-who')) { $('auth-who').textContent = auth.email; $('auth-state').textContent = syncState === 'error' ? 'Erreur : ' + lastErr : 'Statut : ' + (syncLabel() || 'prêt'); }
+  updateLock();
+}
+function signOutLocal(msg) {
+  auth = null; store.remove('lm_auth'); clearTimeout(saveTimer); cloudDirty = false;
+  setSync('idle'); if (msg) authMsg(msg);
+}
+function handleAuthFail(e) {
+  if (/INVALID_REFRESH_TOKEN|TOKEN_EXPIRED|USER_NOT_FOUND|USER_DISABLED|UNAUTHENTICATED|CREDENTIAL_TOO_OLD/.test(String(e && e.message))) signOutLocal('Session expirée : reconnectez-vous.');
+}
+
+/* Envoi automatique des parties vers le compte */
+function scheduleCloudSave() {
+  if (!auth || !CLOUD_ON) return;
+  cloudDirty = true; setSync('pending'); clearTimeout(saveTimer); saveTimer = setTimeout(pushNow, 1200);
+}
+async function pushNow() {
+  if (!auth || !CLOUD_ON) return false;
+  if (savingNow) { clearTimeout(saveTimer); saveTimer = setTimeout(pushNow, 800); return false; }
+  clearTimeout(saveTimer); savingNow = true; setSync('saving');
+  const ts = Date.now(); let ok = false;
+  try { await cloudSave(ts); localMod = ts; store.set('lm_mod', String(ts)); cloudDirty = false; ok = true; setSync('saved'); }
+  catch (e) { lastErr = frError(e.message); handleAuthFail(e); if (auth) setSync('error'); }
+  savingNow = false; return ok;
+}
+/* Reprise des parties du compte dans l'application */
+function applyRemote(r) {
+  const d = r.data || {}, curId = programList[currentProgIdx] && programList[currentProgIdx].id;
+  programList = Array.isArray(d.programList) ? normalizeProgram(d.programList) : normalizeProgram(JSON.parse(DEFAULT_PROGRAM_JSON));
+  assocName = d.assocName || DEFAULT_ASSOC; currentTheme = d.theme || 'classic'; drawMode = d.drawMode || 'random';
+  const ni = programList.findIndex(p => p.id === curId);
+  if (ni >= 0) currentProgIdx = ni; else { currentProgIdx = 0; currentStepKeyIdx = 0; }
+  lastCloudStr = cloudState(); localMod = r.ts || Date.now(); store.set('lm_mod', String(localMod));
+  applyDrawModeUI(); resetForm(); renderProgramDragList(); updateCurrentStepInfo();
+}
+async function pullIfNewer() {
+  if (!auth || !CLOUD_ON || savingNow || cloudDirty || editingId) return;
+  try {
+    const r = await cloudLoad();
+    if (r && r.ts > localMod) applyRemote(r);
+    if (syncState === 'error') setSync('saved');
+  } catch (e) { handleAuthFail(e); }
+}
+async function initCloud() {
+  renderAuthUI(); updateUserBadge();
+  if (!CLOUD_ON || cloudStarted) return;
+  cloudStarted = true;
+  window.addEventListener('focus', pullIfNewer);
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') pullIfNewer(); });
+  window.addEventListener('online', () => { if (cloudDirty) pushNow(); else pullIfNewer(); });
+  let saved = null; try { saved = JSON.parse(store.get('lm_auth')); } catch (e) {}
+  if (!saved || !saved.refreshToken) return;
+  auth = { email: saved.email, uid: saved.uid, refreshToken: saved.refreshToken, idToken: '', exp: 0 };
+  setSync('saving');
+  try {
+    const remote = await cloudLoad();
+    if (!remote || remote.ts < localMod) await pushNow();
+    else if (remote.ts > localMod && !editingId) { applyRemote(remote); setSync('saved'); }
+    else setSync('saved');
+  } catch (e) { lastErr = frError(e.message); handleAuthFail(e); if (auth) setSync('error'); }
+}
+
+/* Boutons de l'onglet Compte */
+async function authSubmit(mode) {
+  const email = $('auth-email').value.trim(), pw = $('auth-password').value;
+  if (!/^\S+@\S+\.\S+$/.test(email)) return authMsg('Adresse e-mail invalide.');
+  if (pw.length < 6) return authMsg('Mot de passe trop court (6 caractères minimum).');
+  authMsg('Connexion en cours…');
+  try {
+    const d = await fbPost('https://identitytoolkit.googleapis.com/v1/accounts:' + (mode === 'signup' ? 'signUp' : 'signInWithPassword') + '?key=' + FIREBASE.apiKey,
+      { email, password: pw, returnSecureToken: true });
+    setAuth(d); $('auth-password').value = '';
+    await firstSync(mode === 'signup');
+  } catch (e) { authMsg(frError(e.message)); }
+}
+async function firstSync(isNew) {
+  setSync('saving');
+  try {
+    const remote = isNew ? null : await cloudLoad();
+    if (!remote) {
+      const ok = await pushNow();
+      authMsg(ok ? (isNew ? 'Compte créé : vos parties sont enregistrées sur votre compte.' : 'Connecté : les parties de cet appareil ont été enregistrées sur votre compte.') : lastErr);
+      return;
+    }
+    const same = JSON.stringify(normalizeProgram(remote.data.programList)) === JSON.stringify(programList);
+    if (same || JSON.stringify(programList) === DEFAULT_PROGRAM_JSON ||
+        confirm("Cet appareil contient des parties différentes de celles de votre compte.\n\nOK : charger les parties de votre compte (celles de cet appareil seront remplacées).\nAnnuler : garder celles de cet appareil et les envoyer sur votre compte.")) {
+      applyRemote(remote); setSync('saved'); authMsg('Connecté : vos parties ont été retrouvées.');
+    } else { const ok = await pushNow(); authMsg(ok ? 'Les parties de cet appareil ont été envoyées sur votre compte.' : lastErr); }
+  } catch (e) { lastErr = frError(e.message); handleAuthFail(e); if (auth) setSync('error'); authMsg(lastErr); }
+}
+async function syncNow() {
+  if (!auth) return;
+  setSync('saving');
+  try {
+    const r = await cloudLoad();
+    if (r && r.ts > localMod) { applyRemote(r); setSync('saved'); authMsg('Parties mises à jour depuis votre compte.'); }
+    else { const ok = await pushNow(); authMsg(ok ? 'Parties enregistrées sur votre compte.' : lastErr); }
+  } catch (e) { lastErr = frError(e.message); handleAuthFail(e); if (auth) setSync('error'); authMsg(lastErr); }
+}
+async function forgotPassword() {
+  const email = $('auth-email').value.trim();
+  if (!/^\S+@\S+\.\S+$/.test(email)) return authMsg("Saisissez d'abord votre adresse e-mail.");
+  try {
+    await fbPost('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=' + FIREBASE.apiKey, { requestType: 'PASSWORD_RESET', email });
+    authMsg("E-mail de réinitialisation envoyé (pensez à regarder les courriers indésirables).");
+  } catch (e) { authMsg(frError(e.message)); }
+}
+function logoutUser() { signOutLocal('Déconnecté. Les parties restent enregistrées sur cet appareil.'); }
+
+/* ---------- CONNEXION OBLIGATOIRE ---------- */
+let wasLocked = null;
+function updateLock() {
+  if (IS_SALLE) return;
+  const locked = CLOUD_ON && !auth;            // sans clé Firebase dans le code, l'application reste ouverte
+  document.documentElement.classList.toggle('locked', locked);
+  if (locked) {
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    $('tab-auth').classList.add('active');
+  } else {
+    if (wasLocked === true) switchTab('control', document.querySelector('.tab-btn'));   // après la connexion : onglet Tirage
+    if (!tutoShown && !store.get('lm_tuto_done')) { tutoShown = true; openTuto(); }     // tutoriel au premier lancement
+  }
+  wasLocked = locked;
+}
+
+/* ---------- VISITE GUIDÉE (flèche + explication, élément par élément) ---------- */
+let tutoOpen = false, tutoIdx = 0, tutoShown = false, tourTarget = null, tourTimer = null, tourStartTab = 'control';
+const TOUR_TABS = ['control', 'lots', 'params', 'auth'];
+const TOUR_PAGES = { control: 'Onglet Tirage', lots: 'Onglet Programme', params: 'Onglet Réglages', auth: 'Onglet Compte' };
+const TUTO = [
+  { tab: 'control', sel: null, t: 'Bienvenue sur LotoMatic', h: "Cette visite guidée vous montre, avec une flèche, à quoi sert chaque élément, page après page. Appuyez sur « Suivant » (ou sur la touche → du clavier) pour avancer, et sur « Passer » pour quitter." },
+  { tab: 'control', sel: '.tabs', t: 'Les quatre onglets', h: "Tirage, Programme, Réglages et Compte : c'est ici que vous changez de page. Nous les visitons un par un." },
+  { tab: 'control', sel: '#admin-main-grid', t: 'Le tableau de 1 à 90', h: "Chaque case est un numéro. Cliquez sur une case pour la marquer comme sortie, ou pour la retirer si vous vous êtes trompé. Les numéros sortis passent en couleur." },
+  { tab: 'control', sel: '.last-drawn-box', t: 'Le dernier numéro tiré', h: "Le numéro qui vient de sortir s'affiche ici, en grand." },
+  { tab: 'control', sel: ['#draw-mode-random-box .btn', '#draw-mode-manual-box'], t: 'Tirer un numéro', h: "Tire un numéro au hasard parmi ceux qui restent (raccourci : la barre Espace). Si vous choisissez la saisie manuelle dans Réglages, un champ pour taper le numéro du boulier s'affiche à la place." },
+  { tab: 'control', sel: '#tour-undo', t: 'Annuler', h: "Retire le dernier numéro tiré, par exemple après une erreur de saisie." },
+  { tab: 'control', sel: '#tour-reset', t: 'Tout effacer', h: "Remet le tirage à zéro pour une nouvelle partie. Une confirmation vous est demandée avant d'effacer." },
+  { tab: 'control', sel: '#tour-step-card', t: 'La partie en cours', h: "Rappelle la partie, l'étape (1 ligne, 2 lignes ou carton plein), le lot à gagner, son donateur et le lot de consolation." },
+  { tab: 'control', sel: '#tour-step-nav', t: 'Précédente et Suivante', h: "Passent d'une étape à l'autre : 1 ligne, 2 lignes, carton plein, puis la partie suivante ou l'entracte. L'écran de salle change en même temps." },
+  { tab: 'control', sel: '#tour-open-salle', t: "Ouvrir l'écran de salle", h: "Ouvre une fenêtre à placer sur le vidéoprojecteur : utilisez son bouton « Plein écran ». Elle se met à jour toute seule à chaque numéro tiré." },
+  { tab: 'control', sel: '#tour-inline-salle', t: 'Afficher la salle dans cet onglet', h: "Le même affichage, directement dans cet onglet (tirez avec Espace, revenez avec Échap). Pratique si vous n'avez qu'un seul écran." },
+  { tab: 'control', sel: '#btn-toggle-pause', t: "L'entracte", h: "Lance le compte à rebours d'entracte affiché dans la salle. Appuyez de nouveau pour l'arrêter et reprendre le jeu." },
+  { tab: 'lots', sel: '#new-game-type', t: 'Créer une partie : le format', h: "Choisissez une partie landaise (1 ligne, 2 lignes, carton plein) ou un carton plein direct. Les parties se nomment toutes seules : Partie 1, 2, 3…" },
+  { tab: 'lots', sel: '#lots-fields', t: 'Les lots et leurs donateurs', h: "Pour chaque ligne, indiquez le lot et son donateur. Laissez le donateur vide si le lot vient de l'association." },
+  { tab: 'lots', sel: '#game-cons', t: 'Le lot de consolation', h: "Facultatif. Le même pour tous les lots de la partie : il s'affiche en petit sous le lot, en cas d'égalité." },
+  { tab: 'lots', sel: '#btn-save-game', t: 'Ajouter la partie', h: "Enregistre la partie dans le déroulé de la soirée." },
+  { tab: 'lots', sel: '#tour-pause-card', t: 'Ajouter un entracte', h: "Choisissez sa durée et le message qui s'affichera dans la salle, puis ajoutez-le au déroulé." },
+  { tab: 'lots', sel: ['#program-drag-list [data-a=edit]', '#program-drag-list'], t: 'Modifier une partie', h: "Rouvre la partie pour changer ses lots, ses donateurs ou son lot de consolation." },
+  { tab: 'lots', sel: ['#program-drag-list .drag-handle', '#program-drag-list'], t: "Changer l'ordre", h: "Faites glisser la poignée, ou utilisez les flèches, pour déplacer une partie ou un entracte. Les numéros se mettent à jour tout seuls." },
+  { tab: 'lots', sel: ['#program-drag-list [data-a=del]', '#program-drag-list'], t: 'Supprimer', h: "La croix retire la partie ou l'entracte. Les autres parties se renumérotent automatiquement." },
+  { tab: 'params', sel: '#assoc-name-input', t: "Le nom de l'association", h: "Il s'affiche en bas de l'écran de salle." },
+  { tab: 'params', sel: '#ui-theme-select', t: 'Apparence de la régie', h: "Choisissez un style clair ou sombre pour cette page. Le sombre repose les yeux en soirée." },
+  { tab: 'params', sel: '#draw-mode-select', t: 'Le mode de tirage', h: "Aléatoire : l'application tire pour vous. Saisie : vous tapez les numéros du boulier (2 chiffres : validé tout seul ; 1 chiffre : appuyez sur Entrée)." },
+  { tab: 'params', sel: '#theme-select', t: "Le thème de l'écran de salle", h: "Change les couleurs de l'écran projeté : classique, océan, Halloween, Octobre rose…" },
+  { tab: 'auth', sel: ['#auth-out', '#auth-nocfg', '#auth-in'], t: 'Votre compte', h: "Vos parties sont enregistrées en ligne à chaque modification. Connectez-vous avec la même adresse e-mail sur un autre appareil pour les retrouver." },
+  { tab: 'auth', sel: '#tour-sync', t: 'Synchroniser maintenant', h: "Force l'envoi ou la récupération immédiate de vos parties." },
+  { tab: 'auth', sel: '#tour-logout', t: 'Se déconnecter', h: "Ferme votre session sur cet appareil. Vos parties restent enregistrées sur votre compte." },
+  { tab: 'auth', sel: '#btn-help', t: "Le bouton d'aide", h: "Cette visite guidée reste disponible ici, à tout moment. Bonne soirée !" }
+];
+function activeTabId() { const a = document.querySelector('.tab-content.active'); return a ? a.id.replace('tab-', '') : 'control'; }
+function tourTab(id) {
+  if ($('tab-' + id).classList.contains('active')) return;
+  switchTab(id, document.querySelectorAll('.tab-btn')[TOUR_TABS.indexOf(id)]);
+}
+function tourPick(sel) {
+  if (!sel) return null;
+  for (const q of (Array.isArray(sel) ? sel : [sel])) {
+    const e = document.querySelector(q);
+    if (e) { const r = e.getBoundingClientRect(); if (r.width > 0 && r.height > 0) return e; }
+  }
+  return null;
+}
+function placeTour() {
+  if (!tutoOpen) return;
+  const root = $('tuto'), hole = $('tour-hole'), arrow = $('tour-arrow'), bub = $('tour-bubble');
+  const vw = window.innerWidth, vh = window.innerHeight, M = 12, A = 40, G = 8, P = 6;
+  const bw = bub.offsetWidth, bh = bub.offsetHeight;
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+  if (!tourTarget || !document.body.contains(tourTarget)) {          // étape sans cible : fenêtre centrée
+    root.classList.add('dim'); hole.style.display = 'none'; arrow.style.display = 'none';
+    bub.style.left = Math.max(M, (vw - bw) / 2) + 'px'; bub.style.top = Math.max(M, (vh - bh) / 2) + 'px'; return;
+  }
+  root.classList.remove('dim'); hole.style.display = '';
+  const r = tourTarget.getBoundingClientRect();
+  hole.style.left = (r.left - P) + 'px'; hole.style.top = (r.top - P) + 'px';
+  hole.style.width = (r.width + 2 * P) + 'px'; hole.style.height = (r.height + 2 * P) + 'px';
+  const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+  const room = { bottom: vh - r.bottom - P, top: r.top - P, right: vw - r.right - P, left: r.left - P };
+  const need = { bottom: bh + A + G + M, top: bh + A + G + M, right: bw + A + G + M, left: bw + A + G + M };
+  const place = (vw < 700 ? ['bottom', 'top'] : ['bottom', 'top', 'right', 'left']).find(p => room[p] >= need[p]);
+  if (!place) {                                                      // cible très grande : bulle en bas de l'écran
+    arrow.style.display = 'none';
+    bub.style.left = Math.max(M, (vw - bw) / 2) + 'px'; bub.style.top = Math.max(M, vh - bh - M) + 'px'; return;
+  }
+  arrow.style.display = '';
+  let ax, ay, bx, by, rot, vx = 0, vy = 0;
+  if (place === 'bottom') { ax = clamp(cx - A / 2, M, vw - A - M); ay = r.bottom + P + G; bx = clamp(cx - bw / 2, M, vw - bw - M); by = ay + A + 4; rot = 0; vy = -8; }
+  else if (place === 'top') { ax = clamp(cx - A / 2, M, vw - A - M); ay = r.top - P - G - A; bx = clamp(cx - bw / 2, M, vw - bw - M); by = ay - 4 - bh; rot = 180; vy = 8; }
+  else if (place === 'right') { ax = r.right + P + G; ay = clamp(cy - A / 2, M, vh - A - M); bx = ax + A + 4; by = clamp(cy - bh / 2, M, vh - bh - M); rot = -90; vx = -8; }
+  else { ax = r.left - P - G - A; ay = clamp(cy - A / 2, M, vh - A - M); bx = ax - 4 - bw; by = clamp(cy - bh / 2, M, vh - bh - M); rot = 90; vx = 8; }
+  arrow.style.left = ax + 'px'; arrow.style.top = ay + 'px';
+  arrow.style.setProperty('--rot', rot + 'deg'); arrow.style.setProperty('--bx', vx + 'px'); arrow.style.setProperty('--by', vy + 'px');
+  bub.style.left = bx + 'px'; bub.style.top = by + 'px';
+}
+function renderTuto() {
+  const st = TUTO[tutoIdx], last = tutoIdx === TUTO.length - 1;
+  tourTab(st.tab);
+  tourTarget = tourPick(st.sel);
+  $('tuto-page').textContent = TOUR_PAGES[st.tab];
+  $('tuto-step').textContent = 'Étape ' + (tutoIdx + 1) + ' sur ' + TUTO.length;
+  $('tuto-bar').style.width = ((tutoIdx + 1) / TUTO.length * 100) + '%';
+  $('tuto-title').textContent = st.t; $('tuto-body').textContent = st.h;
+  $('tuto-prev').style.visibility = tutoIdx === 0 ? 'hidden' : 'visible';
+  $('tuto-skip').style.display = last ? 'none' : '';
+  $('tuto-next').textContent = last ? 'Terminer' : 'Suivant';
+  if (tourTarget) tourTarget.scrollIntoView({ block: 'center', inline: 'nearest' });
+  placeTour(); requestAnimationFrame(placeTour);
+  try { $('tuto-next').focus({ preventScroll: true }); } catch (e) {}
+}
+function openTuto() {
+  if (tutoOpen) return;
+  tourStartTab = activeTabId(); tutoIdx = 0; tutoOpen = true;
+  const root = $('tuto'); root.classList.add('open', 'still');
+  renderTuto();
+  requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('still')));
+  clearInterval(tourTimer); tourTimer = setInterval(placeTour, 120);
+}
+function closeTuto() {
+  tutoOpen = false; clearInterval(tourTimer); tourTarget = null;
+  $('tuto').classList.remove('open'); store.set('lm_tuto_done', '1');
+  tourTab(tourStartTab);
+}
+function tutoGo(d) {
+  let n = tutoIdx;
+  for (;;) {
+    n += d;
+    if (n < 0) return;
+    if (n >= TUTO.length) { closeTuto(); return; }
+    tourTab(TUTO[n].tab);
+    if (!TUTO[n].sel || tourPick(TUTO[n].sel)) { tutoIdx = n; renderTuto(); return; }   // saute les éléments absents
+  }
+}
+document.addEventListener('keydown', e => {
+  if (!tutoOpen) return;
+  if (e.key === 'Escape') closeTuto();
+  else if (e.key === 'ArrowRight') { e.preventDefault(); tutoGo(1); }
+  else if (e.key === 'ArrowLeft') { e.preventDefault(); tutoGo(-1); }
+  else if (e.key === 'Tab') {                                        // le clavier reste dans la bulle
+    const f = [...document.querySelectorAll('#tuto .tour-nav .btn')].filter(x => x.offsetParent !== null && x.style.visibility !== 'hidden');
+    const i = f.indexOf(document.activeElement);
+    if (!f.length) return;
+    e.preventDefault(); f[(i + (e.shiftKey ? f.length - 1 : 1)) % f.length].focus();
+  }
+});
+window.addEventListener('resize', () => { if (tutoOpen) placeTour(); });
+</script>
+</body>
+</html>
